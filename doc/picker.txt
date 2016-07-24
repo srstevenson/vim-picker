@@ -1,0 +1,61 @@
+*picker.txt* A fuzzy file picker for Neovim                               *picker*
+
+==============================================================================
+CONTENTS                                                       *picker-contents*
+
+    1. About .....................................|picker-about|
+    2. Commands ..................................|picker-commands|
+    3. Configuration .............................|picker-configuration|
+    4. Issues ....................................|picker-issues|
+    5. Licence ...................................|picker-licence|
+
+==============================================================================
+ABOUT                                                             *picker-about*
+
+nvim-picker is a fuzzy file picker for Neovim.
+
+==============================================================================
+COMMANDS                                                       *picker-commands*
+
+nvim-picker provides the following commands:
+
+                                                            *picker-:PickerEdit*
+:PickerEdit             Pick a file with fuzzy selection to edit in the
+                        current window.
+
+                                                           *picker-:PickerSplit*
+:PickerSplit            Pick a file with fuzzy selection to edit in a new
+                        horizontal split.
+
+                                                         *picker-:PickerTabedit*
+:PickerTabedit          Pick a file with fuzzy selection to edit in a new tab.
+
+                                                          *picker-:PickerVsplit*
+:PickerVsplit           Pick a file with fuzzy selection to edit in a new
+                        vertical split.
+
+==============================================================================
+CONFIGURATION                                             *picker-configuration*
+
+By default nvim-picker will use `pick` (https://github.com/thoughtbot/pick) as
+the fuzzy selector. You can change this by setting `g:picker_selector` in your
+`init.vim` file. For example, to use `selecta`
+(https://github.com/garybernhardt/selecta) set:
+>
+    let g:picker_selector = 'selecta'
+<
+==============================================================================
+ISSUES                                                           *picker-issues*
+
+Bug reports and patches are welcome on the issue tracker at
+https://github.com/srstevenson/nvim-picker/issues
+
+==============================================================================
+LICENCE                                                         *picker-licence*
+
+Copyright © 2016 Scott Stevenson.
+
+nvim-picker is distributed under the terms of the ISC licence.
+
+==============================================================================
+vim:et:ft=help:sts=4:tw=78:

@@ -1,6 +1,6 @@
 # nvim-picker
 
-[nvim-picker] is a fuzzy file picker for Neovim.
+[nvim-picker] is a fuzzy file picker for [Neovim].
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/5845679/17085962/99273fde-51dd-11e6-98f6-fa5c9ffaf2a8.gif" />
@@ -10,10 +10,10 @@ nvim-picker allows you to search for and select files to edit using a fuzzy
 selector such as [`pick`][pick] or [`selecta`][selecta]. It has advantages over
 plugins with a similar purpose such as [ctrlp.vim] and [Command-T]:
 
-* It uses Neovim's built-in terminal emulator so the fuzzy selector does not
-  block the UI. Whilst selecting a file to edit, you can move to another
-  buffer, edit that buffer, and then return to the fuzzy selector to continue
-  where you left off.
+* It uses [Neovim's built-in terminal emulator][nvim-terminal] so the fuzzy
+  selector does not block the UI. Whilst selecting a file to edit, you can move
+  to another buffer, edit that buffer, and then return to the fuzzy selector to
+  continue where you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   directories and `ag` elsewhere, falling back to `find` if `ag` is not found.
@@ -102,7 +102,9 @@ nvim-picker is distributed under the terms of the [ISC licence].
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
 [ISC licence]: https://opensource.org/licenses/ISC
+[Neovim]: https://neovim.io/
 [nvim-picker]: https://github.com/srstevenson/nvim-picker
+[nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [pick]: https://github.com/thoughtbot/pick
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta

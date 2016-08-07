@@ -15,12 +15,12 @@ if !exists('g:picker_selector')
   let g:picker_selector = 'pick -X'
 endif
 
-function! s:InGitRepository()
+function! s:InGitRepository() abort
   let tmp = system('git rev-parse --is-inside-work-tree')
   return v:shell_error == 0
 endfunction
 
-function! s:FileListingCommand()
+function! s:FileListingCommand() abort
   if s:InGitRepository()
     return 'git ls-files --cached --exclude-standard --others'
   elseif executable('ag')
@@ -30,10 +30,10 @@ function! s:FileListingCommand()
   endif
 endfunction
 
-function! s:ExecuteCommand(vim_cmd)
+function! s:ExecuteCommand(vim_cmd) abort
   let callback = {'vim_cmd': a:vim_cmd, 'filename': tempname()}
 
-  function! callback.on_exit()
+  function! callback.on_exit() abort
     bdelete!
     if filereadable(self.filename)
       try
@@ -50,19 +50,19 @@ function! s:ExecuteCommand(vim_cmd)
   startinsert
 endfunction
 
-function! PickerEdit()
+function! PickerEdit() abort
   call s:ExecuteCommand('edit')
 endfunction
 
-function! PickerSplit()
+function! PickerSplit() abort
   call s:ExecuteCommand('split')
 endfunction
 
-function! PickerTabedit()
+function! PickerTabedit() abort
   call s:ExecuteCommand('tabedit')
 endfunction
 
-function! PickerVsplit()
+function! PickerVsplit() abort
   call s:ExecuteCommand('vsplit')
 endfunction
 

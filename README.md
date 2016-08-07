@@ -74,10 +74,10 @@ if you have no preference, the following snippet provides mnemonic, single
 character mappings for each of nvim-picker's commands:
 
 ```viml
-nnoremap <leader>e :PickerEdit<cr>
-nnoremap <leader>s :PickerSplit<cr>
-nnoremap <leader>t :PickerTabedit<cr>
-nnoremap <leader>v :PickerVsplit<cr>
+nnoremap <unique> <leader>e :PickerEdit<cr>
+nnoremap <unique> <leader>s :PickerSplit<cr>
+nnoremap <unique> <leader>t :PickerTabedit<cr>
+nnoremap <unique> <leader>v :PickerVsplit<cr>
 ```
 
 ## Configuration

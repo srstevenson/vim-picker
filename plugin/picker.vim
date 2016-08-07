@@ -15,7 +15,7 @@ if !exists('g:picker_selector')
   let g:picker_selector = 'pick -X'
 endif
 
-command! -bar PickerEdit call picker#Edit()
-command! -bar PickerSplit call picker#Split()
-command! -bar PickerTabedit call picker#Tabedit()
-command! -bar PickerVsplit call picker#Vsplit()
+command -bar PickerEdit call picker#Edit()
+command -bar PickerSplit call picker#Split()
+command -bar PickerTabedit call picker#Tabedit()
+command -bar PickerVsplit call picker#Vsplit()

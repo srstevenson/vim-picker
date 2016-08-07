@@ -10,7 +10,7 @@ nvim-picker allows you to search for and select files to edit using a fuzzy
 selector such as [`pick`][pick] or [`selecta`][selecta]. It has advantages over
 plugins with a similar purpose such as [ctrlp.vim] and [Command-T]:
 
-* It uses [Neovim's built-in terminal emulator][nvim-terminal] so the fuzzy
+* It uses [Neovim's embedded terminal emulator][nvim-terminal] so the fuzzy
   selector does not block the UI. Whilst selecting a file to edit, you can move
   to another buffer, edit that buffer, and then return to the fuzzy selector to
   continue where you left off.
@@ -23,7 +23,7 @@ plugins with a similar purpose such as [ctrlp.vim] and [Command-T]:
   mappings that best fit your workflow and don't conflict with your other
   plugins.
 
-nvim-picker uses Neovim's built-in terminal emulator and therefore does not
+nvim-picker uses Neovim's embedded terminal emulator and therefore does not
 support Vim.
 
 ## Installation

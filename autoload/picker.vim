@@ -3,7 +3,7 @@
 " Source:     https://github.com/srstevenson/nvim-picker
 
 function! s:InGitRepository() abort
-  let tmp = system('git rev-parse --is-inside-work-tree')
+  let l:result = system('git rev-parse --is-inside-work-tree')
   return v:shell_error == 0
 endfunction
 
@@ -18,9 +18,9 @@ function! s:FileListingCommand() abort
 endfunction
 
 function! s:ExecuteCommand(vim_cmd) abort
-  let callback = {'vim_cmd': a:vim_cmd, 'filename': tempname()}
+  let l:callback = {'vim_cmd': a:vim_cmd, 'filename': tempname()}
 
-  function! callback.on_exit() abort
+  function! l:callback.on_exit() abort
     bdelete!
     if filereadable(self.filename)
       try
@@ -32,8 +32,8 @@ function! s:ExecuteCommand(vim_cmd) abort
   endfunction
 
   botright new
-  let list_cmd = s:FileListingCommand() . '|' . g:picker_selector . '>' . callback.filename
-  call termopen(list_cmd, callback)
+  let l:list_cmd = s:FileListingCommand() . '|' . g:picker_selector . '>' . l:callback.filename
+  call termopen(l:list_cmd, l:callback)
   startinsert
 endfunction
 

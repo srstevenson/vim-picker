@@ -37,6 +37,12 @@ function! s:ExecuteCommand(vim_cmd) abort
   startinsert
 endfunction
 
+function! picker#CheckIsString(variable, name) abort
+  if type(a:variable) != type('')
+    echomsg 'Error:' a:name 'must be a string'
+  endif
+endfunction
+
 function! picker#Edit() abort
   call s:ExecuteCommand('edit')
 endfunction

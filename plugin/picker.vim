@@ -11,7 +11,9 @@ endif
 
 let g:loaded_picker = 1
 
-if !exists('g:picker_selector')
+if exists('g:picker_selector')
+  call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
+else
   let g:picker_selector = 'pick -X'
 endif
 

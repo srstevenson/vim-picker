@@ -17,7 +17,7 @@ function! s:FileListingCommand() abort
   endif
 endfunction
 
-function! s:ExecuteCommand(vim_cmd) abort
+function! s:Picker(vim_cmd) abort
   let l:callback = {'vim_cmd': a:vim_cmd, 'filename': tempname()}
 
   function! l:callback.on_exit() abort
@@ -44,17 +44,17 @@ function! picker#CheckIsString(variable, name) abort
 endfunction
 
 function! picker#Edit() abort
-  call s:ExecuteCommand('edit')
+  call s:Picker('edit')
 endfunction
 
 function! picker#Split() abort
-  call s:ExecuteCommand('split')
+  call s:Picker('split')
 endfunction
 
 function! picker#Tabedit() abort
-  call s:ExecuteCommand('tabedit')
+  call s:Picker('tabedit')
 endfunction
 
 function! picker#Vsplit() abort
-  call s:ExecuteCommand('vsplit')
+  call s:Picker('vsplit')
 endfunction

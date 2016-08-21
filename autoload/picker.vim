@@ -3,7 +3,7 @@
 " Source:     https://github.com/srstevenson/nvim-picker
 
 function! s:InGitRepository() abort
-  let l:result = system('git rev-parse --is-inside-work-tree')
+  let l:_ = system('git rev-parse --is-inside-work-tree')
   return v:shell_error == 0
 endfunction
 

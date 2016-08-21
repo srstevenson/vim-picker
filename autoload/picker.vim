@@ -17,14 +17,14 @@ function! s:FileListingCommand() abort
   endif
 endfunction
 
-function! s:Picker(vim_cmd) abort
-  let l:callback = {'vim_cmd': a:vim_cmd, 'filename': tempname()}
+function! s:Picker(vim_command) abort
+  let l:callback = {'vim_command': a:vim_command, 'filename': tempname()}
 
   function! l:callback.on_exit() abort
     bdelete!
     if filereadable(self.filename)
       try
-        exec self.vim_cmd . ' ' . readfile(self.filename)[0]
+        exec self.vim_command . ' ' . readfile(self.filename)[0]
       catch /E684/
       endtry
       call delete(self.filename)

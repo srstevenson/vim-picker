@@ -11,7 +11,7 @@ function! s:ListFilesCommand() abort
   if s:InGitRepository()
     return 'git ls-files --cached --exclude-standard --others'
   elseif executable('ag')
-    return 'ag --files-with-matches --nocolor -g ""'
+    return 'ag --nocolor -g ""'
   else
     return 'find . -type f'
   endif

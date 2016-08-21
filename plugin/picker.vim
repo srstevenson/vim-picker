@@ -14,7 +14,7 @@ let g:loaded_picker = 1
 if exists('g:picker_selector')
   call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
 else
-  let g:picker_selector = 'pick -X'
+  let g:picker_selector = 'fzy --lines=100'
 endif
 
 command -bar PickerEdit call picker#Edit()

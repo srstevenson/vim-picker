@@ -7,8 +7,9 @@
 </p>
 
 nvim-picker allows you to search for and select files to edit using a fuzzy
-selector such as [`pick`][pick] or [`selecta`][selecta]. It has advantages over
-plugins with a similar purpose such as [ctrlp.vim] and [Command-T]:
+selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta]. It has
+advantages over plugins with a similar purpose such as [ctrlp.vim] and
+[Command-T]:
 
 * It uses [Neovim's embedded terminal emulator][nvim-terminal] so the fuzzy
   selector does not block the UI. Whilst selecting a file to edit, you can move
@@ -17,8 +18,8 @@ plugins with a similar purpose such as [ctrlp.vim] and [Command-T]:
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   directories and `ag` elsewhere, falling back to `find` if `ag` is not found.
-  Fuzzy text selection is done with `pick`: a fast, well behaved interactive
-  filter.
+  Fuzzy text selection is done with `fzy` by default: a fast, well behaved
+  interactive filter.
 * It doesn't define default key mappings, allowing you to define your own
   mappings that best fit your workflow and don't conflict with your other
   plugins.
@@ -28,9 +29,9 @@ support Vim.
 
 ## Installation
 
-To use nvim-picker you will first need a fuzzy selector such as `pick` or
-`selecta` installed. See their respective homepages for installation
-instructions.
+To use nvim-picker you will first need a fuzzy selector such as [`fzy`][fzy],
+[`pick`][pick], or [`selecta`][selecta] installed. See their respective
+homepages for installation instructions.
 
 To install nvim-picker using [vim-plug], add the following to your `init.vim`
 file (at `${XDG_CONFIG_HOME:-~/.config}/nvim/init.vim`), restart Neovim, and
@@ -82,15 +83,15 @@ nnoremap <unique> <leader>v :PickerVsplit<cr>
 
 ## Configuration
 
-`pick` is used as the default fuzzy selector. To use an alternative selector,
+`fzy` is used as the default fuzzy selector. To use an alternative selector,
 set `g:picker_selector` in your `init.vim` file. For example, set
 
 ```viml
-let g:picker_selector = 'selecta'
+let g:picker_selector = 'pick'
 ```
 
-to use `selecta`. nvim-picker has been tested with `pick` and `selecta`, but
-any well behaved command line filter should work.
+to use `pick`. nvim-picker has been tested with `fzy`, `pick`, and `selecta`,
+but any well behaved command line filter should work.
 
 ## Copyright
 
@@ -101,6 +102,7 @@ nvim-picker is distributed under the terms of the [ISC licence].
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
+[fzy]: https://github.com/jhawthorn/fzy
 [ISC licence]: https://opensource.org/licenses/ISC
 [Neovim]: https://neovim.io/
 [nvim-picker]: https://github.com/srstevenson/nvim-picker

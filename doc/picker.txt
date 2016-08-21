@@ -37,12 +37,12 @@ nvim-picker provides the following commands:
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*
 
-By default nvim-picker will use `pick` (https://github.com/thoughtbot/pick) as
+By default nvim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as
 the fuzzy selector. You can change this by setting `g:picker_selector` in your
-`init.vim` file. For example, to use `selecta`
-(https://github.com/garybernhardt/selecta) set:
+`init.vim` file. For example, to use `pick`
+(https://github.com/thoughtbot/pick) set:
 >
-    let g:picker_selector = 'selecta'
+    let g:picker_selector = 'pick'
 <
 ==============================================================================
 ISSUES                                                           *picker-issues*

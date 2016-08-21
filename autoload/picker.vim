@@ -32,7 +32,8 @@ function! s:Picker(list_command, vim_command) abort
   endfunction
 
   botright new
-  let l:term_command = a:list_command . '|' . g:picker_selector . '>' . l:callback.filename
+  let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
+        \ l:callback.filename
   call termopen(l:term_command, l:callback)
   startinsert
 endfunction

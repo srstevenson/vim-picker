@@ -1,4 +1,4 @@
-# nvim-picker
+# nvim-picker [![Build Status](https://travis-ci.org/srstevenson/nvim-picker.svg?branch=master)](https://travis-ci.org/srstevenson/nvim-picker)
 
 [nvim-picker] is a fuzzy file picker for [Neovim].
 

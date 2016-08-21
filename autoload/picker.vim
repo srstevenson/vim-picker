@@ -17,7 +17,7 @@ function! s:ListFilesCommand() abort
   endif
 endfunction
 
-function! s:Picker(vim_command) abort
+function! s:Picker(list_command, vim_command) abort
   let l:callback = {'vim_command': a:vim_command, 'filename': tempname()}
 
   function! l:callback.on_exit() abort
@@ -32,7 +32,7 @@ function! s:Picker(vim_command) abort
   endfunction
 
   botright new
-  let l:term_command = s:ListFilesCommand() . '|' . g:picker_selector . '>' . l:callback.filename
+  let l:term_command = a:list_command . '|' . g:picker_selector . '>' . l:callback.filename
   call termopen(l:term_command, l:callback)
   startinsert
 endfunction
@@ -44,17 +44,17 @@ function! picker#CheckIsString(variable, name) abort
 endfunction
 
 function! picker#Edit() abort
-  call s:Picker('edit')
+  call s:Picker(s:ListFilesCommand(), 'edit')
 endfunction
 
 function! picker#Split() abort
-  call s:Picker('split')
+  call s:Picker(s:ListFilesCommand(), 'split')
 endfunction
 
 function! picker#Tabedit() abort
-  call s:Picker('tabedit')
+  call s:Picker(s:ListFilesCommand(), 'tabedit')
 endfunction
 
 function! picker#Vsplit() abort
-  call s:Picker('vsplit')
+  call s:Picker(s:ListFilesCommand(), 'vsplit')
 endfunction

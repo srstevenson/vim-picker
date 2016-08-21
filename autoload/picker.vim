@@ -7,7 +7,7 @@ function! s:InGitRepository() abort
   return v:shell_error == 0
 endfunction
 
-function! s:FileListingCommand() abort
+function! s:ListFilesCommand() abort
   if s:InGitRepository()
     return 'git ls-files --cached --exclude-standard --others'
   elseif executable('ag')
@@ -32,7 +32,7 @@ function! s:Picker(vim_command) abort
   endfunction
 
   botright new
-  let l:term_command = s:FileListingCommand() . '|' . g:picker_selector . '>' . l:callback.filename
+  let l:term_command = s:ListFilesCommand() . '|' . g:picker_selector . '>' . l:callback.filename
   call termopen(l:term_command, l:callback)
   startinsert
 endfunction

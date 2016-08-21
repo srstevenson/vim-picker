@@ -1,0 +1,8 @@
+language: python
+install:
+  - pip install vim-vint
+  - git clone https://github.com/syngan/vim-vimlint /tmp/vim-vimlint
+  - git clone https://github.com/ynkdir/vim-vimlparser /tmp/vim-vimlparser
+script:
+  - vint .
+  - /tmp/vim-vimlint/bin/vimlint.sh -u -l /tmp/vim-vimlint -p /tmp/vim-vimlparser -e EVL102.l:_=1 .

@@ -10,8 +10,8 @@ endfunction
 function! s:ListFilesCommand() abort
   if s:InGitRepository()
     return 'git ls-files --cached --exclude-standard --others'
-  elseif executable('ag')
-    return 'ag --nocolor -g ""'
+  elseif executable('rg')
+    return 'rg --files'
   else
     return 'find . -type f'
   endif

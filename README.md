@@ -17,9 +17,9 @@ advantages over plugins with a similar purpose such as [ctrlp.vim] and
   continue where you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
-  directories and `ag` elsewhere, falling back to `find` if `ag` is not found.
-  Fuzzy text selection is done with `fzy` by default: a fast, well behaved
-  interactive filter.
+  directories and [`rg`][rg] elsewhere, falling back to `find` if `rg` is not
+  found. Fuzzy text selection is done with `fzy` by default: a fast, well
+  behaved interactive filter.
 * It doesn't define default key mappings, allowing you to define your own
   mappings that best fit your workflow and don't conflict with your other
   plugins.
@@ -108,6 +108,7 @@ nvim-picker is distributed under the terms of the [ISC licence].
 [nvim-picker]: https://github.com/srstevenson/nvim-picker
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [pick]: https://github.com/thoughtbot/pick
+[rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
 [vim-plug]: https://github.com/junegunn/vim-plug

@@ -13,12 +13,12 @@ advantages over plugins with a similar purpose such as [ctrlp.vim] and
 
 * It uses [Neovim's embedded terminal emulator][nvim-terminal] so the fuzzy
   selector does not block the UI. Whilst selecting a file to edit, you can move
-  to another buffer, edit that buffer, and then return to the fuzzy selector to
+  to another buffer, edit that buffer, and return to the fuzzy selector to
   continue where you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
-  directories and [`rg`][rg] elsewhere, falling back to `find` if `rg` is not
-  found. Fuzzy text selection is done with `fzy` by default: a fast, well
+  repositories and [`rg`][rg] elsewhere, falling back to `find` if `rg` is not
+  available. Fuzzy text selection is done with `fzy` by default: a fast, well
   behaved interactive filter.
 * It doesn't define default key mappings, allowing you to define your own
   mappings that best fit your workflow and don't conflict with your other

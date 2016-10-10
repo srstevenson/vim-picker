@@ -1,4 +1,4 @@
-" nvim-picker: a fuzzy file picker for Neovim
+" nvim-picker: a fuzzy file picker for Neovim and Vim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
 " Source:     https://github.com/srstevenson/nvim-picker
 
@@ -17,14 +17,14 @@ function! s:ListFilesCommand() abort
   endif
 endfunction
 
-function! s:Picker(list_command, vim_command) abort
+function! s:PickerTermopen(list_command, vim_command) abort
   let l:callback = {'vim_command': a:vim_command, 'filename': tempname()}
 
   function! l:callback.on_exit() abort
     bdelete!
     if filereadable(self.filename)
       try
-        exec self.vim_command . ' ' . readfile(self.filename)[0]
+        exec self.vim_command readfile(self.filename)[0]
       catch /E684/
       endtry
       call delete(self.filename)
@@ -36,6 +36,23 @@ function! s:Picker(list_command, vim_command) abort
         \ l:callback.filename
   call termopen(l:term_command, l:callback)
   startinsert
+endfunction
+
+function! s:PickerSystemlist(list_command, vim_command) abort
+  try
+    exec a:vim_command systemlist(a:list_command . '|' .
+          \ g:picker_selector)[0]
+  catch /E684/
+  endtry
+  redraw!
+endfunction
+
+function! s:Picker(list_command, vim_command) abort
+  if exists('*termopen')
+    call s:PickerTermopen(a:list_command, a:vim_command)
+  else
+    call s:PickerSystemlist(a:list_command, a:vim_command)
+  endif
 endfunction
 
 function! picker#CheckIsString(variable, name) abort

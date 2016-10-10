@@ -4,9 +4,6 @@
 
 if exists('g:loaded_picker')
   finish
-elseif !exists('*termopen')
-  echomsg "nvim-picker requires Neovim's termopen function"
-  finish
 endif
 
 let g:loaded_picker = 1

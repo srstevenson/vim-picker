@@ -107,7 +107,7 @@ nvim-picker is distributed under the terms of the [ISC licence].
 [Neovim]: https://neovim.io/
 [nvim-picker]: https://github.com/srstevenson/nvim-picker
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
-[pick]: https://github.com/thoughtbot/pick
+[pick]: https://github.com/calleerlandsson/pick
 [rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta

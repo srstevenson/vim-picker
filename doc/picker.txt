@@ -40,7 +40,7 @@ CONFIGURATION                                             *picker-configuration*
 By default nvim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as
 the fuzzy selector. You can change this by setting `g:picker_selector` in your
 `init.vim` file. For example, to use `pick`
-(https://github.com/thoughtbot/pick) set:
+(https://github.com/calleerlandsson/pick) set:
 >
     let g:picker_selector = 'pick'
 <

@@ -1,6 +1,6 @@
-" nvim-picker: a fuzzy file picker for Neovim
+" vim-picker: a fuzzy file picker for Neovim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
-" Source:     https://github.com/srstevenson/nvim-picker
+" Source:     https://github.com/srstevenson/vim-picker
 
 if exists('g:loaded_picker')
   finish

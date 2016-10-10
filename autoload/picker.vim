@@ -1,6 +1,6 @@
-" nvim-picker: a fuzzy file picker for Neovim and Vim
+" vim-picker: a fuzzy file picker for Neovim and Vim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
-" Source:     https://github.com/srstevenson/nvim-picker
+" Source:     https://github.com/srstevenson/vim-picker
 
 function! s:InGitRepository() abort
   let l:_ = system('git rev-parse --is-inside-work-tree')

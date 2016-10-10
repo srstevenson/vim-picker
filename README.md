@@ -1,12 +1,12 @@
-# nvim-picker [![Build Status](https://travis-ci.org/srstevenson/nvim-picker.svg?branch=master)](https://travis-ci.org/srstevenson/nvim-picker)
+# vim-picker [![Build Status](https://travis-ci.org/srstevenson/vim-picker.svg?branch=master)](https://travis-ci.org/srstevenson/vim-picker)
 
-[nvim-picker] is a fuzzy file picker for [Neovim] and [Vim].
+[vim-picker] is a fuzzy file picker for [Neovim] and [Vim].
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/5845679/17085962/99273fde-51dd-11e6-98f6-fa5c9ffaf2a8.gif" />
 </p>
 
-nvim-picker allows you to search for and select files to edit using a fuzzy
+vim-picker allows you to search for and select files to edit using a fuzzy
 selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta]. It has
 advantages over plugins with a similar purpose such as [ctrlp.vim] and
 [Command-T]:
@@ -26,36 +26,36 @@ advantages over plugins with a similar purpose such as [ctrlp.vim] and
 
 ## Installation
 
-To use nvim-picker you will first need a fuzzy selector such as [`fzy`][fzy],
+To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy],
 [`pick`][pick], or [`selecta`][selecta] installed. See their respective
 homepages for installation instructions.
 
-To install nvim-picker using [vim-plug], add the following to your vimrc
+To install vim-picker using [vim-plug], add the following to your vimrc
 (`$HOME/.vim/vimrc` for Vim and
 `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim, and
 run `:PlugInstall`:
 
 ```viml
-Plug 'srstevenson/nvim-picker'
+Plug 'srstevenson/vim-picker'
 ```
 
 Using [Dein.vim], add the following to your vimrc, restart Vim, and run `:call
 dein#install()`:
 
 ```viml
-call dein#add('srstevenson/nvim-picker')
+call dein#add('srstevenson/vim-picker')
 ```
 
 Using [Vundle], add the following to your vimrc, restart Vim, and run
 `:PluginInstall`:
 
 ```viml
-Plugin 'srstevenson/nvim-picker'
+Plugin 'srstevenson/vim-picker'
 ```
 
 ## Commands
 
-nvim-picker provides the following commands:
+vim-picker provides the following commands:
 
 * `:PickerEdit`: Pick a file with fuzzy selection to edit in the current
   window.
@@ -67,10 +67,10 @@ nvim-picker provides the following commands:
 
 ## Key mappings
 
-nvim-picker does not define any key mappings, to allow you to choose those that
+vim-picker does not define any key mappings, to allow you to choose those that
 best fit your workflow and don't conflict with other plugins you use. However
 if you have no preference, the following snippet provides mnemonic, single
-character mappings for each of nvim-picker's commands:
+character mappings for each of vim-picker's commands:
 
 ```viml
 nnoremap <unique> <leader>e :PickerEdit<cr>
@@ -88,14 +88,14 @@ set `g:picker_selector` in your vimrc. For example, set
 let g:picker_selector = 'pick'
 ```
 
-to use `pick`. nvim-picker has been tested with `fzy`, `pick`, and `selecta`,
+to use `pick`. vim-picker has been tested with `fzy`, `pick`, and `selecta`,
 but any well behaved command line filter should work.
 
 ## Copyright
 
 Copyright © 2016 [Scott Stevenson].
 
-nvim-picker is distributed under the terms of the [ISC licence].
+vim-picker is distributed under the terms of the [ISC licence].
 
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
@@ -103,12 +103,12 @@ nvim-picker is distributed under the terms of the [ISC licence].
 [fzy]: https://github.com/jhawthorn/fzy
 [ISC licence]: https://opensource.org/licenses/ISC
 [Neovim]: https://neovim.io/
-[nvim-picker]: https://github.com/srstevenson/nvim-picker
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [pick]: https://github.com/calleerlandsson/pick
 [rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
+[vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug
 [Vim]: http://www.vim.org/
 [Vundle]: https://github.com/VundleVim/Vundle.vim

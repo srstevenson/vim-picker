@@ -12,12 +12,12 @@ CONTENTS                                                       *picker-contents*
 ==============================================================================
 ABOUT                                                             *picker-about*
 
-nvim-picker is a fuzzy file picker for Neovim and Vim.
+vim-picker is a fuzzy file picker for Neovim and Vim.
 
 ==============================================================================
 COMMANDS                                                       *picker-commands*
 
-nvim-picker provides the following commands:
+vim-picker provides the following commands:
 
                                                             *picker-:PickerEdit*
 :PickerEdit             Pick a file with fuzzy selection to edit in the
@@ -37,8 +37,8 @@ nvim-picker provides the following commands:
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*
 
-By default nvim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as
-the fuzzy selector. You can change this by setting `g:picker_selector` in your
+By default vim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as the
+fuzzy selector. You can change this by setting `g:picker_selector` in your
 |vimrc|. For example, to use `pick` (https://github.com/calleerlandsson/pick)
 set:
 >
@@ -48,14 +48,14 @@ set:
 ISSUES                                                           *picker-issues*
 
 Bug reports and patches are welcome on the issue tracker at
-https://github.com/srstevenson/nvim-picker/issues
+https://github.com/srstevenson/vim-picker/issues
 
 ==============================================================================
 LICENCE                                                         *picker-licence*
 
 Copyright © 2016 Scott Stevenson.
 
-nvim-picker is distributed under the terms of the ISC licence.
+vim-picker is distributed under the terms of the ISC licence.
 
 ==============================================================================
 vim:et:ft=help:sts=4:tw=78:

@@ -18,3 +18,8 @@ command -bar PickerEdit call picker#Edit()
 command -bar PickerSplit call picker#Split()
 command -bar PickerTabedit call picker#Tabedit()
 command -bar PickerVsplit call picker#Vsplit()
+
+nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
+nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
+nnoremap <silent> <Plug>PickerTabedit :PickerTabedit<CR>
+nnoremap <silent> <Plug>PickerVsplit :PickerVsplit<CR>

@@ -67,16 +67,23 @@ vim-picker provides the following commands:
 
 ## Key mappings
 
-vim-picker does not define any key mappings, to allow you to choose those that
-best fit your workflow and don't conflict with other plugins you use. However
-if you have no preference, the following snippet provides mnemonic, single
-character mappings for each of vim-picker's commands:
+vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
+
+* `<Plug>PickerEdit`: Execute `:PickerEdit`.
+* `<Plug>PickerSplit`: Execute `:PickerSplit`.
+* `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
+* `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
+
+These are not mapped to key sequences, to allow you to choose those that best
+fit your workflow and don't conflict with other plugins you use. However if you
+have no preference, the following snippet maps each mapping to a mnemonic key
+sequence:
 
 ```viml
-nnoremap <unique> <leader>e :PickerEdit<cr>
-nnoremap <unique> <leader>s :PickerSplit<cr>
-nnoremap <unique> <leader>t :PickerTabedit<cr>
-nnoremap <unique> <leader>v :PickerVsplit<cr>
+nmap <unique> <leader>pe <Plug>PickerEdit
+nmap <unique> <leader>ps <Plug>PickerSplit
+nmap <unique> <leader>pt <Plug>PickerTabedit
+nmap <unique> <leader>pv <Plug>PickerVsplit
 ```
 
 ## Configuration
@@ -105,6 +112,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [Neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [pick]: https://github.com/calleerlandsson/pick
+[plug-mappings]: https://vimhelp.appspot.com/map.txt.html#%3CPlug%3E
 [rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta

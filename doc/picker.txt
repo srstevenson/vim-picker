@@ -5,9 +5,10 @@ CONTENTS                                                       *picker-contents*
 
     1. About .....................................|picker-about|
     2. Commands ..................................|picker-commands|
-    3. Configuration .............................|picker-configuration|
-    4. Issues ....................................|picker-issues|
-    5. Licence ...................................|picker-licence|
+    3. Mappings ..................................|picker-mappings|
+    4. Configuration .............................|picker-configuration|
+    5. Issues ....................................|picker-issues|
+    6. Licence ...................................|picker-licence|
 
 ==============================================================================
 ABOUT                                                             *picker-about*
@@ -33,6 +34,16 @@ vim-picker provides the following commands:
                                                           *picker-:PickerVsplit*
 :PickerVsplit           Pick a file with fuzzy selection to edit in a new
                         vertical split.
+
+==============================================================================
+MAPPINGS                                                       *picker-mappings*
+
+vim-picker provides the following |<Plug>| mappings:
+
+<Plug>PickerEdit        Execute :PickerEdit
+<Plug>PickerSplit       Execute :PickerSplit
+<Plug>PickerTabedit     Execute :PickerTabedit
+<Plug>PickerVsplit      Execute :PickerVsplit
 
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*

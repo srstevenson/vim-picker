@@ -1,4 +1,4 @@
-" vim-picker: a fuzzy file picker for Neovim
+" vim-picker: a fuzzy file and buffer picker for Neovim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
 " Source:     https://github.com/srstevenson/vim-picker
 
@@ -18,8 +18,10 @@ command -bar PickerEdit call picker#Edit()
 command -bar PickerSplit call picker#Split()
 command -bar PickerTabedit call picker#Tabedit()
 command -bar PickerVsplit call picker#Vsplit()
+command -bar PickerBuffer call picker#Buffer()
 
 nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
 nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
 nnoremap <silent> <Plug>PickerTabedit :PickerTabedit<CR>
 nnoremap <silent> <Plug>PickerVsplit :PickerVsplit<CR>
+nnoremap <silent> <Plug>PickerBuffer :PickerBuffer<CR>

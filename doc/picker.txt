@@ -1,4 +1,4 @@
-*picker.txt* A fuzzy file picker for Neovim and Vim                     *picker*
+*picker.txt* A fuzzy file and buffer picker for Neovim and Vim            *picker*
 
 ==============================================================================
 CONTENTS                                                       *picker-contents*
@@ -13,7 +13,7 @@ CONTENTS                                                       *picker-contents*
 ==============================================================================
 ABOUT                                                             *picker-about*
 
-vim-picker is a fuzzy file picker for Neovim and Vim.
+vim-picker is a fuzzy file and buffer picker for Neovim and Vim.
 
 ==============================================================================
 COMMANDS                                                       *picker-commands*
@@ -35,6 +35,10 @@ vim-picker provides the following commands:
 :PickerVsplit           Pick a file with fuzzy selection to edit in a new
                         vertical split.
 
+                                                          *picker-:PickerBuffer*
+:PickerBuffer           Pick a buffer with fuzzy selection to edit in the
+                        curent window.
+
 ==============================================================================
 MAPPINGS                                                       *picker-mappings*
 
@@ -44,6 +48,7 @@ vim-picker provides the following |<Plug>| mappings:
 <Plug>PickerSplit       Execute :PickerSplit
 <Plug>PickerTabedit     Execute :PickerTabedit
 <Plug>PickerVsplit      Execute :PickerVsplit
+<Plug>PickerBuffer      Execute :PickerBuffer
 
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*

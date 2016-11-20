@@ -1,20 +1,20 @@
 # vim-picker [![Build Status](https://travis-ci.org/srstevenson/vim-picker.svg?branch=master)](https://travis-ci.org/srstevenson/vim-picker)
 
-[vim-picker] is a fuzzy file and buffer picker for [Neovim] and [Vim].
+[vim-picker] is a fuzzy picker for [Neovim] and [Vim].
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/5845679/19386835/60833856-920e-11e6-9082-dd6fa5e7a246.gif" />
 </p>
 
-vim-picker allows you to search for and select files and buffers to edit using
-a fuzzy selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta].
+vim-picker allows you to search for and select files, buffers, and tags using a
+fuzzy selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta].
 It has advantages over plugins with a similar purpose such as [ctrlp.vim] and
 [Command-T]:
 
 * It uses the [embedded terminal emulator][nvim-terminal] when used within
-  Neovim, so the fuzzy selector does not block the UI. Whilst selecting a file
-  or buffer to edit, you can move to another buffer, edit that buffer, and
-  return to the fuzzy selector to continue where you left off.
+  Neovim, so the fuzzy selector does not block the UI. Whilst selecting an item
+  you can move to another buffer, edit that buffer, and return to the fuzzy
+  selector to continue where you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   repositories and [`rg`][rg] elsewhere, falling back to `find` if `rg` is not
@@ -66,6 +66,7 @@ vim-picker provides the following commands:
   split.
 * `:PickerBuffer`: Pick a buffer with fuzzy selection to edit in the current
   window.
+* `:PickerTag`: Pick a tag to jump to with fuzzy selection.
 
 ## Key mappings
 
@@ -76,6 +77,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 * `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
 * `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
 * `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
+* `<Plug>PickerTag`: Execute `:PickerTag`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -88,6 +90,7 @@ nmap <unique> <leader>ps <Plug>PickerSplit
 nmap <unique> <leader>pt <Plug>PickerTabedit
 nmap <unique> <leader>pv <Plug>PickerVsplit
 nmap <unique> <leader>pb <Plug>PickerBuffer
+nmap <unique> <leader>p] <Plug>PickerTag
 ```
 
 ## Configuration

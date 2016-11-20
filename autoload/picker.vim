@@ -1,4 +1,4 @@
-" vim-picker: a fuzzy file and buffer picker for Neovim and Vim
+" vim-picker: a fuzzy picker for Neovim and Vim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
 " Source:     https://github.com/srstevenson/vim-picker
 
@@ -22,6 +22,10 @@ function! s:ListBuffersCommand() abort
   let l:listed = filter(l:buffers, 'buflisted(v:val)')
   let l:names = map(l:listed, 'bufname(v:val)')
   return 'echo ' . join(l:names, '\n')
+endfunction
+
+function! s:ListTagsCommand() abort
+  return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:PickerTermopen(list_command, vim_command) abort
@@ -86,4 +90,8 @@ endfunction
 
 function! picker#Buffer() abort
   call s:Picker(s:ListBuffersCommand(), 'buffer')
+endfunction
+
+function! picker#Tag() abort
+  call s:Picker(s:ListTagsCommand(), 'tag')
 endfunction

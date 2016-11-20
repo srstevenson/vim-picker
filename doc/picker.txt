@@ -42,6 +42,9 @@ vim-picker provides the following commands:
                                                              *picker-:PickerTag*
 :PickerTag              Pick a tag to jump to with fuzzy selection.
 
+                                                            *picker-:PickerHelp*
+:PickerHelp             Pick a help tag to jump to with fuzzy selection.
+
 ==============================================================================
 MAPPINGS                                                       *picker-mappings*
 
@@ -53,6 +56,7 @@ vim-picker provides the following |<Plug>| mappings:
 <Plug>PickerVsplit      Execute :PickerVsplit
 <Plug>PickerBuffer      Execute :PickerBuffer
 <Plug>PickerTag         Execute :PickerTag
+<Plug>PickerHelp        Execute :PickerHelp
 
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*

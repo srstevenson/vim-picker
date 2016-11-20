@@ -67,6 +67,7 @@ vim-picker provides the following commands:
 * `:PickerBuffer`: Pick a buffer with fuzzy selection to edit in the current
   window.
 * `:PickerTag`: Pick a tag to jump to with fuzzy selection.
+* `:PickerHelp`: Pick a help tag to jump to with fuzzy selection.
 
 ## Key mappings
 
@@ -78,6 +79,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 * `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
 * `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
 * `<Plug>PickerTag`: Execute `:PickerTag`.
+* `<Plug>PickerHelp`: Execute `:PickerHelp`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -91,6 +93,7 @@ nmap <unique> <leader>pt <Plug>PickerTabedit
 nmap <unique> <leader>pv <Plug>PickerVsplit
 nmap <unique> <leader>pb <Plug>PickerBuffer
 nmap <unique> <leader>p] <Plug>PickerTag
+nmap <unique> <leader>ph <Plug>PickerHelp
 ```
 
 ## Configuration

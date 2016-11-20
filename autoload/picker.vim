@@ -28,6 +28,10 @@ function! s:ListTagsCommand() abort
   return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
+function! s:ListHelpTagsCommand() abort
+  return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
+endfunction
+
 function! s:PickerTermopen(list_command, vim_command) abort
   let l:callback = {'vim_command': a:vim_command, 'filename': tempname()}
 
@@ -94,4 +98,8 @@ endfunction
 
 function! picker#Tag() abort
   call s:Picker(s:ListTagsCommand(), 'tag')
+endfunction
+
+function! picker#Help() abort
+  call s:Picker(s:ListHelpTagsCommand(), 'help')
 endfunction

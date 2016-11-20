@@ -20,6 +20,7 @@ command -bar PickerTabedit call picker#Tabedit()
 command -bar PickerVsplit call picker#Vsplit()
 command -bar PickerBuffer call picker#Buffer()
 command -bar PickerTag call picker#Tag()
+command -bar PickerHelp call picker#Help()
 
 nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
 nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
@@ -27,3 +28,4 @@ nnoremap <silent> <Plug>PickerTabedit :PickerTabedit<CR>
 nnoremap <silent> <Plug>PickerVsplit :PickerVsplit<CR>
 nnoremap <silent> <Plug>PickerBuffer :PickerBuffer<CR>
 nnoremap <silent> <Plug>PickerTag :PickerTag<CR>
+nnoremap <silent> <Plug>PickerHelp :PickerHelp<CR>

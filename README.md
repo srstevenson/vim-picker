@@ -53,6 +53,22 @@ Using [Vundle], add the following to your vimrc, restart Vim, and run
 Plugin 'srstevenson/vim-picker'
 ```
 
+If you have Vim 7.4.1840 or newer, you can use the [native package
+support][packages] instead of a plugin manager by cloning vim-picker into a
+directory under [`packpath`][packpath]. For Vim:
+
+```sh
+git clone https://github.com/srstevenson/vim-picker \
+    ~/.vim/pack/plugins/start/vim-picker
+```
+
+For Neovim:
+
+```sh
+git clone https://github.com/srstevenson/vim-picker \
+    ~/.config/nvim/pack/plugins/start/vim-picker
+```
+
 ## Commands
 
 vim-picker provides the following commands:
@@ -121,6 +137,8 @@ vim-picker is distributed under the terms of the [ISC licence].
 [ISC licence]: https://opensource.org/licenses/ISC
 [Neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
+[packages]: https://vimhelp.appspot.com/repeat.txt.html#packages
+[packpath]: https://vimhelp.appspot.com/options.txt.html#%27packpath%27
 [pick]: https://github.com/calleerlandsson/pick
 [plug-mappings]: https://vimhelp.appspot.com/map.txt.html#%3CPlug%3E
 [rg]: https://github.com/BurntSushi/ripgrep

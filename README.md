@@ -66,7 +66,7 @@ For Neovim:
 
 ```sh
 git clone https://github.com/srstevenson/vim-picker \
-    ~/.config/nvim/pack/plugins/start/vim-picker
+    ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/plugins/start/vim-picker
 ```
 
 ## Commands

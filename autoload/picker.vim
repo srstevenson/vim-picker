@@ -33,10 +33,12 @@ function! s:ListHelpTagsCommand() abort
 endfunction
 
 function! s:PickerTermopen(list_command, vim_command) abort
-  let l:callback = {'vim_command': a:vim_command, 'filename': tempname()}
+  let l:callback = {'window_id': win_getid(), 'vim_command': a:vim_command,
+              \ 'filename': tempname()}
 
   function! l:callback.on_exit() abort
     bdelete!
+    call win_gotoid(self.window_id)
     if filereadable(self.filename)
       try
         exec self.vim_command readfile(self.filename)[0]

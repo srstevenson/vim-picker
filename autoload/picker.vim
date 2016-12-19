@@ -65,6 +65,11 @@ function! s:PickerSystemlist(list_command, vim_command) abort
 endfunction
 
 function! s:Picker(list_command, vim_command) abort
+  if !executable(split(g:picker_selector)[0])
+    echomsg 'Error:' split(g:picker_selector)[0] 'executable not found'
+    return
+  endif
+
   if exists('*termopen')
     call s:PickerTermopen(a:list_command, a:vim_command)
   else

@@ -73,17 +73,13 @@ git clone https://github.com/srstevenson/vim-picker \
 
 vim-picker provides the following commands:
 
-* `:PickerEdit`: Pick a file with fuzzy selection to edit in the current
-  window.
-* `:PickerSplit`: Pick a file with fuzzy selection to edit in a new horizontal
-  split.
-* `:PickerTabedit`: Pick a file with fuzzy selection to edit in a new tab.
-* `:PickerVsplit`: Pick a file with fuzzy selection to edit in a new vertical
-  split.
-* `:PickerBuffer`: Pick a buffer with fuzzy selection to edit in the current
-  window.
-* `:PickerTag`: Pick a tag to jump to with fuzzy selection.
-* `:PickerHelp`: Pick a help tag to jump to with fuzzy selection.
+* `:PickerEdit`: Pick a file to edit in the current window.
+* `:PickerSplit`: Pick a file to edit in a new horizontal split.
+* `:PickerTabedit`: Pick a file to edit in a new tab.
+* `:PickerVsplit`: Pick a file to edit in a new vertical split.
+* `:PickerBuffer`: Pick a buffer to edit in the current window.
+* `:PickerTag`: Pick a tag to jump to in the current window.
+* `:PickerHelp`: Pick a help tag to jump to in the current window.
 
 ## Key mappings
 

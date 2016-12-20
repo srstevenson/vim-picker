@@ -21,29 +21,25 @@ COMMANDS                                                       *picker-commands*
 vim-picker provides the following commands:
 
                                                             *picker-:PickerEdit*
-:PickerEdit             Pick a file with fuzzy selection to edit in the
-                        current window.
+:PickerEdit             Pick a file to edit in the current window.
 
                                                            *picker-:PickerSplit*
-:PickerSplit            Pick a file with fuzzy selection to edit in a new
-                        horizontal split.
+:PickerSplit            Pick a file to edit in a new horizontal split.
 
                                                          *picker-:PickerTabedit*
-:PickerTabedit          Pick a file with fuzzy selection to edit in a new tab.
+:PickerTabedit          Pick a file to edit in a new tab.
 
                                                           *picker-:PickerVsplit*
-:PickerVsplit           Pick a file with fuzzy selection to edit in a new
-                        vertical split.
+:PickerVsplit           Pick a file to edit in a new vertical split.
 
                                                           *picker-:PickerBuffer*
-:PickerBuffer           Pick a buffer with fuzzy selection to edit in the
-                        curent window.
+:PickerBuffer           Pick a buffer to edit in the curent window.
 
                                                              *picker-:PickerTag*
-:PickerTag              Pick a tag to jump to with fuzzy selection.
+:PickerTag              Pick a tag to jump to in the current window.
 
                                                             *picker-:PickerHelp*
-:PickerHelp             Pick a help tag to jump to with fuzzy selection.
+:PickerHelp             Pick a help tag to jump to in the current window.
 
 ==============================================================================
 MAPPINGS                                                       *picker-mappings*

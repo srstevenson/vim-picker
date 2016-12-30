@@ -1,4 +1,4 @@
-" vim-picker: a fuzzy picker for Neovim
+" vim-picker: a fuzzy picker for Neovim and Vim
 " Maintainer: Scott Stevenson <scott@stevenson.io>
 " Source:     https://github.com/srstevenson/vim-picker
 

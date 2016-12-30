@@ -52,6 +52,7 @@ function! s:PickerTermopen(list_command, vim_command) abort
   let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
         \ l:callback.filename
   call termopen(l:term_command, l:callback)
+  setfiletype picker
   startinsert
 endfunction
 

@@ -3,5 +3,5 @@
 " Source:     https://github.com/srstevenson/vim-picker
 
 if exists(':tnoremap') == 2
-  tnoremap <buffer> <silent> <Esc> <C-\><C-n>:quit<CR>
+  tnoremap <buffer> <silent> <Esc> <C-\><C-n>:call picker#Close()<CR>
 endif

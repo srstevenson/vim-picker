@@ -45,6 +45,7 @@ function! s:PickerTermopen(list_command, vim_command) abort
       catch /E684/
       endtry
       call delete(self.filename)
+      unlet g:picker_previous_winid
     endif
   endfunction
 
@@ -52,6 +53,7 @@ function! s:PickerTermopen(list_command, vim_command) abort
   let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
         \ l:callback.filename
   call termopen(l:term_command, l:callback)
+  let g:picker_previous_winid = l:callback.window_id
   setfiletype picker
   startinsert
 endfunction
@@ -110,4 +112,10 @@ endfunction
 
 function! picker#Help() abort
   call s:Picker(s:ListHelpTagsCommand(), 'help')
+endfunction
+
+function! picker#Close() abort
+  quit
+  call win_gotoid(g:picker_previous_winid)
+  unlet g:picker_previous_winid
 endfunction

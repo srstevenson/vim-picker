@@ -120,6 +120,13 @@ let g:picker_selector = 'pick'
 to use `pick`. vim-picker has been tested with `fzy`, `pick`, and `selecta`,
 but any well behaved command line filter should work.
 
+To specify the height of the window in which the fuzzy selector is opened in
+Neovim, set `g:picker_height` in your vimrc. The default is 10 lines:
+
+```viml
+let g:picker_height = 10
+```
+
 ## Copyright
 
 Copyright © 2016 [Scott Stevenson].

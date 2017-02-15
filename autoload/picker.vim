@@ -49,7 +49,7 @@ function! s:PickerTermopen(list_command, vim_command) abort
     endif
   endfunction
 
-  botright new
+  execute 'botright' g:picker_height . 'new'
   let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
         \ l:callback.filename
   call termopen(l:term_command, l:callback)
@@ -77,6 +77,12 @@ function! s:Picker(list_command, vim_command) abort
     call s:PickerTermopen(a:list_command, a:vim_command)
   else
     call s:PickerSystemlist(a:list_command, a:vim_command)
+  endif
+endfunction
+
+function! picker#CheckIsNumber(variable, name) abort
+  if type(a:variable) != type(0)
+    echomsg 'Error:' a:name 'must be a number'
   endif
 endfunction
 

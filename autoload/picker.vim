@@ -21,7 +21,7 @@ function! s:ListBuffersCommand() abort
   let l:buffers = range(1, bufnr('$'))
   let l:listed = filter(l:buffers, 'buflisted(v:val)')
   let l:names = map(l:listed, 'bufname(v:val)')
-  return 'echo ' . join(l:names, '\n')
+  return 'echo "' . join(l:names, "\n"). '"'
 endfunction
 
 function! s:ListTagsCommand() abort

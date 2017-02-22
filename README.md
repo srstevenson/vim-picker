@@ -26,9 +26,9 @@ It has advantages over plugins with a similar purpose such as [ctrlp.vim] and
 
 ## Installation
 
-To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy],
-[`pick`][pick], or [`selecta`][selecta] installed. See their respective
-homepages for installation instructions.
+To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy]
+(recommended), [`pick`][pick], or [`selecta`][selecta] installed. See their
+respective homepages for installation instructions.
 
 To install vim-picker using [vim-plug], add the following to your vimrc
 (`$HOME/.vim/vimrc` for Vim and

@@ -118,7 +118,10 @@ let g:picker_selector = 'pick'
 ```
 
 to use `pick`. vim-picker has been tested with `fzy`, `pick`, and `selecta`,
-but any well behaved command line filter should work.
+but any well behaved command line filter should work. If you run Vim within
+[tmux], setting `g:picker_selector` to the [`fzy-tmux`][fzy-tmux] script
+distributed with `fzy` will open the fuzzy selector in a new tmux pane below
+Vim, providing an interface similar to using vim-picker with Neovim.
 
 To specify the height of the window in which the fuzzy selector is opened in
 Neovim, set `g:picker_height` in your vimrc. The default is 10 lines:
@@ -136,6 +139,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
+[fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
 [ISC licence]: https://opensource.org/licenses/ISC
 [Neovim]: https://neovim.io/
@@ -147,6 +151,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
+[tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug
 [Vim]: http://www.vim.org/

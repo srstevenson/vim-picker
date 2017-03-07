@@ -32,16 +32,29 @@ function! s:ListHelpTagsCommand() abort
   return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
-function! s:PickerTermopen(list_command, vim_command) abort
-  let l:callback = {'window_id': win_getid(), 'vim_command': a:vim_command,
-              \ 'filename': tempname()}
+" PickerTermopen
+"
+" open terminal in new window as UI for user to fuzzy select within.
+"
+" @param list_command - String
+"   - shell command to generate list user will choose from.
+" @param vim_command - String
+"   - vim ex command that will be invoked against the user's selection.
+" @param callback.on_select - (String -> Void)
+"   - callback function that provides the string selected by the user to the
+"     caller.
+function! s:PickerTermopen(list_command, vim_command, callback) abort
+  let l:callback = {
+        \ 'window_id': win_getid(),
+        \ 'filename': tempname(),
+        \ 'callback': a:callback}
 
   function! l:callback.on_exit(job_id, data, event) abort
     bdelete!
     call win_gotoid(self.window_id)
     if filereadable(self.filename)
       try
-        exec self.vim_command readfile(self.filename)[0]
+        call self.callback.on_select(readfile(self.filename)[0])
       catch /E684/
       endtry
       call delete(self.filename)
@@ -59,26 +72,69 @@ function! s:PickerTermopen(list_command, vim_command) abort
   startinsert
 endfunction
 
-function! s:PickerSystemlist(list_command, vim_command) abort
+" PickerSystemlist
+"
+" @param list_command - String
+"   - shell command to generate list user will choose from.
+" @param callback.on_select - (String -> Void)
+"   - callback function that provides the string selected by the user to the
+"     caller.
+function! s:PickerSystemlist(list_command, callback) abort
   try
-    exec a:vim_command systemlist(a:list_command . '|' .
-          \ g:picker_selector)[0]
+    call a:callback.on_select(systemlist(a:list_command . '|' . g:picker_selector)[0])
   catch /E684/
   endtry
   redraw!
 endfunction
 
-function! s:Picker(list_command, vim_command) abort
+" Picker
+"
+" @param list_command - String
+"   - shell command to generate list user will choose from.
+" @param vim_command - String
+"   - vim ex command that will be invoked against the user's selection.
+" @param callback.on_select - (String -> Void)
+"   - callback function that provides the string selected by the user to the
+"     caller.
+function! s:Picker(list_command, vim_command, callback) abort
   if !executable(split(g:picker_selector)[0])
     echomsg 'Error:' split(g:picker_selector)[0] 'executable not found'
     return
   endif
 
   if exists('*termopen')
-    call s:PickerTermopen(a:list_command, a:vim_command)
+    call s:PickerTermopen(a:list_command, a:vim_command, a:callback)
   else
-    call s:PickerSystemlist(a:list_command, a:vim_command)
+    call s:PickerSystemlist(a:list_command, a:callback)
   endif
+endfunction
+
+" PickString
+"
+" create a callback that executes a vim command against the user's
+" unadulterated selection, then display the Picker UI.
+function! s:PickString(list_command, vim_command) abort
+  let l:callback = {'vim_command': a:vim_command}
+
+  function! l:callback.on_select(selection) abort
+    exec self.vim_command a:selection
+  endfunction
+
+  call s:Picker(a:list_command, a:vim_command, l:callback)
+endfunction
+
+" PickFile
+"
+" create a callback that executes a vim command against the user's selection
+" escaped for use as a filename, then display the Picker UI.
+function! s:PickFile(list_command, vim_command) abort
+  let l:callback = {'vim_command': a:vim_command}
+
+  function! l:callback.on_select(selection) abort
+    exec self.vim_command fnameescape(a:selection)
+  endfunction
+
+  call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
 function! picker#CheckIsNumber(variable, name) abort
@@ -94,31 +150,31 @@ function! picker#CheckIsString(variable, name) abort
 endfunction
 
 function! picker#Edit() abort
-  call s:Picker(s:ListFilesCommand(), 'edit')
+  call s:PickFile(s:ListFilesCommand(), 'edit')
 endfunction
 
 function! picker#Split() abort
-  call s:Picker(s:ListFilesCommand(), 'split')
+  call s:PickFile(s:ListFilesCommand(), 'split')
 endfunction
 
 function! picker#Tabedit() abort
-  call s:Picker(s:ListFilesCommand(), 'tabedit')
+  call s:PickFile(s:ListFilesCommand(), 'tabedit')
 endfunction
 
 function! picker#Vsplit() abort
-  call s:Picker(s:ListFilesCommand(), 'vsplit')
+  call s:PickFile(s:ListFilesCommand(), 'vsplit')
 endfunction
 
 function! picker#Buffer() abort
-  call s:Picker(s:ListBuffersCommand(), 'buffer')
+  call s:PickFile(s:ListBuffersCommand(), 'buffer')
 endfunction
 
 function! picker#Tag() abort
-  call s:Picker(s:ListTagsCommand(), 'tag')
+  call s:PickString(s:ListTagsCommand(), 'tag')
 endfunction
 
 function! picker#Help() abort
-  call s:Picker(s:ListHelpTagsCommand(), 'help')
+  call s:PickString(s:ListHelpTagsCommand(), 'help')
 endfunction
 
 function! picker#Close() abort

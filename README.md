@@ -78,6 +78,7 @@ vim-picker provides the following commands:
 * `:PickerTabedit`: Pick a file to edit in a new tab.
 * `:PickerVsplit`: Pick a file to edit in a new vertical split.
 * `:PickerBuffer`: Pick a buffer to edit in the current window.
+* `:PickerBufferTag`: Pick a tag to jump to in the current buffer.
 * `:PickerTag`: Pick a tag to jump to in the current window.
 * `:PickerHelp`: Pick a help tag to jump to in the current window.
 
@@ -90,6 +91,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 * `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
 * `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
 * `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
+* `<Plug>PickerBufferTag`: Execute `:PickerBufferTag`.
 * `<Plug>PickerTag`: Execute `:PickerTag`.
 * `<Plug>PickerHelp`: Execute `:PickerHelp`.
 
@@ -105,6 +107,7 @@ nmap <unique> <leader>pt <Plug>PickerTabedit
 nmap <unique> <leader>pv <Plug>PickerVsplit
 nmap <unique> <leader>pb <Plug>PickerBuffer
 nmap <unique> <leader>p] <Plug>PickerTag
+nmap <unique> <leader>pb] <Plug>PickerBufferTag
 nmap <unique> <leader>ph <Plug>PickerHelp
 ```
 

@@ -28,6 +28,10 @@ function! s:ListTagsCommand() abort
   return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
+function! s:ListBufferTagsCommand(filename) abort
+  return 'ctags -f - ' . a:filename . ' | cut -f 1 | sort -u'
+endfunction
+
 function! s:ListHelpTagsCommand() abort
   return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
@@ -171,6 +175,10 @@ endfunction
 
 function! picker#Tag() abort
   call s:PickString(s:ListTagsCommand(), 'tag')
+endfunction
+
+function! picker#BufferTag() abort
+  call s:PickString(s:ListBufferTagsCommand(expand('%:p')), 'tag')
 endfunction
 
 function! picker#Help() abort

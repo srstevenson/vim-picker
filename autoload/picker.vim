@@ -4,6 +4,11 @@
 
 function! s:InGitRepository() abort
     " Determine if the current directory is a Git repository.
+    "
+    " Returns
+    " -------
+    " Number
+    "     1 inside a Git repository, 0 otherwise.
     let l:_ = system('git rev-parse --is-inside-work-tree')
     return v:shell_error == 0
 endfunction
@@ -12,6 +17,11 @@ function! s:ListFilesCommand() abort
     " Return a shell command suitable for listing the files in the
     " current directory, based on whether the current directory is a Git
     " repository and if ripgrep is installed.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list files in the current directory.
     if s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
     elseif executable('rg')
@@ -23,6 +33,11 @@ endfunction
 
 function! s:ListBuffersCommand() abort
     " Return a shell command which will list current listed buffers.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list current listed buffers.
     let l:buffers = range(1, bufnr('$'))
     let l:listed = filter(l:buffers, 'buflisted(v:val)')
     let l:names = map(l:listed, 'bufname(v:val)')
@@ -31,17 +46,32 @@ endfunction
 
 function! s:ListTagsCommand() abort
     " Return a shell command which will list known tags.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list known tags.
     return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:ListBufferTagsCommand(filename) abort
     " Return a shell command which will list known tags in the current
     " file.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list known tags in the current file.
     return 'ctags -f - ' . a:filename . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:ListHelpTagsCommand() abort
-    " Return a shell command which will list known Vim help topics.
+    " Return a shell command which will list known help topics.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list known help topics.
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 

@@ -36,18 +36,23 @@ function! s:ListHelpTagsCommand() abort
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
-" PickerTermopen
-"
-" open terminal in new window as UI for user to fuzzy select within.
-"
-" @param list_command - String
-"   - shell command to generate list user will choose from.
-" @param vim_command - String
-"   - vim ex command that will be invoked against the user's selection.
-" @param callback.on_select - (String -> Void)
-"   - callback function that provides the string selected by the user to the
-"     caller.
 function! s:PickerTermopen(list_command, vim_command, callback) abort
+    " Open a terminal emulator buffer in a new window, execute
+    " list_command piping its output to the fuzzy selector, and call
+    " callback.on_select with the item selected by the user as the first
+    " argument.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
+    " callback.on_select : String -> Void
+    "     Function executed with the item selected by the user as the
+    "     first argument.
     let l:callback = {
                 \ 'window_id': win_getid(),
                 \ 'filename': tempname(),
@@ -77,14 +82,18 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
     startinsert
 endfunction
 
-" PickerSystemlist
-"
-" @param list_command - String
-"   - shell command to generate list user will choose from.
-" @param callback.on_select - (String -> Void)
-"   - callback function that provides the string selected by the user to the
-"     caller.
 function! s:PickerSystemlist(list_command, callback) abort
+    " Execute list_command in a shell, piping its output to the fuzzy
+    " selector, and call callback.on_select with the line selected by
+    " the user as the first argument.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " callback.on_select : String -> Void
+    "     Function executed with the item selected by the user as the
+    "     first argument.
     try
         call a:callback.on_select(systemlist(a:list_command . '|' . g:picker_selector)[0])
     catch /E684/
@@ -92,16 +101,22 @@ function! s:PickerSystemlist(list_command, callback) abort
     redraw!
 endfunction
 
-" Picker
-"
-" @param list_command - String
-"   - shell command to generate list user will choose from.
-" @param vim_command - String
-"   - vim ex command that will be invoked against the user's selection.
-" @param callback.on_select - (String -> Void)
-"   - callback function that provides the string selected by the user to the
-"     caller.
 function! s:Picker(list_command, vim_command, callback) abort
+    " Invoke callback.on_select on the line of output of list_command
+    " selected by the user, using PickerTermopen() in Neovim and
+    " PickerSystemlist() otherwise.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
+    " callback.on_select : String -> Void
+    "     Function executed with the item selected by the user as the
+    "     first argument.
     if !executable(split(g:picker_selector)[0])
         echomsg 'Error:' split(g:picker_selector)[0] 'executable not found'
         return
@@ -114,11 +129,18 @@ function! s:Picker(list_command, vim_command, callback) abort
     endif
 endfunction
 
-" PickString
-"
-" create a callback that executes a vim command against the user's
-" unadulterated selection, then display the Picker UI.
 function! s:PickString(list_command, vim_command) abort
+    " Create a callback that executes a Vim command against the user's
+    " unadulterated selection, and invoke Picker() with that callback.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
     let l:callback = {'vim_command': a:vim_command}
 
     function! l:callback.on_select(selection) abort
@@ -128,11 +150,19 @@ function! s:PickString(list_command, vim_command) abort
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
-" PickFile
-"
-" create a callback that executes a vim command against the user's selection
-" escaped for use as a filename, then display the Picker UI.
 function! s:PickFile(list_command, vim_command) abort
+    " Create a callback that executes a Vim command against the user's
+    " selection escaped for use as a filename, and invoke Picker() with
+    " that callback.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
     let l:callback = {'vim_command': a:vim_command}
 
     function! l:callback.on_select(selection) abort

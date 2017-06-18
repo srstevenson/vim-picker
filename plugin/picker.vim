@@ -3,21 +3,21 @@
 " Source:     https://github.com/srstevenson/vim-picker
 
 if exists('g:loaded_picker')
-  finish
+    finish
 endif
 
 let g:loaded_picker = 1
 
 if exists('g:picker_selector')
-  call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
+    call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
 else
-  let g:picker_selector = 'fzy --lines=' . &lines
+    let g:picker_selector = 'fzy --lines=' . &lines
 endif
 
 if exists('g:picker_height')
-  call picker#CheckIsNumber(g:picker_height, 'g:picker_height')
+    call picker#CheckIsNumber(g:picker_height, 'g:picker_height')
 else
-  let g:picker_height = 10
+    let g:picker_height = 10
 endif
 
 command -bar PickerEdit call picker#Edit()

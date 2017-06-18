@@ -3,11 +3,15 @@
 " Source:     https://github.com/srstevenson/vim-picker
 
 function! s:InGitRepository() abort
+    " Determine if the current directory is a Git repository.
     let l:_ = system('git rev-parse --is-inside-work-tree')
     return v:shell_error == 0
 endfunction
 
 function! s:ListFilesCommand() abort
+    " Return a shell command suitable for listing the files in the
+    " current directory, based on whether the current directory is a Git
+    " repository and if ripgrep is installed.
     if s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
     elseif executable('rg')
@@ -18,6 +22,7 @@ function! s:ListFilesCommand() abort
 endfunction
 
 function! s:ListBuffersCommand() abort
+    " Return a shell command which will list current listed buffers.
     let l:buffers = range(1, bufnr('$'))
     let l:listed = filter(l:buffers, 'buflisted(v:val)')
     let l:names = map(l:listed, 'bufname(v:val)')
@@ -25,14 +30,18 @@ function! s:ListBuffersCommand() abort
 endfunction
 
 function! s:ListTagsCommand() abort
+    " Return a shell command which will list known tags.
     return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:ListBufferTagsCommand(filename) abort
+    " Return a shell command which will list known tags in the current
+    " file.
     return 'ctags -f - ' . a:filename . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:ListHelpTagsCommand() abort
+    " Return a shell command which will list known Vim help topics.
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
@@ -173,49 +182,75 @@ function! s:PickFile(list_command, vim_command) abort
 endfunction
 
 function! picker#CheckIsNumber(variable, name) abort
+    " Print an error message if variable is not of type Number.
+    "
+    " Parameters
+    " ----------
+    " variable : Any
+    "     Value of the variable.
+    " name : String
+    "     Name of the variable.
     if type(a:variable) != type(0)
         echomsg 'Error:' a:name 'must be a number'
     endif
 endfunction
 
 function! picker#CheckIsString(variable, name) abort
+    " Print an error message if variable is not of type String.
+    "
+    " Parameters
+    " ----------
+    " variable : Any
+    "     Value of the variable.
+    " name : String
+    "     Name of the variable.
     if type(a:variable) != type('')
         echomsg 'Error:' a:name 'must be a string'
     endif
 endfunction
 
 function! picker#Edit() abort
+    " Run fuzzy selector to choose a file and call edit on it.
     call s:PickFile(s:ListFilesCommand(), 'edit')
 endfunction
 
 function! picker#Split() abort
+    " Run fuzzy selector to choose a file and call split on it.
     call s:PickFile(s:ListFilesCommand(), 'split')
 endfunction
 
 function! picker#Tabedit() abort
+    " Run fuzzy selector to choose a file and call tabedit on it.
     call s:PickFile(s:ListFilesCommand(), 'tabedit')
 endfunction
 
 function! picker#Vsplit() abort
+    " Run fuzzy selector to choose a file and call vsplit on it.
     call s:PickFile(s:ListFilesCommand(), 'vsplit')
 endfunction
 
 function! picker#Buffer() abort
+    " Run fuzzy selector to choose a buffer and call buffer on it.
     call s:PickFile(s:ListBuffersCommand(), 'buffer')
 endfunction
 
 function! picker#Tag() abort
+    " Run fuzzy selector to choose a tag and call tag on it.
     call s:PickString(s:ListTagsCommand(), 'tag')
 endfunction
 
 function! picker#BufferTag() abort
+    " Run fuzzy selector to choose a tag from the current file and call
+    " tag on it.
     call s:PickString(s:ListBufferTagsCommand(expand('%:p')), 'tag')
 endfunction
 
 function! picker#Help() abort
+    " Run fuzzy selector to choose a help topic and call help on it.
     call s:PickString(s:ListHelpTagsCommand(), 'help')
 endfunction
 
 function! picker#Close() abort
+    " Send SIGTERM to the currently running fuzzy selector process.
     call jobstop(s:picker_job_id)
 endfunction

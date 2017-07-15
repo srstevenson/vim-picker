@@ -25,7 +25,7 @@ function! s:ListFilesCommand() abort
     if s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
     elseif executable('rg')
-        return 'rg --files'
+        return 'rg --color=never --files'
     else
         return 'find . -type f'
     endif

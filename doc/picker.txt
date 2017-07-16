@@ -68,6 +68,15 @@ set:
 >
     let g:picker_selector = 'pick'
 <
+By default, vim-picker in Neovim will run the fuzzy selector in a full width
+split at the bottom of the window, using |:botright|. You can change this by
+setting `g:picker_split` in your |vimrc|. For example, to open a full width
+split at the top of the window, set:
+>
+    let g:picker_split = 'topleft'
+<
+See |opening-window| for other valid values.
+
 ==============================================================================
 ISSUES                                                           *picker-issues*
 

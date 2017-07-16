@@ -14,6 +14,12 @@ else
     let g:picker_selector = 'fzy --lines=' . &lines
 endif
 
+if exists('g:picker_split')
+    call picker#CheckIsString(g:picker_split, 'g:picker_split')
+else
+    let g:picker_split = 'botright'
+endif
+
 if exists('g:picker_height')
     call picker#CheckIsNumber(g:picker_height, 'g:picker_height')
 else

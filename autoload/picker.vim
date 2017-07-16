@@ -110,7 +110,7 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
         endif
     endfunction
 
-    execute 'botright' g:picker_height . 'new'
+    execute g:picker_split g:picker_height . 'new'
     let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
                 \ l:callback.filename
     let s:picker_job_id = termopen(l:term_command, l:callback)

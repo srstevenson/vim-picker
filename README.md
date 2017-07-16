@@ -126,6 +126,17 @@ but any well behaved command line filter should work. If you run Vim within
 distributed with `fzy` will open the fuzzy selector in a new tmux pane below
 Vim, providing an interface similar to using vim-picker with Neovim.
 
+By default, vim-picker in Neovim will run the fuzzy selector in a full width
+split at the bottom of the window, using [`:botright`][botright]. You can
+change this by setting `g:picker_split` in your vimrc. For example, to open a
+full width split at the top of the window, set:
+
+```viml
+let g:picker_split = 'topleft'
+```
+
+See [`opening-window`][opening-window] for other valid values.
+
 To specify the height of the window in which the fuzzy selector is opened in
 Neovim, set `g:picker_height` in your vimrc. The default is 10 lines:
 
@@ -139,6 +150,7 @@ Copyright © 2016-2017 [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC licence].
 
+[botright]: https://vimhelp.appspot.com/windows.txt.html#%3Abotright
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
@@ -147,6 +159,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [ISC licence]: https://opensource.org/licenses/ISC
 [Neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
+[opening-window]: https://vimhelp.appspot.com/windows.txt.html#opening-window
 [packages]: https://vimhelp.appspot.com/repeat.txt.html#packages
 [packpath]: https://vimhelp.appspot.com/options.txt.html#%27packpath%27
 [pick]: https://github.com/calleerlandsson/pick

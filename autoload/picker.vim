@@ -22,7 +22,7 @@ function! s:ListFilesCommand() abort
     " -------
     " String
     "     Shell command to list files in the current directory.
-    if s:InGitRepository()
+    if executable('git') && s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
     elseif executable('rg')
         return 'rg --color=never --files'

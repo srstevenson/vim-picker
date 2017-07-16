@@ -77,6 +77,12 @@ split at the top of the window, set:
 <
 See |opening-window| for other valid values.
 
+To specify the height of the window in which the fuzzy selector is opened in
+Neovim, set `g:picker_height` in your |vimrc|. The default is 10 lines:
+>
+    let g:picker_height = 10
+<
+
 ==============================================================================
 ISSUES                                                           *picker-issues*
 

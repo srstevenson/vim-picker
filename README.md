@@ -30,27 +30,14 @@ To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy]
 (recommended), [`pick`][pick], or [`selecta`][selecta] installed. See their
 respective homepages for installation instructions.
 
-To install vim-picker using [vim-plug], add the following to your vimrc
-(`$HOME/.vim/vimrc` for Vim and
-`${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim, and
-run `:PlugInstall`:
+If you already use a plugin manager such as [vim-plug], [Dein.vim], or
+[Vundle], install vim-picker in the normal manner. Otherwise, the recommended
+plugin manager is [minpac]. Add the following to your vimrc (`$HOME/.vim/vimrc`
+for Vim and `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim),
+restart Vim, and run `:call minpac#update()`:
 
 ```viml
-Plug 'srstevenson/vim-picker'
-```
-
-Using [Dein.vim], add the following to your vimrc, restart Vim, and run `:call
-dein#install()`:
-
-```viml
-call dein#add('srstevenson/vim-picker')
-```
-
-Using [Vundle], add the following to your vimrc, restart Vim, and run
-`:PluginInstall`:
-
-```viml
-Plugin 'srstevenson/vim-picker'
+call minpac#add('srstevenson/vim-picker')
 ```
 
 If you have Vim 7.4.1840 or newer, you can use the [native package
@@ -157,6 +144,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
 [ISC licence]: https://opensource.org/licenses/ISC
+[minpac]: https://github.com/k-takata/minpac
 [Neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [opening-window]: https://vimhelp.appspot.com/windows.txt.html#opening-window

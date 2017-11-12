@@ -38,6 +38,9 @@ vim-picker provides the following commands:
                                                              *picker-:PickerTag*
 :PickerTag              Pick a tag to jump to in the current window.
 
+                                                            *picker-:PickerStag*
+:PickerStag             Pick a tag to jump to in a new horizontal split.
+
                                                        *picker-:PickerBufferTag*
 :PickerBufferTag        Pick a tag from the current buffer to jump to.
 
@@ -55,6 +58,7 @@ vim-picker provides the following |<Plug>| mappings:
 <Plug>PickerVsplit      Execute :PickerVsplit
 <Plug>PickerBuffer      Execute :PickerBuffer
 <Plug>PickerTag         Execute :PickerTag
+<Plug>PickerStag        Execute :PickerStag
 <Plug>PickerBufferTag   Execute :PickerBufferTag
 <Plug>PickerHelp        Execute :PickerHelp
 

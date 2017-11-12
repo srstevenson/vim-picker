@@ -269,6 +269,11 @@ function! picker#Tag() abort
     call s:PickString(s:ListTagsCommand(), 'tag')
 endfunction
 
+function! picker#Stag() abort
+    " Run fuzzy selector to choose a tag and call stag on it.
+    call s:PickString(s:ListTagsCommand(), 'stag')
+endfunction
+
 function! picker#BufferTag() abort
     " Run fuzzy selector to choose a tag from the current file and call
     " tag on it.

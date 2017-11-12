@@ -116,7 +116,7 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
     let s:picker_job_id = termopen(l:term_command, l:callback)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
                 \ ', directory: ' . getcwd() . ']'
-    setlocal statusline=%{b:picker_statusline}
+    setlocal nonumber norelativenumber statusline=%{b:picker_statusline}
     setfiletype picker
     startinsert
 endfunction

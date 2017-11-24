@@ -31,6 +31,26 @@ function! s:ListFilesCommand() abort
     endif
 endfunction
 
+function! s:CompareBuffers(l, r) abort
+    " This comparison function sorts the alternate buffer to the first
+    " position and the current buffer to the end.  This order makes it easier
+    " to switch to the previous buffer by selecting the first result in the
+    " buffer picker.
+    "
+    " Returns
+    " -------
+    " Number
+    "     -1 if l is the alternate buffer, +1 if l is the current buffer, and
+    "     0 otherwise.
+    if a:l == bufnr('%')
+        return 1
+    elseif a:l == bufnr('#')
+        return -1
+    else
+        return 0
+    endif
+endfunction
+
 function! s:ListBuffersCommand() abort
     " Return a shell command which will list current listed buffers.
     "
@@ -39,7 +59,7 @@ function! s:ListBuffersCommand() abort
     " String
     "     Shell command to list current listed buffers.
     let l:buffers = range(1, bufnr('$'))
-    let l:listed = filter(l:buffers, 'buflisted(v:val)')
+    let l:listed = sort(filter(l:buffers, 'buflisted(v:val)'), 's:CompareBuffers')
     let l:names = map(l:listed, 'bufname(v:val)')
     return 'echo "' . join(l:names, "\n"). '"'
 endfunction

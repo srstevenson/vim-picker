@@ -140,7 +140,7 @@ Copyright © 2016-2017 [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC licence].
 
-[botright]: https://vimhelp.appspot.com/windows.txt.html#%3Abotright
+[botright]: https://neovim.io/doc/user/windows.html#:botright
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
@@ -150,11 +150,11 @@ vim-picker is distributed under the terms of the [ISC licence].
 [minpac]: https://github.com/k-takata/minpac
 [Neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
-[opening-window]: https://vimhelp.appspot.com/windows.txt.html#opening-window
-[packages]: https://vimhelp.appspot.com/repeat.txt.html#packages
-[packpath]: https://vimhelp.appspot.com/options.txt.html#%27packpath%27
+[opening-window]: https://neovim.io/doc/user/windows.html#opening-window
+[packages]: https://neovim.io/doc/user/repeat.html#packages
+[packpath]: https://neovim.io/doc/user/options.html#'packpath'
 [pick]: https://github.com/calleerlandsson/pick
-[plug-mappings]: https://vimhelp.appspot.com/map.txt.html#%3CPlug%3E
+[plug-mappings]: https://neovim.io/doc/user/map.html#%3CPlug%3E
 [rg]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta

@@ -111,8 +111,8 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
     endfunction
 
     execute g:picker_split g:picker_height . 'new'
-    let l:term_command = a:list_command . '|' . g:picker_selector . '>' .
-                \ l:callback.filename
+    let l:term_command = a:list_command . '|' . g:picker_selector_executable .
+                \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
     let s:picker_job_id = termopen(l:term_command, l:callback)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
                 \ ', directory: ' . getcwd() . ']'
@@ -133,8 +133,10 @@ function! s:PickerSystemlist(list_command, callback) abort
     " callback.on_select : String -> Void
     "     Function executed with the item selected by the user as the
     "     first argument.
+    let l:command = a:list_command . '|' . g:picker_selector_executable . ' '
+                \ . g:picker_selector_flags
     try
-        call a:callback.on_select(systemlist(a:list_command . '|' . g:picker_selector)[0])
+        call a:callback.on_select(systemlist(l:command)[0])
     catch /E684/
     endtry
     redraw!
@@ -156,8 +158,8 @@ function! s:Picker(list_command, vim_command, callback) abort
     " callback.on_select : String -> Void
     "     Function executed with the item selected by the user as the
     "     first argument.
-    if !executable(split(g:picker_selector)[0])
-        echomsg 'Error:' split(g:picker_selector)[0] 'executable not found'
+    if !executable(g:picker_selector_executable)
+        echomsg 'Error:' g:picker_selector_executable 'executable not found'
         return
     endif
 

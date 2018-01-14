@@ -8,6 +8,11 @@ endif
 
 let g:loaded_picker = 1
 
+if exists('g:picker_selector')
+    echomsg 'Error: g:picker_selector is deprecated; see :help'
+                \ 'picker-configuration.'
+endif
+
 if exists('g:picker_find_executable')
     call picker#CheckIsString(g:picker_find_executable,
                 \ 'g:picker_find_executable')
@@ -21,10 +26,18 @@ else
     let g:picker_find_flags = '--color=never --files'
 endif
 
-if exists('g:picker_selector')
-    call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
+if exists('g:picker_selector_executable')
+    call picker#CheckIsString(g:picker_selector_executable,
+                \ 'g:picker_selector_executable')
 else
-    let g:picker_selector = 'fzy --lines=' . &lines
+    let g:picker_selector_executable = 'fzy'
+endif
+
+if exists('g:picker_selector_flags')
+    call picker#CheckIsString(g:picker_selector_flags,
+                \ 'g:picker_selector_flags')
+else
+    let g:picker_selector_flags = '--lines=' . &lines
 endif
 
 if exists('g:picker_split')

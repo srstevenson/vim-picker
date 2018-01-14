@@ -103,6 +103,16 @@ nmap <unique> <leader>ph <Plug>PickerHelp
 
 ## Configuration
 
+In directories which are not inside a Git repository, vim-picker uses `rg` to
+list files, falling back to `find` if `rg` is not available. To use an
+alternative to `rg`, set `g:picker_find_executable` and `g:picker_find_flags`
+in your vimrc. For example, to use [`fd`][fd] set:
+
+```viml
+let g:picker_find_executable = 'fd'
+let g:picker_find_flags = '--color=never'
+```
+
 `fzy` is used as the default fuzzy selector. To use an alternative selector,
 set `g:picker_selector` in your vimrc. For example, set
 
@@ -144,6 +154,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [Command-T]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
 [Dein.vim]: https://github.com/Shougo/dein.vim
+[fd]: https://github.com/sharkdp/fd
 [fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
 [ISC licence]: https://opensource.org/licenses/ISC

@@ -8,6 +8,19 @@ endif
 
 let g:loaded_picker = 1
 
+if exists('g:picker_find_executable')
+    call picker#CheckIsString(g:picker_find_executable,
+                \ 'g:picker_find_executable')
+else
+    let g:picker_find_executable = 'rg'
+endif
+
+if exists('g:picker_find_flags')
+    call picker#CheckIsString(g:picker_find_flags, 'g:picker_find_flags')
+else
+    let g:picker_find_flags = '--color=never --files'
+endif
+
 if exists('g:picker_selector')
     call picker#CheckIsString(g:picker_selector, 'g:picker_selector')
 else

@@ -65,6 +65,14 @@ vim-picker provides the following |<Plug>| mappings:
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*
 
+In directories which are not inside a Git repository, vim-picker will use `rg`
+to list files, falling back to `find` if `rg` is not available. To use an
+alternative to `rg`, set `g:picker_find_executable` and `g:picker_find_flags`
+in your |vimrc|. For example, to use `fd` (https://github.com/sharkdp/fd) set:
+>
+    let g:picker_find_executable = 'fd'
+    let g:picker_find_flags = '--color=never'
+<
 By default vim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as the
 fuzzy selector. You can change this by setting `g:picker_selector` in your
 |vimrc|. For example, to use `pick` (https://github.com/calleerlandsson/pick)

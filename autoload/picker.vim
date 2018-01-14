@@ -100,13 +100,13 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
 
     function! l:callback.on_exit(job_id, data, event) abort
         bdelete!
-        call win_gotoid(self.window_id)
-        if filereadable(self.filename)
+        call win_gotoid(l:self.window_id)
+        if filereadable(l:self.filename)
             try
-                call self.callback.on_select(readfile(self.filename)[0])
+                call l:self.callback.on_select(readfile(l:self.filename)[0])
             catch /E684/
             endtry
-            call delete(self.filename)
+            call delete(l:self.filename)
         endif
     endfunction
 
@@ -183,7 +183,7 @@ function! s:PickString(list_command, vim_command) abort
     let l:callback = {'vim_command': a:vim_command}
 
     function! l:callback.on_select(selection) abort
-        exec self.vim_command a:selection
+        exec l:self.vim_command a:selection
     endfunction
 
     call s:Picker(a:list_command, a:vim_command, l:callback)
@@ -205,7 +205,7 @@ function! s:PickFile(list_command, vim_command) abort
     let l:callback = {'vim_command': a:vim_command}
 
     function! l:callback.on_select(selection) abort
-        exec self.vim_command fnameescape(a:selection)
+        exec l:self.vim_command fnameescape(a:selection)
     endfunction
 
     call s:Picker(a:list_command, a:vim_command, l:callback)

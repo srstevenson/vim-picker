@@ -136,7 +136,7 @@ let g:picker_height = 10
 
 ## Copyright
 
-Copyright © 2016-2017 [Scott Stevenson].
+Copyright © 2016-2018 [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC licence].
 

@@ -114,17 +114,19 @@ let g:picker_find_flags = '--color=never'
 ```
 
 `fzy` is used as the default fuzzy selector. To use an alternative selector,
-set `g:picker_selector` in your vimrc. For example, set
+set `g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc.
+For example, to use `pick` set:
 
 ```viml
-let g:picker_selector = 'pick'
+let g:picker_selector_executable = 'pick'
+let g:picker_selector_flags = ''
 ```
 
-to use `pick`. vim-picker has been tested with `fzy`, `pick`, and `selecta`,
-but any well behaved command line filter should work. If you run Vim within
-[tmux], setting `g:picker_selector` to the [`fzy-tmux`][fzy-tmux] script
-distributed with `fzy` will open the fuzzy selector in a new tmux pane below
-Vim, providing an interface similar to using vim-picker with Neovim.
+vim-picker has been tested with `fzy`, `pick`, and `selecta`, but any well
+behaved command line filter should work. If you run Vim within [tmux], setting
+`g:picker_selector_executable` to the [`fzy-tmux`][fzy-tmux] script distributed
+with `fzy` will open the fuzzy selector in a new tmux pane below Vim, providing
+an interface similar to using vim-picker with Neovim.
 
 By default, vim-picker in Neovim will run the fuzzy selector in a full width
 split at the bottom of the window, using [`:botright`][botright]. You can

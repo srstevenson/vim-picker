@@ -74,11 +74,12 @@ in your |vimrc|. For example, to use `fd` (https://github.com/sharkdp/fd) set:
     let g:picker_find_flags = '--color=never'
 <
 By default vim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as the
-fuzzy selector. You can change this by setting `g:picker_selector` in your
-|vimrc|. For example, to use `pick` (https://github.com/calleerlandsson/pick)
-set:
+fuzzy selector. You can change this by setting `g:picker_selector_executable`
+and `g:picker_selector_flags` in your |vimrc|. For example, to use `pick`
+(https://github.com/calleerlandsson/pick) set:
 >
-    let g:picker_selector = 'pick'
+    let g:picker_selector_executable = 'pick'
+    let g:picker_selector_flags = ''
 <
 By default, vim-picker in Neovim will run the fuzzy selector in a full width
 split at the bottom of the window, using |:botright|. You can change this by

@@ -16,7 +16,7 @@ endfunction
 function! s:ListFilesCommand() abort
     " Return a shell command suitable for listing the files in the
     " current directory, based on whether the current directory is a Git
-    " repository and if ripgrep is installed.
+    " repository and if the preferred find tool is installed.
     "
     " Returns
     " -------
@@ -24,8 +24,8 @@ function! s:ListFilesCommand() abort
     "     Shell command to list files in the current directory.
     if executable('git') && s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
-    elseif executable('rg')
-        return 'rg --color=never --files'
+    elseif executable(g:picker_find_executable)
+        return g:picker_find_executable . ' ' . g:picker_find_flags
     else
         return 'find . -type f'
     endif

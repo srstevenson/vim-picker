@@ -2,4 +2,4 @@ language: python
 install:
   - pip install vim-vint
 script:
-  - vint --enable-neovim .
+  - vint .

@@ -17,13 +17,13 @@ if exists('g:picker_find_executable')
     call picker#CheckIsString(g:picker_find_executable,
                 \ 'g:picker_find_executable')
 else
-    let g:picker_find_executable = 'rg'
+    let g:picker_find_executable = 'fd'
 endif
 
 if exists('g:picker_find_flags')
     call picker#CheckIsString(g:picker_find_flags, 'g:picker_find_flags')
 else
-    let g:picker_find_flags = '--color=never --files'
+    let g:picker_find_flags = '--color never --type f'
 endif
 
 if exists('g:picker_selector_executable')

@@ -17,7 +17,7 @@ It has advantages over plugins with a similar purpose such as [ctrlp.vim] and
   selector to continue where you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
-  repositories and [`rg`][rg] elsewhere, falling back to `find` if `rg` is not
+  repositories and [`fd`][fd] elsewhere, falling back to `find` if `fd` is not
   available. Fuzzy text selection is done with `fzy` by default: a fast, well
   behaved interactive filter.
 * It doesn't define default key mappings, allowing you to define your own
@@ -103,14 +103,14 @@ nmap <unique> <leader>ph <Plug>PickerHelp
 
 ## Configuration
 
-In directories which are not inside a Git repository, vim-picker uses `rg` to
-list files, falling back to `find` if `rg` is not available. To use an
-alternative to `rg`, set `g:picker_find_executable` and `g:picker_find_flags`
-in your vimrc. For example, to use [`fd`][fd] set:
+In directories which are not inside a Git repository, vim-picker uses `fd` to
+list files, falling back to `find` if `fd` is not available. To use an
+alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags`
+in your vimrc. For example, to use [ripgrep] set:
 
 ```viml
-let g:picker_find_executable = 'fd'
-let g:picker_find_flags = '--color=never'
+let g:picker_find_executable = 'rg'
+let g:picker_find_flags = '--color never --files'
 ```
 
 `fzy` is used as the default fuzzy selector. To use an alternative selector,
@@ -168,7 +168,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [packpath]: https://neovim.io/doc/user/options.html#'packpath'
 [pick]: https://github.com/calleerlandsson/pick
 [plug-mappings]: https://neovim.io/doc/user/map.html#%3CPlug%3E
-[rg]: https://github.com/BurntSushi/ripgrep
+[ripgrep]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
 [tmux]: https://tmux.github.io/

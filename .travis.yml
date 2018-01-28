@@ -1,3 +1,5 @@
+dist: trusty
+sudo: false
 language: python
 install:
   - pip install vim-vint

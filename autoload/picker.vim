@@ -109,6 +109,21 @@ function! s:ListHelpTagsCommand() abort
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
+function! s:ListLocationListCommand() abort
+    " Return a shell command which will list current window-local quickfix
+    " locations (see :help location-list).
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list window-local quickfix locations.
+    let l:locations = getloclist(0)
+    " vint: -ProhibitUnnecessaryDoubleQuote
+    let l:names = map(l:locations, '(v:key + 1) . ": " . v:val.text')
+    " vint: +ProhibitUnnecessaryDoubleQuote
+    return s:EchoLines(l:names)
+endfunction
+
 function! s:PickerTermopen(list_command, vim_command, callback) abort
     " Open a terminal emulator buffer in a new window, execute
     " list_command piping its output to the fuzzy selector, and call
@@ -353,6 +368,13 @@ endfunction
 function! picker#Help() abort
     " Run fuzzy selector to choose a help topic and call help on it.
     call s:PickString(s:ListHelpTagsCommand(), 'help')
+endfunction
+
+function! picker#LocationList() abort
+    " Run fuzzy selector to choose a local quickfix location and call ll on
+    " it.  Each location identified by its location-list-one-based index
+    " (e.g. "1: location list entry").
+    call s:PickStringWithId(s:ListLocationListCommand(), 'll', '^\d\+')
 endfunction
 
 function! picker#Close() abort

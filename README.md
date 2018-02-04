@@ -70,6 +70,7 @@ vim-picker provides the following commands:
 * `:PickerBufferTag`: Pick a tag from the current buffer to jump to.
 * `:PickerHelp`: Pick a help tag to jump to in the current window.
 * `:PickerLocationList`: Pick a file position to jump to from the location list.
+* `:PickerQuickfix`: Pick a file position to jump to from the quickfix list.
 
 ## Key mappings
 
@@ -85,6 +86,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 * `<Plug>PickerBufferTag`: Execute `:PickerBufferTag`.
 * `<Plug>PickerHelp`: Execute `:PickerHelp`.
 * `<Plug>PickerLocationList`: Execute `:PickerLocationList`.
+* `<Plug>PickerQuickfix`: Execute `:PickerQuickfix`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -102,6 +104,7 @@ nmap <unique> <leader>pw <Plug>PickerStag
 nmap <unique> <leader>po <Plug>PickerBufferTag
 nmap <unique> <leader>ph <Plug>PickerHelp
 nmap <unique> <leader>pl <Plug>PickerLocationList
+nmap <unique> <leader>pq <Plug>PickerQuickfix
 ```
 
 ## Configuration

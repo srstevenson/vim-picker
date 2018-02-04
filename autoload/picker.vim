@@ -124,6 +124,21 @@ function! s:ListLocationListCommand() abort
     return s:EchoLines(l:names)
 endfunction
 
+function! s:ListQuickfixCommand() abort
+    " Return a shell command which will list current quickfix locations
+    " (see :help quickfix).
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list window-local quickfix locations.
+    let l:locations = getqflist()
+    " vint: -ProhibitUnnecessaryDoubleQuote
+    let l:names = map(l:locations, '(v:key + 1) . ": " . v:val.text')
+    " vint: +ProhibitUnnecessaryDoubleQuote
+    return s:EchoLines(l:names)
+endfunction
+
 function! s:PickerTermopen(list_command, vim_command, callback) abort
     " Open a terminal emulator buffer in a new window, execute
     " list_command piping its output to the fuzzy selector, and call
@@ -375,6 +390,13 @@ function! picker#LocationList() abort
     " it.  Each location identified by its location-list-one-based index
     " (e.g. "1: location list entry").
     call s:PickStringWithId(s:ListLocationListCommand(), 'll', '^\d\+')
+endfunction
+
+function! picker#Quickfix() abort
+    " Run fuzzy selector to choose a quickfix location and call cc on it.
+    " Each location identified by its quickfix-list-one-based index
+    " (e.g. "1: quickfix entry").
+    call s:PickStringWithId(s:ListQuickfixCommand(), 'cc', '^\d\+')
 endfunction
 
 function! picker#Close() abort

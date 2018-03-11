@@ -159,7 +159,7 @@ function! s:Picker(list_command, vim_command, callback) abort
     "     Function executed with the item selected by the user as the
     "     first argument.
     if !executable(g:picker_selector_executable)
-        echomsg 'Error:' g:picker_selector_executable 'executable not found'
+        echoerr 'vim-picker:' g:picker_selector_executable 'executable not found'
         return
     endif
 
@@ -223,7 +223,7 @@ function! picker#CheckIsNumber(variable, name) abort
     " name : String
     "     Name of the variable.
     if type(a:variable) != type(0)
-        echomsg 'Error:' a:name 'must be a number'
+        echoerr 'vim-picker:' a:name 'must be a number'
     endif
 endfunction
 
@@ -237,7 +237,7 @@ function! picker#CheckIsString(variable, name) abort
     " name : String
     "     Name of the variable.
     if type(a:variable) != type('')
-        echomsg 'Error:' a:name 'must be a string'
+        echoerr 'vim-picker:' a:name 'must be a string'
     endif
 endfunction
 

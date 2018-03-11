@@ -9,7 +9,7 @@ endif
 let g:loaded_picker = 1
 
 if exists('g:picker_selector')
-    echomsg 'Error: g:picker_selector is deprecated; see :help'
+    echoerr 'vim-picker: g:picker_selector is deprecated; see :help'
                 \ 'picker-configuration.'
 endif
 

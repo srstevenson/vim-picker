@@ -166,7 +166,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [opening-window]: https://neovim.io/doc/user/windows.html#opening-window
 [packages]: https://neovim.io/doc/user/repeat.html#packages
 [packpath]: https://neovim.io/doc/user/options.html#'packpath'
-[pick]: https://github.com/calleerlandsson/pick
+[pick]: https://github.com/mptre/pick
 [plug-mappings]: https://neovim.io/doc/user/map.html#%3CPlug%3E
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [Scott Stevenson]: https://scott.stevenson.io

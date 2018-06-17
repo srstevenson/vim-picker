@@ -77,7 +77,7 @@ and `g:picker_find_flags` in your |vimrc|. For example, to use ripgrep
 By default vim-picker will use `fzy` (https://github.com/jhawthorn/fzy) as the
 fuzzy selector. You can change this by setting `g:picker_selector_executable`
 and `g:picker_selector_flags` in your |vimrc|. For example, to use `pick`
-(https://github.com/calleerlandsson/pick) set:
+(https://github.com/mptre/pick) set:
 >
     let g:picker_selector_executable = 'pick'
     let g:picker_selector_flags = ''

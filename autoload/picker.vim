@@ -268,7 +268,7 @@ endfunction
 
 function! picker#Tag() abort
     " Run fuzzy selector to choose a tag and call tag on it.
-    call s:PickString(s:ListTagsCommand(), 'tag')
+    call s:PickString(s:ListTagsCommand(), 'tjump')
 endfunction
 
 function! picker#Stag() abort
@@ -279,7 +279,7 @@ endfunction
 function! picker#BufferTag() abort
     " Run fuzzy selector to choose a tag from the current file and call
     " tag on it.
-    call s:PickString(s:ListBufferTagsCommand(expand('%:p')), 'tag')
+    call s:PickString(s:ListBufferTagsCommand(expand('%:p')), 'tjump')
 endfunction
 
 function! picker#Help() abort

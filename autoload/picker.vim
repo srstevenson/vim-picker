@@ -272,8 +272,8 @@ function! picker#Tag() abort
 endfunction
 
 function! picker#Stag() abort
-    " Run fuzzy selector to choose a tag and call stag on it.
-    call s:PickString(s:ListTagsCommand(), 'stag')
+    " Run fuzzy selector to choose a tag and call stjump on it.
+    call s:PickString(s:ListTagsCommand(), 'stjump')
 endfunction
 
 function! picker#BufferTag() abort

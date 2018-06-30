@@ -61,6 +61,8 @@ command -bar PickerTag call picker#Tag()
 command -bar PickerStag call picker#Stag()
 command -bar PickerBufferTag call picker#BufferTag()
 command -bar PickerHelp call picker#Help()
+command -bar PickerLocationList call picker#LocationList()
+command -bar PickerQuickfix call picker#Quickfix()
 
 nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
 nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
@@ -71,3 +73,5 @@ nnoremap <silent> <Plug>PickerTag :PickerTag<CR>
 nnoremap <silent> <Plug>PickerStag :PickerStag<CR>
 nnoremap <silent> <Plug>PickerBufferTag :PickerBufferTag<CR>
 nnoremap <silent> <Plug>PickerHelp :PickerHelp<CR>
+nnoremap <silent> <Plug>PickerLocationList :PickerLocationList<CR>
+nnoremap <silent> <Plug>PickerQuickfix :PickerQuickfix<CR>

@@ -38,10 +38,14 @@ function! s:ListBuffersCommand() abort
     " -------
     " String
     "     Shell command to list current listed buffers.
-    let l:buffers = range(1, bufnr('$'))
-    let l:listed = filter(l:buffers, 'buflisted(v:val)')
-    let l:names = map(l:listed, 'bufname(v:val)')
-    return 'echo "' . join(l:names, "\n"). '"'
+    let l:bufnrs = range(1, bufnr('$'))
+
+    " Filter out buffers which do not exist or are not listed, and the
+    " current buffer.
+    let l:bufnrs = filter(l:bufnrs, 'buflisted(v:val) && v:val != bufnr("%")')
+
+    let l:bufnames = map(l:bufnrs, 'bufname(v:val)')
+    return 'echo "' . join(l:bufnames, "\n"). '"'
 endfunction
 
 function! s:ListTagsCommand() abort

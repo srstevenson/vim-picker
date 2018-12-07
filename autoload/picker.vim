@@ -125,6 +125,42 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
     startinsert
 endfunction
 
+function! s:PickerTermStart(list_command, vim_command, callback) abort
+    let l:callback = {
+                \ 'window_id': win_getid(),
+                \ 'filename': tempname(),
+                \ 'callback': a:callback
+                \ }
+
+    function! l:callback.exit_cb(...) abort
+        bdelete!
+        call win_gotoid(l:self.window_id)
+        if filereadable(l:self.filename)
+            try
+                call l:self.callback.on_select(readfile(l:self.filename)[0])
+            catch /E684/
+            endtry
+            call delete(l:self.filename)
+        endif
+    endfunction
+
+    let l:options = {
+                \ 'curwin': 1,
+                \ 'exit_cb': l:callback.exit_cb,
+                \ }
+
+    execute g:picker_split g:picker_height . 'new'
+    let l:term_command = a:list_command . '|' . g:picker_selector_executable .
+                \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
+    let s:picker_buf_num = term_start([&shell, &shellcmdflag, l:term_command],
+                \ l:options)
+    let b:picker_statusline = 'Picker [command: ' . a:vim_command .
+                \ ', directory: ' . getcwd() . ']'
+    setlocal nonumber norelativenumber statusline=%{b:picker_statusline}
+    setfiletype picker
+    startinsert
+endfunction
+
 function! s:PickerSystemlist(list_command, callback) abort
     " Execute list_command in a shell, piping its output to the fuzzy
     " selector, and call callback.on_select with the line selected by
@@ -169,6 +205,8 @@ function! s:Picker(list_command, vim_command, callback) abort
 
     if exists('*termopen')
         call s:PickerTermopen(a:list_command, a:vim_command, a:callback)
+    elseif exists('*term_start')
+        call s:PickerTermStart(a:list_command, a:vim_command, a:callback)
     else
         call s:PickerSystemlist(a:list_command, a:callback)
     endif
@@ -293,5 +331,9 @@ endfunction
 
 function! picker#Close() abort
     " Send SIGTERM to the currently running fuzzy selector process.
-    call jobstop(s:picker_job_id)
+    if exists('*jobstop')
+        call jobstop(s:picker_job_id)
+    elseif exists('*job_stop')
+        call job_stop(term_getjob(s:picker_buf_num))
+    endif
 endfunction

@@ -11,10 +11,11 @@ fuzzy selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta].
 It has advantages over plugins with a similar purpose such as [ctrlp.vim] and
 [Command-T]:
 
-* It uses the [embedded terminal emulator][nvim-terminal] when used within
-  Neovim, so the fuzzy selector does not block the UI. Whilst selecting an item
-  you can move to another buffer, edit that buffer, and return to the fuzzy
-  selector to continue where you left off.
+* It uses the embedded terminal emulator when available (this requires
+  [Neovim][nvim-terminal] or [Vim 8.1][vim-terminal]), so the fuzzy selector
+  does not block the UI. Whilst selecting an item you can move to another
+  buffer, edit that buffer, and return to the fuzzy selector to continue where
+  you left off.
 * It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   repositories and [`fd`][fd] elsewhere, falling back to `find` if `fd` is not
@@ -123,15 +124,18 @@ let g:picker_selector_flags = ''
 ```
 
 vim-picker has been tested with `fzy`, `pick`, and `selecta`, but any well
-behaved command line filter should work. If you run Vim within [tmux], setting
+behaved command line filter should work. If your version of Vim does not
+contain an embedded terminal emulator, but you run Vim within [tmux], setting
 `g:picker_selector_executable` to the [`fzy-tmux`][fzy-tmux] script distributed
 with `fzy` will open the fuzzy selector in a new tmux pane below Vim, providing
-an interface similar to using vim-picker with Neovim.
+an interface similar to using the embedded terminal emulator of Neovim or Vim
+8.1.
 
-By default, vim-picker in Neovim will run the fuzzy selector in a full width
-split at the bottom of the window, using [`:botright`][botright]. You can
-change this by setting `g:picker_split` in your vimrc. For example, to open a
-full width split at the top of the window, set:
+By default, when an embedded terminal emulator is available vim-picker will run
+the fuzzy selector in a full width split at the bottom of the window, using
+[`:botright`][botright]. You can change this by setting `g:picker_split` in
+your vimrc. For example, to open a full width split at the top of the window,
+set:
 
 ```viml
 let g:picker_split = 'topleft'
@@ -139,8 +143,8 @@ let g:picker_split = 'topleft'
 
 See [`opening-window`][opening-window] for other valid values.
 
-To specify the height of the window in which the fuzzy selector is opened in
-Neovim, set `g:picker_height` in your vimrc. The default is 10 lines:
+To specify the height of the window in which the fuzzy selector is opened, set
+`g:picker_height` in your vimrc. The default is 10 lines:
 
 ```viml
 let g:picker_height = 10
@@ -174,5 +178,6 @@ vim-picker is distributed under the terms of the [ISC licence].
 [tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug
+[vim-terminal]: https://vimhelp.appspot.com/terminal.txt.html
 [Vim]: http://www.vim.org/
 [Vundle]: https://github.com/VundleVim/Vundle.vim

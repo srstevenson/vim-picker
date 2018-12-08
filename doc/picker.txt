@@ -82,17 +82,17 @@ and `g:picker_selector_flags` in your |vimrc|. For example, to use `pick`
     let g:picker_selector_executable = 'pick'
     let g:picker_selector_flags = ''
 <
-By default, vim-picker in Neovim will run the fuzzy selector in a full width
-split at the bottom of the window, using |:botright|. You can change this by
-setting `g:picker_split` in your |vimrc|. For example, to open a full width
-split at the top of the window, set:
+By default, vim-picker will run the fuzzy selector in a full width split at
+the bottom of the window, using |:botright|. You can change this by setting
+`g:picker_split` in your |vimrc|. For example, to open a full width split at
+the top of the window, set:
 >
     let g:picker_split = 'topleft'
 <
 See |opening-window| for other valid values.
 
-To specify the height of the window in which the fuzzy selector is opened in
-Neovim, set `g:picker_height` in your |vimrc|. The default is 10 lines:
+To specify the height of the window in which the fuzzy selector is opened, set
+`g:picker_height` in your |vimrc|. The default is 10 lines:
 >
     let g:picker_height = 10
 <

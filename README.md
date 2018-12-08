@@ -7,21 +7,21 @@
 </p>
 
 vim-picker allows you to search for and select files, buffers, and tags using a
-fuzzy selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta].
-It has advantages over plugins with a similar purpose such as [ctrlp.vim] and
+fuzzy selector such as [`fzy`][fzy], [`pick`][pick], or [`selecta`][selecta]. It
+has advantages over plugins with a similar purpose such as [ctrlp.vim] and
 [Command-T]:
 
-* It uses the embedded terminal emulator when available (this requires
+- It uses the embedded terminal emulator when available (this requires
   [Neovim][nvim-terminal] or [Vim 8.1][vim-terminal]), so the fuzzy selector
   does not block the UI. Whilst selecting an item you can move to another
   buffer, edit that buffer, and return to the fuzzy selector to continue where
   you left off.
-* It adheres to the Unix philosophy, and does not reimplement existing tools.
+- It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   repositories and [`fd`][fd] elsewhere, falling back to `find` if `fd` is not
   available. Fuzzy text selection is done with `fzy` by default: a fast, well
   behaved interactive filter.
-* It doesn't define default key mappings, allowing you to define your own
+- It doesn't define default key mappings, allowing you to define your own
   mappings that best fit your workflow and don't conflict with your other
   plugins.
 
@@ -31,11 +31,11 @@ To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy]
 (recommended), [`pick`][pick], or [`selecta`][selecta] installed. See their
 respective homepages for installation instructions.
 
-If you already use a plugin manager such as [vim-plug], [Dein.vim], or
-[Vundle], install vim-picker in the normal manner. Otherwise, the recommended
-plugin manager is [minpac]. Add the following to your vimrc (`$HOME/.vim/vimrc`
-for Vim and `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim),
-restart Vim, and run `:call minpac#update()`:
+If you already use a plugin manager such as [vim-plug], [Dein.vim], or [Vundle],
+install vim-picker in the normal manner. Otherwise, the recommended plugin
+manager is [minpac]. Add the following to your vimrc (`$HOME/.vim/vimrc` for Vim
+and `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim,
+and run `:call minpac#update()`:
 
 ```viml
 call minpac#add('srstevenson/vim-picker')
@@ -61,29 +61,29 @@ git clone https://github.com/srstevenson/vim-picker \
 
 vim-picker provides the following commands:
 
-* `:PickerEdit`: Pick a file to edit in the current window.
-* `:PickerSplit`: Pick a file to edit in a new horizontal split.
-* `:PickerTabedit`: Pick a file to edit in a new tab.
-* `:PickerVsplit`: Pick a file to edit in a new vertical split.
-* `:PickerBuffer`: Pick a buffer to edit in the current window.
-* `:PickerTag`: Pick a tag to jump to in the current window.
-* `:PickerStag`: Pick a tag to jump to in a new horizontal split.
-* `:PickerBufferTag`: Pick a tag from the current buffer to jump to.
-* `:PickerHelp`: Pick a help tag to jump to in the current window.
+- `:PickerEdit`: Pick a file to edit in the current window.
+- `:PickerSplit`: Pick a file to edit in a new horizontal split.
+- `:PickerTabedit`: Pick a file to edit in a new tab.
+- `:PickerVsplit`: Pick a file to edit in a new vertical split.
+- `:PickerBuffer`: Pick a buffer to edit in the current window.
+- `:PickerTag`: Pick a tag to jump to in the current window.
+- `:PickerStag`: Pick a tag to jump to in a new horizontal split.
+- `:PickerBufferTag`: Pick a tag from the current buffer to jump to.
+- `:PickerHelp`: Pick a help tag to jump to in the current window.
 
 ## Key mappings
 
 vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 
-* `<Plug>PickerEdit`: Execute `:PickerEdit`.
-* `<Plug>PickerSplit`: Execute `:PickerSplit`.
-* `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
-* `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
-* `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
-* `<Plug>PickerTag`: Execute `:PickerTag`.
-* `<Plug>PickerStag`: Execute `:PickerStag`.
-* `<Plug>PickerBufferTag`: Execute `:PickerBufferTag`.
-* `<Plug>PickerHelp`: Execute `:PickerHelp`.
+- `<Plug>PickerEdit`: Execute `:PickerEdit`.
+- `<Plug>PickerSplit`: Execute `:PickerSplit`.
+- `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
+- `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
+- `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
+- `<Plug>PickerTag`: Execute `:PickerTag`.
+- `<Plug>PickerStag`: Execute `:PickerStag`.
+- `<Plug>PickerBufferTag`: Execute `:PickerBufferTag`.
+- `<Plug>PickerHelp`: Execute `:PickerHelp`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -106,17 +106,17 @@ nmap <unique> <leader>ph <Plug>PickerHelp
 
 In directories which are not inside a Git repository, vim-picker uses `fd` to
 list files, falling back to `find` if `fd` is not available. To use an
-alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags`
-in your vimrc. For example, to use [ripgrep] set:
+alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags` in
+your vimrc. For example, to use [ripgrep] set:
 
 ```viml
 let g:picker_find_executable = 'rg'
 let g:picker_find_flags = '--color never --files'
 ```
 
-`fzy` is used as the default fuzzy selector. To use an alternative selector,
-set `g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc.
-For example, to use `pick` set:
+`fzy` is used as the default fuzzy selector. To use an alternative selector, set
+`g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc. For
+example, to use `pick` set:
 
 ```viml
 let g:picker_selector_executable = 'pick'
@@ -124,8 +124,8 @@ let g:picker_selector_flags = ''
 ```
 
 vim-picker has been tested with `fzy`, `pick`, and `selecta`, but any well
-behaved command line filter should work. If your version of Vim does not
-contain an embedded terminal emulator, but you run Vim within [tmux], setting
+behaved command line filter should work. If your version of Vim does not contain
+an embedded terminal emulator, but you run Vim within [tmux], setting
 `g:picker_selector_executable` to the [`fzy-tmux`][fzy-tmux] script distributed
 with `fzy` will open the fuzzy selector in a new tmux pane below Vim, providing
 an interface similar to using the embedded terminal emulator of Neovim or Vim
@@ -133,9 +133,8 @@ an interface similar to using the embedded terminal emulator of Neovim or Vim
 
 By default, when an embedded terminal emulator is available vim-picker will run
 the fuzzy selector in a full width split at the bottom of the window, using
-[`:botright`][botright]. You can change this by setting `g:picker_split` in
-your vimrc. For example, to open a full width split at the top of the window,
-set:
+[`:botright`][botright]. You can change this by setting `g:picker_split` in your
+vimrc. For example, to open a full width split at the top of the window, set:
 
 ```viml
 let g:picker_split = 'topleft'
@@ -157,15 +156,15 @@ Copyright © 2016-2018 [Scott Stevenson].
 vim-picker is distributed under the terms of the [ISC licence].
 
 [botright]: https://neovim.io/doc/user/windows.html#:botright
-[Command-T]: https://github.com/wincent/command-t
+[command-t]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
-[Dein.vim]: https://github.com/Shougo/dein.vim
+[dein.vim]: https://github.com/Shougo/dein.vim
 [fd]: https://github.com/sharkdp/fd
 [fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
-[ISC licence]: https://opensource.org/licenses/ISC
+[isc licence]: https://opensource.org/licenses/ISC
 [minpac]: https://github.com/k-takata/minpac
-[Neovim]: https://neovim.io/
+[neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html
 [opening-window]: https://neovim.io/doc/user/windows.html#opening-window
 [packages]: https://neovim.io/doc/user/repeat.html#packages
@@ -173,11 +172,11 @@ vim-picker is distributed under the terms of the [ISC licence].
 [pick]: https://github.com/mptre/pick
 [plug-mappings]: https://neovim.io/doc/user/map.html#%3CPlug%3E
 [ripgrep]: https://github.com/BurntSushi/ripgrep
-[Scott Stevenson]: https://scott.stevenson.io
+[scott stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
 [tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug
 [vim-terminal]: https://vimhelp.appspot.com/terminal.txt.html
-[Vim]: http://www.vim.org/
-[Vundle]: https://github.com/VundleVim/Vundle.vim
+[vim]: http://www.vim.org/
+[vundle]: https://github.com/VundleVim/Vundle.vim

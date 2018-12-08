@@ -126,6 +126,22 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
 endfunction
 
 function! s:PickerTermStart(list_command, vim_command, callback) abort
+    " Open a Vim terminal emulator buffer in a new window using term_start,
+    " execute list_command piping its output to the fuzzy selector, and call
+    " callback.on_select with the item selected by the user as the first
+    " argument.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
+    " callback.on_select : String -> Void
+    "     Function executed with the item selected by the user as the
+    "     first argument.
     let l:callback = {
                 \ 'window_id': win_getid(),
                 \ 'filename': tempname(),

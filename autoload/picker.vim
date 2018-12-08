@@ -80,8 +80,8 @@ function! s:ListHelpTagsCommand() abort
 endfunction
 
 function! s:PickerTermopen(list_command, vim_command, callback) abort
-    " Open a terminal emulator buffer in a new window, execute
-    " list_command piping its output to the fuzzy selector, and call
+    " Open a Neovim terminal emulator buffer in a new window using termopen,
+    " execute list_command piping its output to the fuzzy selector, and call
     " callback.on_select with the item selected by the user as the first
     " argument.
     "

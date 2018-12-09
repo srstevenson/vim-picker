@@ -107,7 +107,7 @@ nmap <unique> <leader>ph <Plug>PickerHelp
 In directories which are not inside a Git repository, vim-picker uses `fd` to
 list files, falling back to `find` if `fd` is not available. To use an
 alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags` in
-your vimrc. For example, to use [ripgrep] set:
+your vimrc. For example, to use [`ripgrep`][ripgrep] set:
 
 ```viml
 let g:picker_find_executable = 'rg'
@@ -116,7 +116,7 @@ let g:picker_find_flags = '--color never --files'
 
 `fzy` is used as the default fuzzy selector. To use an alternative selector, set
 `g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc. For
-example, to use `pick` set:
+example, to use [`pick`][pick] set:
 
 ```viml
 let g:picker_selector_executable = 'pick'

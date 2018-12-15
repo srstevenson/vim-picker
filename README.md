@@ -3,7 +3,7 @@
 [vim-picker] is a fuzzy picker for [Neovim] and [Vim].
 
 <p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/5845679/23188507/d9ab861e-f886-11e6-9869-973f98909a85.gif" />
+  <img src="https://user-images.githubusercontent.com/5845679/50046422-d29d5280-009a-11e9-94a8-bfe57972cc5a.gif" width="600" />
 </p>
 
 vim-picker allows you to search for and select files, buffers, and tags using a

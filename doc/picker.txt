@@ -7,8 +7,9 @@ CONTENTS                                                       *picker-contents*
     2. Commands ..................................|picker-commands|
     3. Mappings ..................................|picker-mappings|
     4. Configuration .............................|picker-configuration|
-    5. Issues ....................................|picker-issues|
-    6. Licence ...................................|picker-licence|
+    5. Functions .................................|picker-functions|
+    6. Issues ....................................|picker-issues|
+    7. Licence ...................................|picker-licence|
 
 ==============================================================================
 ABOUT                                                             *picker-about*
@@ -47,20 +48,24 @@ vim-picker provides the following commands:
                                                             *picker-:PickerHelp*
 :PickerHelp             Pick a help tag to jump to in the current window.
 
+                                                *picker-:PickerListUserCommands*
+:PickerListUserCommands Display a list of registered user-defined commands.
+
 ==============================================================================
 MAPPINGS                                                       *picker-mappings*
 
 vim-picker provides the following |<Plug>| mappings:
 
-<Plug>PickerEdit        Execute :PickerEdit
-<Plug>PickerSplit       Execute :PickerSplit
-<Plug>PickerTabedit     Execute :PickerTabedit
-<Plug>PickerVsplit      Execute :PickerVsplit
-<Plug>PickerBuffer      Execute :PickerBuffer
-<Plug>PickerTag         Execute :PickerTag
-<Plug>PickerStag        Execute :PickerStag
-<Plug>PickerBufferTag   Execute :PickerBufferTag
-<Plug>PickerHelp        Execute :PickerHelp
+<Plug>PickerEdit                    Execute :PickerEdit
+<Plug>PickerSplit                   Execute :PickerSplit
+<Plug>PickerTabedit                 Execute :PickerTabedit
+<Plug>PickerVsplit                  Execute :PickerVsplit
+<Plug>PickerBuffer                  Execute :PickerBuffer
+<Plug>PickerTag                     Execute :PickerTag
+<Plug>PickerStag                    Execute :PickerStag
+<Plug>PickerBufferTag               Execute :PickerBufferTag
+<Plug>PickerHelp                    Execute :PickerHelp
+<Plug>PickerListUserCommands        Execute :PickerListUserCommands
 
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*
@@ -96,6 +101,38 @@ To specify the height of the window in which the fuzzy selector is opened, set
 >
     let g:picker_height = 10
 <
+
+==============================================================================
+FUNCTIONS                                                     *picker-functions*
+
+                                                              *picker#Execute()*
+picker#Execute({id})
+    Execute the fuzzy selector using the user-defined command with the given
+    identifier.
+
+                                                             *picker#Register()*
+picker#Register({id}, {selection_type}, {vim_command}, {shell_command})
+    Register a new user-defined command.
+
+    When activated with |picker#Execute()|, the output of the shell command
+    will be piped into the fuzzy selector, the line selected by the user will
+    be processed according to {selection_type}, and the processed line will
+    finally be passed as a single argument to {vim_command}.
+
+    {id} is a string specifying a unique name used to identify the
+    user-defined command with |picker#Execute()|.
+
+    {selection_type} is a string equal to either 'string' or 'file'. 'string'
+    selections are passed unchanged as a single argument to {vim_command}.
+    'file' selections are treated as filenames: spaces and special characters
+    are escaped before executing {vim_command}.
+
+    {vim_command} is a string specifying the Vim command which will be called
+    with the user's selection as a single argument.
+
+    {shell_command} is a string specifying a shell command consisting of
+    either a single command or a series of piped commands that will generate a
+    newline separated list of candidates to be piped to the fuzzy selector.
 
 ==============================================================================
 ISSUES                                                           *picker-issues*

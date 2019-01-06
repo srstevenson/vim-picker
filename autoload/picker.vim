@@ -103,7 +103,7 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ }
 
     function! l:callback.on_exit(job_id, data, event) abort
-        bdelete!
+        close!
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try
@@ -149,7 +149,7 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
                 \ }
 
     function! l:callback.exit_cb(...) abort
-        bdelete!
+        close!
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try

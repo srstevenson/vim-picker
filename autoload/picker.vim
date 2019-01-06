@@ -271,32 +271,34 @@ function! s:PickFile(list_command, vim_command) abort
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
-function! picker#CheckIsNumber(variable, name) abort
-    " Print an error message if variable is not of type Number.
+function! picker#IsNumber(variable) abort
+    " Determine if a variable is a number.
     "
     " Parameters
     " ----------
     " variable : Any
     "     Value of the variable.
-    " name : String
-    "     Name of the variable.
-    if type(a:variable) != type(0)
-        echoerr 'vim-picker:' a:name 'must be a number'
-    endif
+    "
+    " Returns
+    " -------
+    " Boolean
+    "     v:true if the variable is a number, v:false otherwise.
+    return type(a:variable) ==# type(0)
 endfunction
 
-function! picker#CheckIsString(variable, name) abort
-    " Print an error message if variable is not of type String.
+function! picker#IsString(variable) abort
+    " Determine if a variable is a string.
     "
     " Parameters
     " ----------
     " variable : Any
     "     Value of the variable.
-    " name : String
-    "     Name of the variable.
-    if type(a:variable) != type('')
-        echoerr 'vim-picker:' a:name 'must be a string'
-    endif
+    "
+    " Returns
+    " -------
+    " Boolean
+    "     v:true if the variable is a string, v:false otherwise.
+    return type(a:variable) ==# type('')
 endfunction
 
 function! picker#Edit() abort

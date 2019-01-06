@@ -14,40 +14,49 @@ if exists('g:picker_selector')
 endif
 
 if exists('g:picker_find_executable')
-    call picker#CheckIsString(g:picker_find_executable,
-                \ 'g:picker_find_executable')
+    if !picker#IsString(g:picker_find_executable)
+        echoerr 'vim-picker: g:picker_find_executable must be a string'
+    endif
 else
     let g:picker_find_executable = 'fd'
 endif
 
 if exists('g:picker_find_flags')
-    call picker#CheckIsString(g:picker_find_flags, 'g:picker_find_flags')
+    if !picker#IsString(g:picker_find_flags)
+        echoerr 'vim-picker: g:picker_find_flags must be a string'
+    endif
 else
     let g:picker_find_flags = '--color never --type f'
 endif
 
 if exists('g:picker_selector_executable')
-    call picker#CheckIsString(g:picker_selector_executable,
-                \ 'g:picker_selector_executable')
+    if !picker#IsString(g:picker_selector_executable)
+        echoerr 'vim-picker: g:picker_selector_executable must be a string'
+    endif
 else
     let g:picker_selector_executable = 'fzy'
 endif
 
 if exists('g:picker_selector_flags')
-    call picker#CheckIsString(g:picker_selector_flags,
-                \ 'g:picker_selector_flags')
+    if !picker#IsString(g:picker_selector_flags)
+        echoerr 'vim-picker: g:picker_selector_flags must be a string'
+    endif
 else
     let g:picker_selector_flags = '--lines=' . &lines
 endif
 
 if exists('g:picker_split')
-    call picker#CheckIsString(g:picker_split, 'g:picker_split')
+    if !picker#IsString(g:picker_split)
+        echoerr 'vim-picker: g:picker_split must be a string'
+    endif
 else
     let g:picker_split = 'botright'
 endif
 
 if exists('g:picker_height')
-    call picker#CheckIsNumber(g:picker_height, 'g:picker_height')
+    if !picker#IsNumber(g:picker_height)
+        echoerr 'vim-picker: g:picker_height must be a number'
+    endif
 else
     let g:picker_height = 10
 endif

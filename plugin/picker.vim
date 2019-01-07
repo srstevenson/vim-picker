@@ -8,6 +8,36 @@ endif
 
 let g:loaded_picker = 1
 
+function! picker#IsNumber(variable) abort
+    " Determine if a variable is a number.
+    "
+    " Parameters
+    " ----------
+    " variable : Any
+    "     Value of the variable.
+    "
+    " Returns
+    " -------
+    " Boolean
+    "     v:true if the variable is a number, v:false otherwise.
+    return type(a:variable) ==# type(0)
+endfunction
+
+function! picker#IsString(variable) abort
+    " Determine if a variable is a string.
+    "
+    " Parameters
+    " ----------
+    " variable : Any
+    "     Value of the variable.
+    "
+    " Returns
+    " -------
+    " Boolean
+    "     v:true if the variable is a string, v:false otherwise.
+    return type(a:variable) ==# type('')
+endfunction
+
 if exists('g:picker_selector')
     echoerr 'vim-picker: g:picker_selector is deprecated; see :help'
                 \ 'picker-configuration.'

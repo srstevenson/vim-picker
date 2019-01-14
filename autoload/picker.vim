@@ -79,6 +79,12 @@ function! s:ListHelpTagsCommand() abort
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
+function! s:CloseWindowAndDeleteBuffer() abort
+    " Close the current window, deleting buffers that are no longer displayed.
+    set bufhidden=delete
+    close!
+endfunction
+
 function! s:PickerTermopen(list_command, vim_command, callback) abort
     " Open a Neovim terminal emulator buffer in a new window using termopen,
     " execute list_command piping its output to the fuzzy selector, and call
@@ -103,7 +109,7 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ }
 
     function! l:callback.on_exit(job_id, data, event) abort
-        close!
+        call s:CloseWindowAndDeleteBuffer()
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try

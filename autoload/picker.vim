@@ -103,7 +103,10 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ }
 
     function! l:callback.on_exit(job_id, data, event) abort
+        let l:bufhidden = &bufhidden
+        set bufhidden=delete
         close!
+        let &bufhidden = l:bufhidden
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try

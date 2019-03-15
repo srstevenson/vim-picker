@@ -129,6 +129,12 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ 'callback': a:callback
                 \ }
 
+    let l:directory = getcwd()
+    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
+        let l:callback['cwd'] = a:callback.cwd
+        let l:directory = a:callback.cwd
+    endif
+
     function! l:callback.on_exit(job_id, data, event) abort
         call s:CloseWindowAndDeleteBuffer()
         call win_gotoid(l:self.window_id)
@@ -146,7 +152,7 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
     let s:picker_job_id = termopen(l:term_command, l:callback)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
-                \ ', directory: ' . getcwd() . ']'
+                \ ', directory: ' . l:directory . ']'
     setlocal nonumber norelativenumber statusline=%{b:picker_statusline}
     setfiletype picker
     startinsert
@@ -175,6 +181,12 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
                 \ 'callback': a:callback
                 \ }
 
+    let l:directory = getcwd()
+    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
+        let l:callback['cwd'] = a:callback.cwd
+        let l:directory = a:callback.cwd
+    endif
+
     function! l:callback.exit_cb(...) abort
         close!
         call win_gotoid(l:self.window_id)
@@ -198,7 +210,7 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
     let s:picker_buf_num = term_start([&shell, &shellcmdflag, l:term_command],
                 \ l:options)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
-                \ ', directory: ' . getcwd() . ']'
+                \ ', directory: ' . l:directory . ']'
     setlocal nonumber norelativenumber statusline=%{b:picker_statusline}
     setfiletype picker
     startinsert
@@ -216,7 +228,12 @@ function! s:PickerSystemlist(list_command, callback) abort
     " callback.on_select : String -> Void
     "     Function executed with the item selected by the user as the
     "     first argument.
-    let l:command = a:list_command . '|' . g:picker_selector_executable . ' '
+    let l:directory = getcwd()
+    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
+        let l:directory = a:callback.cwd
+    endif
+
+    let l:command = 'cd ' . fnameescape(l:directory) . ' && ' . a:list_command . '|' . g:picker_selector_executable . ' '
                 \ . g:picker_selector_flags
     try
         call a:callback.on_select(systemlist(l:command)[0])
@@ -276,7 +293,7 @@ function! s:PickString(list_command, vim_command) abort
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
-function! s:PickFile(list_command, vim_command) abort
+function! s:PickFile(list_command, vim_command, ...) abort
     " Create a callback that executes a Vim command against the user's
     " selection escaped for use as a filename, and invoke Picker() with
     " that callback.
@@ -291,31 +308,49 @@ function! s:PickFile(list_command, vim_command) abort
     "     statusline.
     let l:callback = {'vim_command': a:vim_command}
 
+    if a:0 > 0
+        let l:callback['cwd'] = a:1
+    endif
+
     function! l:callback.on_select(selection) abort
-        exec l:self.vim_command fnameescape(a:selection)
+        if has_key(l:self, 'cwd')
+            exec l:self.vim_command fnameescape(l:self.cwd . '/' . a:selection)
+        else
+            exec l:self.vim_command fnameescape(a:selection)
+        endif
     endfunction
 
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
-function! picker#Edit() abort
+function! s:GetDirectoryFromArgs(arglist) abort
+    let l:directory = getcwd()
+    if len(a:arglist) > 0
+        if isdirectory(a:arglist[0])
+            let l:directory = a:arglist[0]
+        endif
+    endif
+    return l:directory
+endfunction
+
+function! picker#Edit(...) abort
     " Run fuzzy selector to choose a file and call edit on it.
-    call s:PickFile(s:ListFilesCommand(), 'edit')
+    call s:PickFile(s:ListFilesCommand(), 'edit', s:GetDirectoryFromArgs(a:000))
 endfunction
 
-function! picker#Split() abort
+function! picker#Split(...) abort
     " Run fuzzy selector to choose a file and call split on it.
-    call s:PickFile(s:ListFilesCommand(), 'split')
+    call s:PickFile(s:ListFilesCommand(), 'split', s:GetDirectoryFromArgs(a:000))
 endfunction
 
-function! picker#Tabedit() abort
+function! picker#Tabedit(...) abort
     " Run fuzzy selector to choose a file and call tabedit on it.
-    call s:PickFile(s:ListFilesCommand(), 'tabedit')
+    call s:PickFile(s:ListFilesCommand(), 'tabedit', s:GetDirectoryFromArgs(a:000))
 endfunction
 
-function! picker#Vsplit() abort
+function! picker#Vsplit(...) abort
     " Run fuzzy selector to choose a file and call vsplit on it.
-    call s:PickFile(s:ListFilesCommand(), 'vsplit')
+    call s:PickFile(s:ListFilesCommand(), 'vsplit', s:GetDirectoryFromArgs(a:000))
 endfunction
 
 function! picker#Buffer() abort

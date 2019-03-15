@@ -91,10 +91,10 @@ else
     let g:picker_height = 10
 endif
 
-command -bar PickerEdit call picker#Edit()
-command -bar PickerSplit call picker#Split()
-command -bar PickerTabedit call picker#Tabedit()
-command -bar PickerVsplit call picker#Vsplit()
+command -bar -nargs=? -complete=dir PickerEdit call picker#Edit(<q-args>)
+command -bar -nargs=? -complete=dir PickerSplit call picker#Split(<q-args>)
+command -bar -nargs=? -complete=dir PickerTabedit call picker#Tabedit(<q-args>)
+command -bar -nargs=? -complete=dir PickerVsplit call picker#Vsplit(<q-args>)
 command -bar PickerBuffer call picker#Buffer()
 command -bar PickerTag call picker#Tag()
 command -bar PickerStag call picker#Stag()

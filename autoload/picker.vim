@@ -6,6 +6,21 @@ if !exists('s:user_command_registry')
     let s:user_command_registry = {}
 endif
 
+function! s:IsString(variable) abort
+    " Determine if a variable is a string.
+    "
+    " Parameters
+    " ----------
+    " variable : Any
+    "     Value of the variable.
+    "
+    " Returns
+    " -------
+    " Boolean
+    "     v:true if the variable is a string, v:false otherwise.
+    return type(a:variable) ==# type('')
+endfunction
+
 function! s:RightPadText(text, length) abort
     " Right pad text with trailing spaces.
     "
@@ -416,10 +431,10 @@ function! picker#Register(id, selection_type, vim_cmd, shell_cmd) abort
         echoerr 'vim-picker: argument "selection_type" of picker#Register()'
                     \ 'must be either "file" or "string"'
         return v:false
-    elseif !picker#IsString(a:shell_cmd)
+    elseif !s:IsString(a:shell_cmd)
         echoerr 'vim-picker: argument "shell_cmd" of picker#Register() must be a string'
         return v:false
-    elseif !picker#IsString(a:vim_cmd)
+    elseif !s:IsString(a:vim_cmd)
         echoerr 'vim-picker: argument "vim_cmd" of picker#Register() must be a string'
         return v:false
     endif

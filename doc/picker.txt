@@ -22,31 +22,40 @@ COMMANDS                                                       *picker-commands*
 vim-picker provides the following commands:
 
                                                             *picker-:PickerEdit*
-:PickerEdit             Pick a file to edit in the current window.
+:PickerEdit [directory]    Pick a file to edit in the current window. This
+                           takes a optional argument, which is the directory in
+                           which to run the file listing tool. If not specified,
+                           this defaults to the current working directory.
 
                                                            *picker-:PickerSplit*
-:PickerSplit            Pick a file to edit in a new horizontal split.
+:PickerSplit [directory]   Pick a file to edit in a new horizontal split. This
+                           takes an optional directory argument in the same
+                           manner as |:PickerEdit|.
 
                                                          *picker-:PickerTabedit*
-:PickerTabedit          Pick a file to edit in a new tab.
+:PickerTabedit [directory] Pick a file to edit in a new tab. This takes an
+                           optional directory argument in the same manner as
+                           |:PickerEdit|.
 
                                                           *picker-:PickerVsplit*
-:PickerVsplit           Pick a file to edit in a new vertical split.
+:PickerVsplit [directory]  Pick a file to edit in a new vertical split. This
+                           takes an optional directory argument in the same
+                           manner as |:PickerEdit|.
 
                                                           *picker-:PickerBuffer*
-:PickerBuffer           Pick a buffer to edit in the curent window.
+:PickerBuffer              Pick a buffer to edit in the curent window.
 
                                                              *picker-:PickerTag*
-:PickerTag              Pick a tag to jump to in the current window.
+:PickerTag                 Pick a tag to jump to in the current window.
 
                                                             *picker-:PickerStag*
-:PickerStag             Pick a tag to jump to in a new horizontal split.
+:PickerStag                Pick a tag to jump to in a new horizontal split.
 
                                                        *picker-:PickerBufferTag*
-:PickerBufferTag        Pick a tag from the current buffer to jump to.
+:PickerBufferTag           Pick a tag from the current buffer to jump to.
 
                                                             *picker-:PickerHelp*
-:PickerHelp             Pick a help tag to jump to in the current window.
+:PickerHelp                Pick a help tag to jump to in the current window.
 
                                                 *picker-:PickerListUserCommands*
 :PickerListUserCommands Display a list of registered user-defined commands.

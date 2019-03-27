@@ -61,10 +61,15 @@ git clone https://github.com/srstevenson/vim-picker \
 
 vim-picker provides the following commands:
 
-- `:PickerEdit`: Pick a file to edit in the current window.
-- `:PickerSplit`: Pick a file to edit in a new horizontal split.
-- `:PickerTabedit`: Pick a file to edit in a new tab.
-- `:PickerVsplit`: Pick a file to edit in a new vertical split.
+- `:PickerEdit`: Pick a file to edit in the current window. This takes a single
+  optional argument, which is the directory in which to run the file listing
+  tool. If not specified, this defaults to the current working directory.
+- `:PickerSplit`: Pick a file to edit in a new horizontal split. This takes an
+  optional directory argument in the same manner as `:PickerEdit`.
+- `:PickerTabedit`: Pick a file to edit in a new tab. This takes an optional
+  directory argument in the same manner as `:PickerEdit`.
+- `:PickerVsplit`: Pick a file to edit in a new vertical split. This takes an
+  optional directory argument in the same manner as `:PickerEdit`.
 - `:PickerBuffer`: Pick a buffer to edit in the current window.
 - `:PickerTag`: Pick a tag to jump to in the current window.
 - `:PickerStag`: Pick a tag to jump to in a new horizontal split.

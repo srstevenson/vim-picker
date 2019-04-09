@@ -81,16 +81,16 @@ vim-picker provides the following commands:
 
 vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 
-- `<Plug>PickerEdit`: Execute `:PickerEdit`.
-- `<Plug>PickerSplit`: Execute `:PickerSplit`.
-- `<Plug>PickerTabedit`: Execute `:PickerTabedit`.
-- `<Plug>PickerVsplit`: Execute `:PickerVsplit`.
-- `<Plug>PickerBuffer`: Execute `:PickerBuffer`.
-- `<Plug>PickerTag`: Execute `:PickerTag`.
-- `<Plug>PickerStag`: Execute `:PickerStag`.
-- `<Plug>PickerBufferTag`: Execute `:PickerBufferTag`.
-- `<Plug>PickerHelp`: Execute `:PickerHelp`.
-- `<Plug>PickerListUserCommands`: Execute `:PickerListUserCommands`.
+- `<Plug>(PickerEdit)`: Execute `:PickerEdit`.
+- `<Plug>(PickerSplit)`: Execute `:PickerSplit`.
+- `<Plug>(PickerTabedit)`: Execute `:PickerTabedit`.
+- `<Plug>(PickerVsplit)`: Execute `:PickerVsplit`.
+- `<Plug>(PickerBuffer)`: Execute `:PickerBuffer`.
+- `<Plug>(PickerTag)`: Execute `:PickerTag`.
+- `<Plug>(PickerStag)`: Execute `:PickerStag`.
+- `<Plug>(PickerBufferTag)`: Execute `:PickerBufferTag`.
+- `<Plug>(PickerHelp)`: Execute `:PickerHelp`.
+- `<Plug>(PickerListUserCommands)`: Execute `:PickerListUserCommands`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -98,16 +98,22 @@ have no preference, the following snippet maps the main mappings to mnemonic key
 sequences:
 
 ```viml
-nmap <unique> <leader>pe <Plug>PickerEdit
-nmap <unique> <leader>ps <Plug>PickerSplit
-nmap <unique> <leader>pt <Plug>PickerTabedit
-nmap <unique> <leader>pv <Plug>PickerVsplit
-nmap <unique> <leader>pb <Plug>PickerBuffer
-nmap <unique> <leader>p] <Plug>PickerTag
-nmap <unique> <leader>pw <Plug>PickerStag
-nmap <unique> <leader>po <Plug>PickerBufferTag
-nmap <unique> <leader>ph <Plug>PickerHelp
+nmap <unique> <leader>pe <Plug>(PickerEdit)
+nmap <unique> <leader>ps <Plug>(PickerSplit)
+nmap <unique> <leader>pt <Plug>(PickerTabedit)
+nmap <unique> <leader>pv <Plug>(PickerVsplit)
+nmap <unique> <leader>pb <Plug>(PickerBuffer)
+nmap <unique> <leader>p] <Plug>(PickerTag)
+nmap <unique> <leader>pw <Plug>(PickerStag)
+nmap <unique> <leader>po <Plug>(PickerBufferTag)
+nmap <unique> <leader>ph <Plug>(PickerHelp)
 ```
+
+Note that these mappings now have parentheses (e.g. `<Plug>(PickerBuffer)`
+rather than `<Plug>PickerBuffer`) to fix an issue whereby Vim would pause
+before executing a mapping if its name was a prefix of another mapping. The old
+mappings without parentheses are deprecated, but remain present for backward
+compatibility.
 
 ## Configuration
 

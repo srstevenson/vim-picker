@@ -102,6 +102,20 @@ command -bar PickerBufferTag call picker#BufferTag()
 command -bar PickerHelp call picker#Help()
 command -bar PickerListUserCommands call picker#ListUserCommands()
 
+nnoremap <silent> <Plug>(PickerEdit) :PickerEdit<CR>
+nnoremap <silent> <Plug>(PickerSplit) :PickerSplit<CR>
+nnoremap <silent> <Plug>(PickerTabedit) :PickerTabedit<CR>
+nnoremap <silent> <Plug>(PickerVsplit) :PickerVsplit<CR>
+nnoremap <silent> <Plug>(PickerBuffer) :PickerBuffer<CR>
+nnoremap <silent> <Plug>(PickerTag) :PickerTag<CR>
+nnoremap <silent> <Plug>(PickerStag) :PickerStag<CR>
+nnoremap <silent> <Plug>(PickerBufferTag) :PickerBufferTag<CR>
+nnoremap <silent> <Plug>(PickerHelp) :PickerHelp<CR>
+nnoremap <silent> <Plug>(PickerListUserCommands) :PickerListUserCommands<CR>
+
+" The following mappings are deprecated but remain for backward compatibility.
+" They suffer an issue whereby Vim will pause before executing a mapping if
+" its name is a prefix of another mapping.
 nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
 nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
 nnoremap <silent> <Plug>PickerTabedit :PickerTabedit<CR>

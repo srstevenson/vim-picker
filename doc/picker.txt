@@ -65,16 +65,21 @@ MAPPINGS                                                       *picker-mappings*
 
 vim-picker provides the following |<Plug>| mappings:
 
-<Plug>PickerEdit                    Execute :PickerEdit
-<Plug>PickerSplit                   Execute :PickerSplit
-<Plug>PickerTabedit                 Execute :PickerTabedit
-<Plug>PickerVsplit                  Execute :PickerVsplit
-<Plug>PickerBuffer                  Execute :PickerBuffer
-<Plug>PickerTag                     Execute :PickerTag
-<Plug>PickerStag                    Execute :PickerStag
-<Plug>PickerBufferTag               Execute :PickerBufferTag
-<Plug>PickerHelp                    Execute :PickerHelp
-<Plug>PickerListUserCommands        Execute :PickerListUserCommands
+<Plug>(PickerEdit)                  Execute :PickerEdit
+<Plug>(PickerSplit)                 Execute :PickerSplit
+<Plug>(PickerTabedit)               Execute :PickerTabedit
+<Plug>(PickerVsplit)                Execute :PickerVsplit
+<Plug>(PickerBuffer)                Execute :PickerBuffer
+<Plug>(PickerTag)                   Execute :PickerTag
+<Plug>(PickerStag)                  Execute :PickerStag
+<Plug>(PickerBufferTag)             Execute :PickerBufferTag
+<Plug>(PickerHelp)                  Execute :PickerHelp
+<Plug>(PickerListUserCommands)      Execute :PickerListUserCommands
+
+The above mappings replace previous mappings that lacked the parentheses to
+fix an issue whereby Vim would pause before executing a mapping if its name
+was a prefix of another mapping. The old mappings without parentheses are
+deprecated, but remain present for backward compatibility.
 
 ==============================================================================
 CONFIGURATION                                             *picker-configuration*

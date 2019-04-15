@@ -91,7 +91,7 @@ function! s:ListTagsCommand() abort
     " -------
     " String
     "     Shell command to list known tags.
-    return 'grep -v "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
+    return 'grep -vh "^!_TAG_" ' . join(tagfiles()) . ' | cut -f 1 | sort -u'
 endfunction
 
 function! s:ListBufferTagsCommand(filename) abort

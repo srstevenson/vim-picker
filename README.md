@@ -110,8 +110,8 @@ nmap <unique> <leader>ph <Plug>(PickerHelp)
 ```
 
 Note that these mappings now have parentheses (e.g. `<Plug>(PickerBuffer)`
-rather than `<Plug>PickerBuffer`) to fix an issue whereby Vim would pause
-before executing a mapping if its name was a prefix of another mapping. The old
+rather than `<Plug>PickerBuffer`) to fix an issue whereby Vim would pause before
+executing a mapping if its name was a prefix of another mapping. The old
 mappings without parentheses are deprecated, but remain present for backward
 compatibility.
 

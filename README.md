@@ -37,7 +37,7 @@ manager is [minpac]. Add the following to your vimrc (`$HOME/.vim/vimrc` for Vim
 and `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim,
 and run `:call minpac#update()`:
 
-```viml
+```vim
 call minpac#add('srstevenson/vim-picker')
 ```
 
@@ -97,7 +97,7 @@ fit your workflow and don't conflict with other plugins you use. However if you
 have no preference, the following snippet maps the main mappings to mnemonic key
 sequences:
 
-```viml
+```vim
 nmap <unique> <leader>pe <Plug>(PickerEdit)
 nmap <unique> <leader>ps <Plug>(PickerSplit)
 nmap <unique> <leader>pt <Plug>(PickerTabedit)
@@ -122,7 +122,7 @@ list files, falling back to `find` if `fd` is not available. To use an
 alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags` in
 your vimrc. For example, to use [`ripgrep`][ripgrep] set:
 
-```viml
+```vim
 let g:picker_find_executable = 'rg'
 let g:picker_find_flags = '--color never --files'
 ```
@@ -131,7 +131,7 @@ let g:picker_find_flags = '--color never --files'
 `g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc. For
 example, to use [`pick`][pick] set:
 
-```viml
+```vim
 let g:picker_selector_executable = 'pick'
 let g:picker_selector_flags = ''
 ```
@@ -149,7 +149,7 @@ the fuzzy selector in a full width split at the bottom of the window, using
 [`:botright`][botright]. You can change this by setting `g:picker_split` in your
 vimrc. For example, to open a full width split at the top of the window, set:
 
-```viml
+```vim
 let g:picker_split = 'topleft'
 ```
 
@@ -158,7 +158,7 @@ See [`opening-window`][opening-window] for other valid values.
 To specify the height of the window in which the fuzzy selector is opened, set
 `g:picker_height` in your vimrc. The default is 10 lines:
 
-```viml
+```vim
 let g:picker_height = 10
 ```
 
@@ -185,27 +185,27 @@ User-defined commands are registered using the `picker#Register()` function,
 which takes an identifier, selection type, Vim command, and shell command as
 described above as arguments:
 
-```viml
+```vim
 call picker#Register({id}, {selection_type}, {vim_command}, {shell_command})
 ```
 
 For example, to register a user-defined command named `notes` to edit a Markdown
 file stored in `~/notes`, add the following to your vimrc:
 
-```viml
+```vim
 call picker#Register('notes', 'file', 'edit', 'find ~/notes -name "*.md"')
 ```
 
 This command can then be executed using the `picker#Execute()` function, which
 takes the ID of the user-defined command as a single argument:
 
-```viml
+```vim
 call picker#Execute('notes')
 ```
 
 You may wish to define a mapping for this, such as:
 
-```viml
+```vim
 nmap <leader>n :call picker#Execute('notes')<CR>
 ```
 

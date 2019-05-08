@@ -38,25 +38,24 @@ function! picker#IsString(variable) abort
     return type(a:variable) ==# type('')
 endfunction
 
-if exists('g:picker_selector')
-    echoerr 'vim-picker: g:picker_selector is deprecated; see :help'
-                \ 'picker-configuration.'
+for var in ['g:picker_find_executable', 'g:picker_find_flags', 'g:picker_selector']
+    if exists(var)
+        echoerr 'vim-picker:' var 'is deprecated; see :help picker-configuration.'
+    endif
+endfor
+
+if exists('g:picker_custom_find_executable')
+    if !picker#IsString(g:picker_custom_find_executable)
+        echoerr 'vim-picker: g:picker_custom_find_executable must be a string'
+    endif
 endif
 
-if exists('g:picker_find_executable')
-    if !picker#IsString(g:picker_find_executable)
-        echoerr 'vim-picker: g:picker_find_executable must be a string'
+if exists('g:picker_custom_find_flags')
+    if !picker#IsString(g:picker_custom_find_flags)
+        echoerr 'vim-picker: g:picker_custom_find_flags must be a string'
     endif
 else
-    let g:picker_find_executable = 'fd'
-endif
-
-if exists('g:picker_find_flags')
-    if !picker#IsString(g:picker_find_flags)
-        echoerr 'vim-picker: g:picker_find_flags must be a string'
-    endif
-else
-    let g:picker_find_flags = '--color never --type f'
+    let g:picker_custom_find_flags = ''
 endif
 
 if exists('g:picker_selector_executable')

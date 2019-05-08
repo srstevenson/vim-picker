@@ -117,15 +117,28 @@ compatibility.
 
 ## Configuration
 
-In directories which are not inside a Git repository, vim-picker uses `fd` to
-list files, falling back to `find` if `fd` is not available. To use an
-alternative to `fd`, set `g:picker_find_executable` and `g:picker_find_flags` in
-your vimrc. For example, to use [`ripgrep`][ripgrep] set:
+By default, vim-picker uses Git to list files in Git repositories, and `fd`
+outside of Git repositories, falling back to `find` if `fd` is not available. To
+use an alternative method of listing files, for example because you want to
+customise the flags passed to Git, because you use a different version control
+system, or because you want to use an alternative to `fd` or `find`, a custom
+file listing tool can be used.
+
+To use a custom file listing tool, set `g:picker_custom_find_executable` and
+`g:picker_custom_find_flags` in your vimrc. For example, to use
+[`ripgrep`][ripgrep] set:
 
 ```vim
-let g:picker_find_executable = 'rg'
-let g:picker_find_flags = '--color never --files'
+let g:picker_custom_find_executable = 'rg'
+let g:picker_custom_find_flags = '--color never --files'
 ```
+
+If `g:picker_custom_find_executable` is set, and the executable it references is
+found, it will always be used in place of Git, `fd`, or `find`. Therefore you
+may want to make `g:picker_custom_find_executable` a wrapper script that
+implements your own checks and fallbacks: for example using `hg` in Mercurial
+repositories, `ripgrep` elsewhere, and falling back to `find` if `ripgrep` is
+not installed.
 
 `fzy` is used as the default fuzzy selector. To use an alternative selector, set
 `g:picker_selector_executable` and `g:picker_selector_flags` in your vimrc. For

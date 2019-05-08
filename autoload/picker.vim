@@ -51,17 +51,21 @@ endfunction
 
 function! s:ListFilesCommand() abort
     " Return a shell command suitable for listing the files in the
-    " current directory, based on whether the current directory is a Git
-    " repository and if the preferred find tool is installed.
+    " current directory, based on whether the user has specified a
+    " custom find tool, and if not, whether the current directory is a
+    " Git repository and if fd is installed.
     "
     " Returns
     " -------
     " String
     "     Shell command to list files in the current directory.
-    if executable('git') && s:InGitRepository()
+    if exists('g:picker_custom_find_executable') &&
+                \ executable(g:picker_custom_find_executable)
+        return g:picker_custom_find_executable . ' ' . g:picker_custom_find_flags
+    elseif executable('git') && s:InGitRepository()
         return 'git ls-files --cached --exclude-standard --others'
-    elseif executable(g:picker_find_executable)
-        return g:picker_find_executable . ' ' . g:picker_find_flags
+    elseif executable('fd')
+        return 'fd --color never --type f'
     else
         return 'find . -type f'
     endif

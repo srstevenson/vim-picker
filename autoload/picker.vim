@@ -342,6 +342,16 @@ function! s:PickFile(list_command, vim_command, ...) abort
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
+function! picker#String(...) abort
+    " Expose s:PickString to users. See s:PickString for parameters.
+    call call('s:PickString', a:000)
+endfunction
+
+function! picker#File(...) abort
+    " Expose s:PickFile to users. See s:PickFile for parameters.
+    call call('s:PickFile', a:000)
+endfunction
+
 function! s:GetDirectoryFromArgs(arglist) abort
     let l:directory = getcwd()
     if len(a:arglist) > 0

@@ -225,6 +225,28 @@ nmap <leader>n :call picker#Execute('notes')<CR>
 To show a list of all registered user-defined commands, execute
 `:PickerListUserCommands`.
 
+## Custom commands
+
+For use cases not covered by the builtin functions, vim-picker also exposes
+lower level functions that allow you to specify any shell command to generate
+selection candidates with, combined with any Vim command to run on the output.
+These are `picker#String()` and `picker#File()`:
+
+```vim
+call picker#String({shell_command}, {vim_command})
+call picker#File({shell_command}, {vim_command})
+```
+
+These functions are equivalent, except that `picker#File()` escapes the user's
+selection for use a filename (for passing to Vim commands such as `:edit`)
+whereas `picker#String()` does not.
+
+For example, to edit a Markdown file stored in `~/notes` in a new tab, use:
+
+```vim
+call picker#File('find ~/notes -name "*.md"', 'tabe')
+```
+
 ## Copyright
 
 Copyright © 2016-2019 [Scott Stevenson].

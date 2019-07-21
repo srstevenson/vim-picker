@@ -2,10 +2,6 @@
 " Maintainer: Scott Stevenson <scott@stevenson.io>
 " Source:     https://github.com/srstevenson/vim-picker
 
-if !exists('s:user_command_registry')
-    let s:user_command_registry = {}
-endif
-
 function! s:IsString(variable) abort
     " Determine if a variable is a string.
     "
@@ -19,23 +15,6 @@ function! s:IsString(variable) abort
     " Boolean
     "     v:true if the variable is a string, v:false otherwise.
     return type(a:variable) ==# type('')
-endfunction
-
-function! s:RightPadText(text, length) abort
-    " Right pad text with trailing spaces.
-    "
-    " Parameters
-    " ----------
-    " text : String
-    "     The text to be padded.
-    " length : Number
-    "     The length to be padded to.
-    "
-    " Returns
-    " -------
-    " String
-    "     The right padded text.
-    return a:text . repeat(' ', a:length - len(a:text))
 endfunction
 
 function! s:InGitRepository() abort
@@ -418,87 +397,16 @@ function! picker#Close() abort
 endfunction
 
 function! picker#Register(id, selection_type, vim_cmd, shell_cmd) abort
-    " Register a new user-defined command.
-    "
-    " Parameters
-    " ----------
-    " id : String
-    "     A unique name that identifies the user-defined command.
-    " selection_type : 'file' or 'string'
-    "     Whether vim-picker will match a string or filename. Special
-    "     characters in filenames are escaped.
-    " vim_cmd : String
-    "     A Vim command that takes the user selected string as an argument,
-    "     for example 'edit', 'tjump', or 'buffer'.
-    " shell_cmd : String
-    "     A shell command that provides a newline delimited list of strings
-    "     to pass to the fuzzy selector.
-    "
-    " Returns
-    " -------
-    " Boolean
-    "     v:true if registration succeeds, v:false otherwise.
-    if has_key(s:user_command_registry, a:id)
-        echoerr 'vim-picker: user command with ID "' . a:id . '" already registered'
-        return v:false
-    elseif index(['file', 'string'], a:selection_type) < 0
-        echoerr 'vim-picker: argument "selection_type" of picker#Register()'
-                    \ 'must be either "file" or "string"'
-        return v:false
-    elseif !s:IsString(a:shell_cmd)
-        echoerr 'vim-picker: argument "shell_cmd" of picker#Register() must be a string'
-        return v:false
-    elseif !s:IsString(a:vim_cmd)
-        echoerr 'vim-picker: argument "vim_cmd" of picker#Register() must be a string'
-        return v:false
-    endif
-
-    let s:user_command_registry[a:id] = {
-                \ 'selection_type': a:selection_type,
-                \ 'shell_command': a:shell_cmd,
-                \ 'vim_command': a:vim_cmd
-                \ }
-
-    return v:true
+    echoerr 'vim-picker: picker#Register() is deprecated; see'
+          \ ':help picker#String() and :help picker#File() for alternatives'
 endfunction
 
 function! picker#Execute(id) abort
-    " Execute user-defined command specified by the given ID.
-    "
-    " Parameters
-    " ----------
-    " id : String
-    "     A unique name that identifies the user-defined command.
-    "
-    " Returns
-    " -------
-    " Boolean
-    "     v:true if user-defined command exists, v:false otherwise.
-    if !has_key(s:user_command_registry, a:id)
-        echoerr 'vim-picker: no command registered with ID "' . a:id . '"'
-        return v:false
-    endif
-
-    let l:command = s:user_command_registry[a:id]
-
-    if l:command['selection_type'] ==# 'file'
-        call s:PickFile(l:command['shell_command'], l:command['vim_command'])
-    else
-        call s:PickString(l:command['shell_command'], l:command['vim_command'])
-    endif
-
-    return v:true
+    echoerr 'vim-picker: picker#Execute() is deprecated; see'
+          \ ':help picker#String() and :help picker#File() for alternatives'
 endfunction
 
 function! picker#ListUserCommands() abort
-    " List user-defined commands.
-    echomsg ' ID         | SELECTION TYPE | VIM COMMAND | SHELL COMMAND'
-    for item in items(s:user_command_registry)
-        let l:id = s:RightPadText(item[0], 10)
-        let l:selection_type = s:RightPadText(item[1]['selection_type'], 14)
-        let l:vim_command = s:RightPadText(item[1]['vim_command'], 11)
-        let l:shell_command = item[1]['shell_command']
-        echomsg ' ' . l:id . ' | ' . l:selection_type . ' | ' . l:vim_command
-                    \ . ' | ' . l:shell_command
-    endfor
+    echoerr 'vim-picker: picker#ListUserCommands() is deprecated; see'
+          \ ':help picker#String() and :help picker#File() for alternatives'
 endfunction

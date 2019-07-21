@@ -75,7 +75,6 @@ vim-picker provides the following commands:
 - `:PickerStag`: Pick a tag to jump to in a new horizontal split.
 - `:PickerBufferTag`: Pick a tag from the current buffer to jump to.
 - `:PickerHelp`: Pick a help tag to jump to in the current window.
-- `:PickerListUserCommands`: Show a list of user-defined commands (see below).
 
 ## Key mappings
 
@@ -90,7 +89,6 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 - `<Plug>(PickerStag)`: Execute `:PickerStag`.
 - `<Plug>(PickerBufferTag)`: Execute `:PickerBufferTag`.
 - `<Plug>(PickerHelp)`: Execute `:PickerHelp`.
-- `<Plug>(PickerListUserCommands)`: Execute `:PickerListUserCommands`.
 
 These are not mapped to key sequences, to allow you to choose those that best
 fit your workflow and don't conflict with other plugins you use. However if you
@@ -175,56 +173,6 @@ To specify the height of the window in which the fuzzy selector is opened, set
 let g:picker_height = 10
 ```
 
-## User-defined commands
-
-Users may customise how vim-picker gathers search candidates and processes
-selections with user-defined commands.
-
-A user-defined command consists of four parts:
-
-1. A unique identifier. This is used to register the command and later execute
-   it.
-2. A shell command that generates a newline-separated list of candidates to pass
-   to the fuzzy selector. The shell command can utilize pipes to chain commands
-   together.
-3. A selection type of `string` or `file`. String selections are left unchanged
-   when received from the fuzzy selector. File selections are treated as
-   filenames: spaces and special characters are escaped.
-4. A Vim command, such as `edit` or `tjump`. The item selected by the user,
-   after escaping as a filename if the selection type is `file`, is passed to
-   this Vim command as a single argument.
-
-User-defined commands are registered using the `picker#Register()` function,
-which takes an identifier, selection type, Vim command, and shell command as
-described above as arguments:
-
-```vim
-call picker#Register({id}, {selection_type}, {vim_command}, {shell_command})
-```
-
-For example, to register a user-defined command named `notes` to edit a Markdown
-file stored in `~/notes`, add the following to your vimrc:
-
-```vim
-call picker#Register('notes', 'file', 'edit', 'find ~/notes -name "*.md"')
-```
-
-This command can then be executed using the `picker#Execute()` function, which
-takes the ID of the user-defined command as a single argument:
-
-```vim
-call picker#Execute('notes')
-```
-
-You may wish to define a mapping for this, such as:
-
-```vim
-nmap <leader>n :call picker#Execute('notes')<CR>
-```
-
-To show a list of all registered user-defined commands, execute
-`:PickerListUserCommands`.
-
 ## Custom commands
 
 For use cases not covered by the builtin functions, vim-picker also exposes
@@ -237,7 +185,15 @@ call picker#String({shell_command}, {vim_command})
 call picker#File({shell_command}, {vim_command})
 ```
 
-These functions are equivalent, except that `picker#File()` escapes the user's
+These take the following arguments:
+
+1. A shell command that generates a newline-separated list of candidates to pass
+   to the fuzzy selector. The shell command can utilize pipes to chain commands
+   together.
+2. A Vim command, such as `edit` or `tjump`. The item selected by the user is
+   passed to this Vim command as a single argument.
+
+The two functions are equivalent, except that `picker#File()` escapes the user's
 selection for use a filename (for passing to Vim commands such as `:edit`)
 whereas `picker#String()` does not.
 

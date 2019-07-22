@@ -40,7 +40,7 @@ endfunction
 
 for var in ['g:picker_find_executable', 'g:picker_find_flags', 'g:picker_selector']
     if exists(var)
-        echoerr 'vim-picker:' var 'is deprecated; see :help picker-configuration.'
+        echoerr 'vim-picker:' var 'is deprecated; see :help picker-configuration'
     endif
 endfor
 

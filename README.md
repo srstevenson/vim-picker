@@ -194,7 +194,7 @@ These take the following arguments:
    passed to this Vim command as a single argument.
 
 The two functions are equivalent, except that `picker#File()` escapes the user's
-selection for use a filename (for passing to Vim commands such as `:edit`)
+selection for use as a filename (for passing to Vim commands such as `:edit`)
 whereas `picker#String()` does not.
 
 For example, to edit a Markdown file stored in `~/notes` in a new tab, use:

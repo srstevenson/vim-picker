@@ -202,6 +202,10 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
                 \ 'exit_cb': l:callback.exit_cb,
                 \ }
 
+    if strlen(l:directory)
+        let l:options.cwd = l:directory
+    endif
+
     execute g:picker_split g:picker_height . 'new'
     let l:term_command = a:list_command . '|' . g:picker_selector_executable .
                 \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
@@ -311,8 +315,9 @@ function! s:PickFile(list_command, vim_command, ...) abort
     endif
 
     function! l:callback.on_select(selection) abort
-        if has_key(l:self, 'cwd')
-            exec l:self.vim_command fnameescape(l:self.cwd . '/' . a:selection)
+        if has_key(l:self, 'cwd') && strlen(l:self.cwd)
+            let filename = fnamemodify(l:self.cwd . '/' . a:selection, ':p:~:.')
+            exec l:self.vim_command fnameescape(filename)
         else
             exec l:self.vim_command fnameescape(a:selection)
         endif

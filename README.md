@@ -1,4 +1,4 @@
-# vim-picker [![Build Status](https://travis-ci.org/srstevenson/vim-picker.svg?branch=master)](https://travis-ci.org/srstevenson/vim-picker)
+# vim-picker
 
 [vim-picker] is a fuzzy picker for [Neovim] and [Vim].
 

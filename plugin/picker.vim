@@ -38,8 +38,8 @@ function! picker#IsString(variable) abort
     return type(a:variable) ==# type('')
 endfunction
 
-for var in ['g:picker_find_executable', 'g:picker_find_flags', 'g:picker_selector']
-    if exists(var)
+for g:var in ['g:picker_find_executable', 'g:picker_find_flags', 'g:picker_selector']
+    if exists(g:var)
         echoerr 'vim-picker:' var 'is deprecated; see :help picker-configuration'
     endif
 endfor

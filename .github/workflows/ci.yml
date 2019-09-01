@@ -1,0 +1,28 @@
+name: CI
+on: push
+jobs:
+
+  vint:
+    name: Lint with Vint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.x
+    - name: Lint with Vint
+      run: |
+        pip install vim-vint
+        vint .
+
+  vimlint:
+    name: Lint with vimlint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Lint with vimlint
+      run: |
+        git clone https://github.com/syngan/vim-vimlint $HOME/vim-vimlint
+        git clone https://github.com/ynkdir/vim-vimlparser $HOME/vim-vimlparser
+        $HOME/vim-vimlint/bin/vimlint.sh -u -l $HOME/vim-vimlint -p $HOME/vim-vimlparser -e EVL102.l:_=1 -e EVL103=1 .

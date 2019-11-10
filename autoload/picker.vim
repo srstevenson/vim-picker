@@ -186,7 +186,6 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
     endif
 
     function! l:callback.exit_cb(...) abort
-        close!
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try
@@ -197,8 +196,12 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
         endif
     endfunction
 
+    let b:picker_statusline = 'Picker [command: ' . a:vim_command .
+                \ ', directory: ' . l:directory . ']'
     let l:options = {
-                \ 'curwin': 1,
+                \ 'term_rows': g:picker_height,
+                \ 'term_finish': 'close',
+                \ 'term_name': b:picker_statusline,
                 \ 'exit_cb': l:callback.exit_cb,
                 \ }
 
@@ -206,16 +209,10 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
         let l:options.cwd = l:directory
     endif
 
-    execute g:picker_split g:picker_height . 'new'
     let l:term_command = a:list_command . '|' . g:picker_selector_executable .
                 \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
     let s:picker_buf_num = term_start([&shell, &shellcmdflag, l:term_command],
                 \ l:options)
-    let b:picker_statusline = 'Picker [command: ' . a:vim_command .
-                \ ', directory: ' . l:directory . ']'
-    setlocal nonumber norelativenumber statusline=%{b:picker_statusline}
-    setfiletype picker
-    startinsert
 endfunction
 
 function! s:PickerSystemlist(list_command, callback) abort

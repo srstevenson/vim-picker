@@ -173,6 +173,13 @@ To specify the height of the window in which the fuzzy selector is opened, set
 let g:picker_height = 10
 ```
 
+If `g:picker_split` is set to the string `none`, no new split will be opened and
+the fuzzy selector will instead be run in the current window:
+
+```vim
+let g:picker_split = 'none'
+```
+
 ## Custom commands
 
 For use cases not covered by the builtin functions, vim-picker also exposes

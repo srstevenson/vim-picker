@@ -98,10 +98,24 @@ function! s:ListHelpTagsCommand() abort
     return 'cut -f 1 ' . join(findfile('doc/tags', &runtimepath, -1))
 endfunction
 
+function! s:OpenSplitWindow() abort
+    " If configured to do so, open split in which to run selector.
+    if g:picker_split !=# 'none'
+        execute g:picker_split g:picker_height . 'new'
+    endif
+endfunction
+
 function! s:CloseWindowAndDeleteBuffer() abort
     " Close the current window, deleting buffers that are no longer displayed.
-    set bufhidden=delete
-    close!
+    if g:picker_split ==# 'none'
+        " Fuzzy selector was run in existing window: delete buffer.
+        bdelete!
+    else
+        " Fuzzy selector was run in new window: close window, allowing buffer
+        " to be deleted when hidden.
+        set bufhidden=delete
+        close!
+    endif
 endfunction
 
 function! s:PickerTermopen(list_command, vim_command, callback) abort
@@ -145,7 +159,8 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
         endif
     endfunction
 
-    execute g:picker_split g:picker_height . 'new'
+    call s:OpenSplitWindow()
+
     let l:term_command = a:list_command . '|' . g:picker_selector_executable .
                 \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
     let s:picker_job_id = termopen(l:term_command, l:callback)
@@ -186,8 +201,13 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
     endif
 
     function! l:callback.exit_cb(...) abort
-        close!
-        call win_gotoid(l:self.window_id)
+        if g:picker_split !=# 'none'
+            " If a new split window was created to run the fuzzy selector in,
+            " close it and return to the original window.
+            close!
+            call win_gotoid(l:self.window_id)
+        endif
+
         if filereadable(l:self.filename)
             try
                 call l:self.callback.on_select(readfile(l:self.filename)[0])
@@ -206,7 +226,8 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
         let l:options.cwd = l:directory
     endif
 
-    execute g:picker_split g:picker_height . 'new'
+    call s:OpenSplitWindow()
+
     let l:term_command = a:list_command . '|' . g:picker_selector_executable .
                 \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
     let s:picker_buf_num = term_start([&shell, &shellcmdflag, l:term_command],

@@ -419,6 +419,9 @@ function! picker#Close() abort
         call jobstop(s:picker_job_id)
     elseif exists('*job_stop')
         call job_stop(term_getjob(s:picker_buf_num))
+        if g:picker_split ==# 'none'
+            silent bdelete!
+        endif
     endif
 endfunction
 

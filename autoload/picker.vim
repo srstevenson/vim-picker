@@ -28,6 +28,29 @@ function! s:InGitRepository() abort
     return v:shell_error == 0
 endfunction
 
+function! s:FuzzyListFilesCommand() abort
+    " Return a shell command suitable for listing the files in the
+    " current directory, based on whether the user has specified a
+    " custom find tool, and if not, whether the current directory is a
+    " Git repository and if fd is installed.
+    "
+    " Returns
+    " -------
+    " String
+    "     Shell command to list files in the current directory.
+    if exists('g:picker_custom_find_executable') &&
+                \ executable(g:picker_custom_find_executable)
+        echo g:picker_custom_find_executable . ' ' . g:picker_custom_find_flags
+        "return g:picker_custom_find_executable . ' ' . g:picker_custom_find_flags
+    elseif executable('git') && s:InGitRepository()
+        return 'git ls-files --cached --exclude-standard --others'
+    elseif executable('fd')
+        return 'fd --color never --type f'
+    else
+        return 'find . -type f'
+    endif
+endfunction
+
 function! s:ListFilesCommand() abort
     " Return a shell command suitable for listing the files in the
     " current directory, based on whether the user has specified a
@@ -295,6 +318,42 @@ function! s:PickString(list_command, vim_command) abort
     call s:Picker(a:list_command, a:vim_command, l:callback)
 endfunction
 
+function! s:FuzzyPickFile(list_command, vim_command, ...) abort
+    " Create a callback that executes a Vim command against the user's
+    " selection escaped for use as a filename, and invoke Picker() with
+    " that callback.
+    "
+    " Parameters
+    " ----------
+    " list_command : String
+    "     Shell command to generate list user will choose from.
+    " vim_command : String
+    "     Readable representation of the Vim command which will be
+    "     invoked against the user's selection, for display in the
+    "     statusline.
+    let l:callback = {'vim_command': a:vim_command}
+
+    if a:0 > 0
+        let l:callback['cwd'] = a:1
+    endif
+
+    function! l:callback.on_select(selection) abort
+        if has_key(l:self, 'cwd') && strlen(l:self.cwd)
+            let filename = fnamemodify(l:self.cwd . '/' . a:selection, ':p:~:.')
+            let split_filename = split(filename, ":")
+            let line_command = "+" . split_filename[1]
+            exec l:self.vim_command line_command fnameescape(split_filename[0])
+        else
+            echo l:self.vim_command . fnameescape(a:selection)
+            let split_filename = split(a:selection, ":")
+            let line_command = "+" . split_filename[1]
+            exec l:self.vim_command line_command fnameescape(split_filename[0])
+        endif
+    endfunction
+
+    call s:Picker(a:list_command, a:vim_command, l:callback)
+endfunction
+
 function! s:PickFile(list_command, vim_command, ...) abort
     " Create a callback that executes a Vim command against the user's
     " selection escaped for use as a filename, and invoke Picker() with
@@ -339,11 +398,29 @@ endfunction
 function! s:GetDirectoryFromArgs(arglist) abort
     let l:directory = getcwd()
     if len(a:arglist) > 0
+        echo a:arglist
         if isdirectory(a:arglist[0])
             let l:directory = a:arglist[0]
         endif
     endif
     return l:directory
+endfunction
+
+" Custom Fuzzy Pickers
+function! picker#SideFuzzy(...) abort
+    " Run fuzzy selector to choose a file and call edit on it.
+    call s:FuzzyPickFile(s:ListFilesCommand(), 'split', s:GetDirectoryFromArgs(a:000))
+endfunction
+
+function! picker#VertFuzzy(...) abort
+    " Run fuzzy selector to choose a file and call edit on it.
+    call s:FuzzyPickFile(s:ListFilesCommand(), 'vsplit', s:GetDirectoryFromArgs(a:000))
+endfunction
+
+function! picker#FuzzyOpen(...) abort
+    " Run fuzzy selector to choose a file and call edit on it.
+    "call s:FuzzyListFilesCommand()
+    call s:FuzzyPickFile(s:ListFilesCommand(), 'edit', s:GetDirectoryFromArgs(a:000))
 endfunction
 
 function! picker#Edit(...) abort

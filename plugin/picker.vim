@@ -90,6 +90,14 @@ else
     let g:picker_height = 10
 endif
 
+" Custom Fuzzy Pickers
+command -bar -nargs=? -complete=dir VertFuzzyPicker call picker#VertFuzzy(<q-args>)
+command -bar -nargs=? -complete=dir SideFuzzyPicker call picker#SideFuzzy(<q-args>)
+command -bar -nargs=? -complete=dir FuzzyPicker call picker#FuzzyOpen(<q-args>)
+nnoremap <silent> <Plug>(VertFuzzyPicker) :VertFuzzyPicker<CR>
+nnoremap <silent> <Plug>(SideFuzzyPicker) :SideFuzzyPicker<CR>
+nnoremap <silent> <Plug>(FuzzyPicker) :FuzzyPicker<CR>
+
 command -bar -nargs=? -complete=dir PickerEdit call picker#Edit(<q-args>)
 command -bar -nargs=? -complete=dir PickerSplit call picker#Split(<q-args>)
 command -bar -nargs=? -complete=dir PickerTabedit call picker#Tabedit(<q-args>)

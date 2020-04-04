@@ -324,19 +324,57 @@ function! s:PickFile(list_command, vim_command, ...) abort
     "     Readable representation of the Vim command which will be
     "     invoked against the user's selection, for display in the
     "     statusline.
+    " options : Dict
+    "     Only two valid options for now:
+    "     `cwd`:
+    "       The current working directory. The selection will be prefixed
+    "       with that string before being opened with vim.
+    "     `line_handler`:
+    "       Handler function which takes a single argument, the selection of the user.
+    "       The handler must return a dict with the keys (filename, line, column).
     let l:callback = {'vim_command': a:vim_command}
 
     if a:0 > 0
-        let l:callback['cwd'] = a:1
+        let l:callback['options'] = a:1
     endif
 
     function! l:callback.on_select(selection) abort
-        if has_key(l:self, 'cwd') && strlen(l:self.cwd)
-            let filename = simplify(fnamemodify(l:self.cwd . '/' . a:selection, ':p:~:.'))
-            exec l:self.vim_command fnameescape(filename)
-        else
-            exec l:self.vim_command fnameescape(a:selection)
+        let selection = a:selection
+
+        " line and column can only be set by a line handler provided
+        " by the caller for now.
+        let line = -1
+        let column = -1
+
+        if has_key(l:self, 'options')
+            let options = l:self.options
+
+            if has_key(options, 'line_handler')
+                let result = call(options.line_handler, [selection])
+                let selection = result.filename
+                let line = result.line
+                let column = result.column
+            endif
+
+            if has_key(options, 'cwd') && strlen(options.cwd)
+                let selection = simplify(fnamemodify(options.cwd . '/' . selection, ':p:~:.'))
+            endif
         endif
+
+        exec l:self.vim_command fnameescape(selection)
+
+        " Go to the line and column if possible.
+        try
+            if line > -1
+                exec line
+            endif
+            if column > -1
+                exec 'normal!' column.'|'
+            endif
+            normal! zz
+        catch
+        endtry
+
     endfunction
 
     call s:Picker(a:list_command, a:vim_command, l:callback)
@@ -365,25 +403,25 @@ endfunction
 function! picker#Edit(...) abort
     " Run fuzzy selector to choose a file and call edit on it.
     let l:dir = s:GetDirectoryFromArgs(a:000)
-    call s:PickFile(s:ListFilesCommand(l:dir), 'edit', l:dir)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'edit', {'cwd': l:dir})
 endfunction
 
 function! picker#Split(...) abort
     " Run fuzzy selector to choose a file and call split on it.
     let l:dir = s:GetDirectoryFromArgs(a:000)
-    call s:PickFile(s:ListFilesCommand(l:dir), 'split', l:dir)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'split', {'cwd': l:dir})
 endfunction
 
 function! picker#Tabedit(...) abort
     " Run fuzzy selector to choose a file and call tabedit on it.
     let l:dir = s:GetDirectoryFromArgs(a:000)
-    call s:PickFile(s:ListFilesCommand(l:dir), 'tabedit', l:dir)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'tabedit', {'cwd': l:dir})
 endfunction
 
 function! picker#Vsplit(...) abort
     " Run fuzzy selector to choose a file and call vsplit on it.
     let l:dir = s:GetDirectoryFromArgs(a:000)
-    call s:PickFile(s:ListFilesCommand(l:dir), 'vsplit', l:dir)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'vsplit', {'cwd': l:dir})
 endfunction
 
 function! picker#Buffer() abort

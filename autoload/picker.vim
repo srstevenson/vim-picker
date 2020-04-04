@@ -352,8 +352,12 @@ function! s:PickFile(list_command, vim_command, ...) abort
             if has_key(options, 'line_handler')
                 let result = call(options.line_handler, [selection])
                 let selection = result.filename
-                let line = result.line
-                let column = result.column
+                if has_key(result, 'line')
+                    let line = result.line
+                endif
+                if has_key(result, 'column')
+                    let column = result.column
+                endif
             endif
 
             if has_key(options, 'cwd') && strlen(options.cwd)

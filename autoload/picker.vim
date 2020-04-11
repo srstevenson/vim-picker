@@ -138,7 +138,9 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ }
 
     let l:directory = getcwd()
-    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+    if has_key(a:callback, 'options')
+                \ && has_key(a:callback.options, 'cwd')
+                \ && isdirectory(a:callback.options.cwd)
         let l:callback['cwd'] = a:callback.options.cwd
         let l:directory = a:callback.options.cwd
     endif
@@ -192,7 +194,9 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
                 \ }
 
     let l:directory = getcwd()
-    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+    if has_key(a:callback, 'options')
+                \ && has_key(a:callback.options, 'cwd')
+                \ && isdirectory(a:callback.options.cwd)
         let l:callback['cwd'] = a:callback.options.cwd
         let l:directory = a:callback.options.cwd
     endif
@@ -245,7 +249,9 @@ function! s:PickerSystemlist(list_command, callback) abort
     "     Function executed with the item selected by the user as the
     "     first argument.
     let l:directory = getcwd()
-    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+    if has_key(a:callback, 'options')
+                \ && has_key(a:callback.options, 'cwd')
+                \ && isdirectory(a:callback.options.cwd)
         let l:directory = a:callback.options.cwd
     endif
 

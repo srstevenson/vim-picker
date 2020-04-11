@@ -182,13 +182,13 @@ These are `picker#String()` and `picker#File()`:
 
 ```vim
 call picker#String({shell_command}, {vim_command})
-call picker#File({shell_command}, {vim_command})
+call picker#File({shell_command}, {vim_command}, ...)
 ```
 
 These take the following arguments:
 
 1. A shell command that generates a newline-separated list of candidates to pass
-   to the fuzzy selector. The shell command can utilize pipes to chain commands
+   to the fuzzy selector. The shell command can utilise pipes to chain commands
    together.
 2. A Vim command, such as `edit` or `tjump`. The item selected by the user is
    passed to this Vim command as a single argument.
@@ -202,6 +202,37 @@ For example, to edit a Markdown file stored in `~/notes` in a new tab, use:
 ```vim
 call picker#File('find ~/notes -name "*.md"', 'tabe')
 ```
+
+In addition to `shell_command` and `vim_command`, `picker#File` accepts a third
+argument which is a dictionary controlling its behaviour.
+
+It may contain the following keys:
+
+- `cwd` controls where `shell_command` is run.
+- `line_handler` must be the name of a function taking a single argument, and
+  must return a dictionary. This function will be called for every user
+  selection and allows a user to do some preprocessing, for example to strip
+  extra information or to extract line and column information. The returned
+  dictionary can have the following keys:
+  - `filename`: the name of the file to open (mandatory).
+  - `line`: the line to go to in the file (optional).
+  - `column`: the column to go to in the line (optional).
+
+For example, to search or a pattern using `ripgrep` to search a pattern in
+files:
+
+```vim
+function! PickerRgLineHandler(selection) abort
+    let parts = split(a:selection, ':')
+    return {'filename': parts[0], 'line': parts[1], 'column': parts[2]}
+endfunction
+
+command! -nargs=? PickerRg
+    \ call picker#File('rg --color never --line-number --column '.shellescape(<q-args>), "edit", {'line_handler': 'PickerRgLineHandler'})
+```
+
+Using `:PickerRg <pattern>` will search for the specified pattern and when a
+match is selected the file will be opened at the line and column of the match.
 
 ## Copyright
 

@@ -138,9 +138,9 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
                 \ }
 
     let l:directory = getcwd()
-    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
-        let l:callback['cwd'] = a:callback.cwd
-        let l:directory = a:callback.cwd
+    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+        let l:callback['cwd'] = a:callback.options.cwd
+        let l:directory = a:callback.options.cwd
     endif
 
     function! l:callback.on_exit(job_id, data, event) abort
@@ -192,9 +192,9 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
                 \ }
 
     let l:directory = getcwd()
-    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
-        let l:callback['cwd'] = a:callback.cwd
-        let l:directory = a:callback.cwd
+    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+        let l:callback['cwd'] = a:callback.options.cwd
+        let l:directory = a:callback.options.cwd
     endif
 
     function! l:callback.exit_cb(...) abort
@@ -245,8 +245,8 @@ function! s:PickerSystemlist(list_command, callback) abort
     "     Function executed with the item selected by the user as the
     "     first argument.
     let l:directory = getcwd()
-    if has_key(a:callback, 'cwd') && isdirectory(a:callback.cwd)
-        let l:directory = a:callback.cwd
+    if has_key(a:callback.options, 'cwd') && isdirectory(a:callback.options.cwd)
+        let l:directory = a:callback.options.cwd
     endif
 
     let l:command = 'cd ' . fnameescape(l:directory) . ' && '
@@ -332,7 +332,7 @@ function! s:PickFile(list_command, vim_command, ...) abort
     "     `line_handler`:
     "       Handler function which takes a single argument, the selection of the user.
     "       The handler must return a dict with the keys (filename, line, column).
-    let l:callback = {'vim_command': a:vim_command}
+    let l:callback = {'vim_command': a:vim_command, 'options': {}}
 
     if a:0 > 0
         let l:callback['options'] = a:1

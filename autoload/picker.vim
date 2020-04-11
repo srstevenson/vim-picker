@@ -17,31 +17,41 @@ function! s:IsString(variable) abort
     return type(a:variable) ==# type('')
 endfunction
 
-function! s:InGitRepository() abort
-    " Determine if the current directory is a Git repository.
+function! s:IsGitRepository(directory) abort
+    " Determine if a directory is a Git repository.
+    "
+    " Parameters
+    " ----------
+    " directory : String
+    "     Directory to check.
     "
     " Returns
     " -------
     " Number
     "     1 inside a Git repository, 0 otherwise.
-    let l:_ = system('git rev-parse --is-inside-work-tree')
+    let l:_ = system('git -C ' . a:directory . ' rev-parse --is-inside-work-tree')
     return v:shell_error == 0
 endfunction
 
-function! s:ListFilesCommand() abort
-    " Return a shell command suitable for listing the files in the
-    " current directory, based on whether the user has specified a
-    " custom find tool, and if not, whether the current directory is a
-    " Git repository and if fd is installed.
+function! s:ListFilesCommand(directory) abort
+    " Return a shell command suitable for listing the files in a
+    " directory, based on whether the user has specified a custom find
+    " tool, and if not, whether the directory is a Git repository and if
+    " fd is installed.
+    "
+    " Parameters
+    " ----------
+    " directory : String
+    "     Directory to check.
     "
     " Returns
     " -------
     " String
-    "     Shell command to list files in the current directory.
+    "     Shell command to list files in the directory.
     if exists('g:picker_custom_find_executable') &&
                 \ executable(g:picker_custom_find_executable)
         return g:picker_custom_find_executable . ' ' . g:picker_custom_find_flags
-    elseif executable('git') && s:InGitRepository()
+    elseif executable('git') && s:IsGitRepository(a:directory)
         return 'git ls-files --cached --exclude-standard --others'
     elseif executable('fd')
         return 'fd --color never --type f'
@@ -146,8 +156,10 @@ function! s:PickerTermopen(list_command, vim_command, callback) abort
     endfunction
 
     execute g:picker_split g:picker_height . 'new'
-    let l:term_command = a:list_command . '|' . g:picker_selector_executable .
-                \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
+    let l:term_command = a:list_command . '|'
+                \ . g:picker_selector_executable .  ' '
+                \ . g:picker_selector_flags .
+                \ '>' . l:callback.filename
     let s:picker_job_id = termopen(l:term_command, l:callback)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
                 \ ', directory: ' . l:directory . ']'
@@ -207,8 +219,10 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
     endif
 
     execute g:picker_split g:picker_height . 'new'
-    let l:term_command = a:list_command . '|' . g:picker_selector_executable .
-                \ ' ' . g:picker_selector_flags . '>' . l:callback.filename
+    let l:term_command = a:list_command . '|'
+                \ . g:picker_selector_executable .  ' '
+                \ . g:picker_selector_flags .
+                \ '>' . l:callback.filename
     let s:picker_buf_num = term_start([&shell, &shellcmdflag, l:term_command],
                 \ l:options)
     let b:picker_statusline = 'Picker [command: ' . a:vim_command .
@@ -235,7 +249,9 @@ function! s:PickerSystemlist(list_command, callback) abort
         let l:directory = a:callback.cwd
     endif
 
-    let l:command = 'cd ' . fnameescape(l:directory) . ' && ' . a:list_command . '|' . g:picker_selector_executable . ' '
+    let l:command = 'cd ' . fnameescape(l:directory) . ' && '
+                \ . a:list_command . '|'
+                \ . g:picker_selector_executable . ' '
                 \ . g:picker_selector_flags
     try
         call a:callback.on_select(systemlist(l:command)[0])
@@ -316,7 +332,7 @@ function! s:PickFile(list_command, vim_command, ...) abort
 
     function! l:callback.on_select(selection) abort
         if has_key(l:self, 'cwd') && strlen(l:self.cwd)
-            let filename = fnamemodify(l:self.cwd . '/' . a:selection, ':p:~:.')
+            let filename = simplify(fnamemodify(l:self.cwd . '/' . a:selection, ':p:~:.'))
             exec l:self.vim_command fnameescape(filename)
         else
             exec l:self.vim_command fnameescape(a:selection)
@@ -348,22 +364,26 @@ endfunction
 
 function! picker#Edit(...) abort
     " Run fuzzy selector to choose a file and call edit on it.
-    call s:PickFile(s:ListFilesCommand(), 'edit', s:GetDirectoryFromArgs(a:000))
+    let l:dir = s:GetDirectoryFromArgs(a:000)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'edit', l:dir)
 endfunction
 
 function! picker#Split(...) abort
     " Run fuzzy selector to choose a file and call split on it.
-    call s:PickFile(s:ListFilesCommand(), 'split', s:GetDirectoryFromArgs(a:000))
+    let l:dir = s:GetDirectoryFromArgs(a:000)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'split', l:dir)
 endfunction
 
 function! picker#Tabedit(...) abort
     " Run fuzzy selector to choose a file and call tabedit on it.
-    call s:PickFile(s:ListFilesCommand(), 'tabedit', s:GetDirectoryFromArgs(a:000))
+    let l:dir = s:GetDirectoryFromArgs(a:000)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'tabedit', l:dir)
 endfunction
 
 function! picker#Vsplit(...) abort
     " Run fuzzy selector to choose a file and call vsplit on it.
-    call s:PickFile(s:ListFilesCommand(), 'vsplit', s:GetDirectoryFromArgs(a:000))
+    let l:dir = s:GetDirectoryFromArgs(a:000)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'vsplit', l:dir)
 endfunction
 
 function! picker#Buffer() abort

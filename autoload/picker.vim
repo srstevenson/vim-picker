@@ -467,18 +467,3 @@ function! picker#Close() abort
         call job_stop(term_getjob(s:picker_buf_num))
     endif
 endfunction
-
-function! picker#Register(id, selection_type, vim_cmd, shell_cmd) abort
-    echoerr 'vim-picker: picker#Register() is deprecated; see'
-          \ ':help picker#String() and :help picker#File() for alternatives'
-endfunction
-
-function! picker#Execute(id) abort
-    echoerr 'vim-picker: picker#Execute() is deprecated; see'
-          \ ':help picker#String() and :help picker#File() for alternatives'
-endfunction
-
-function! picker#ListUserCommands() abort
-    echoerr 'vim-picker: picker#ListUserCommands() is deprecated; see'
-          \ ':help picker#String() and :help picker#File() for alternatives'
-endfunction

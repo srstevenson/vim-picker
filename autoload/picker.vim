@@ -331,13 +331,12 @@ function! s:PickFile(list_command, vim_command, ...) abort
     "     invoked against the user's selection, for display in the
     "     statusline.
     " options : Dict
-    "     Only two valid options for now:
-    "     `cwd`:
-    "       The current working directory. The selection will be prefixed
-    "       with that string before being opened with vim.
-    "     `line_handler`:
-    "       Handler function which takes a single argument, the selection of the user.
-    "       The handler must return a dict with the keys (filename, line, column).
+    "     A dictionary with following optional keys:
+    "     - cwd: The current working directory. The selection will be prefixed
+    "       with this string before being opened with vim.
+    "     - line_handler: A handler function which takes a single argument,
+    "       the selection of the user. The handler must return a dict with the
+    "       keys (filename, line, column).
     let l:callback = {'vim_command': a:vim_command, 'options': {}}
 
     if a:0 > 0

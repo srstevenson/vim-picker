@@ -38,12 +38,6 @@ function! picker#IsString(variable) abort
     return type(a:variable) ==# type('')
 endfunction
 
-for g:var in ['g:picker_find_executable', 'g:picker_find_flags', 'g:picker_selector']
-    if exists(g:var)
-        echoerr 'vim-picker:' var 'is deprecated; see :help picker-configuration'
-    endif
-endfor
-
 if exists('g:picker_custom_find_executable')
     if !picker#IsString(g:picker_custom_find_executable)
         echoerr 'vim-picker: g:picker_custom_find_executable must be a string'
@@ -111,17 +105,3 @@ nnoremap <silent> <Plug>(PickerStag) :PickerStag<CR>
 nnoremap <silent> <Plug>(PickerBufferTag) :PickerBufferTag<CR>
 nnoremap <silent> <Plug>(PickerHelp) :PickerHelp<CR>
 nnoremap <silent> <Plug>(PickerListUserCommands) :PickerListUserCommands<CR>
-
-" The following mappings are deprecated but remain for backward compatibility.
-" They suffer an issue whereby Vim will pause before executing a mapping if
-" its name is a prefix of another mapping.
-nnoremap <silent> <Plug>PickerEdit :PickerEdit<CR>
-nnoremap <silent> <Plug>PickerSplit :PickerSplit<CR>
-nnoremap <silent> <Plug>PickerTabedit :PickerTabedit<CR>
-nnoremap <silent> <Plug>PickerVsplit :PickerVsplit<CR>
-nnoremap <silent> <Plug>PickerBuffer :PickerBuffer<CR>
-nnoremap <silent> <Plug>PickerTag :PickerTag<CR>
-nnoremap <silent> <Plug>PickerStag :PickerStag<CR>
-nnoremap <silent> <Plug>PickerBufferTag :PickerBufferTag<CR>
-nnoremap <silent> <Plug>PickerHelp :PickerHelp<CR>
-nnoremap <silent> <Plug>PickerListUserCommands :PickerListUserCommands<CR>

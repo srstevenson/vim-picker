@@ -157,9 +157,9 @@ picker#File({shell_command}, {vim_command}, {options})
 
     {line_handler} must be the name of a function taking a single argument,
     and must return a dictionary. This function will be called for every user
-    selection and allows a user to do some preprocessing, for example to strip
-    extra information or to extract line and column information. The returned
-    dictionary can have the following keys:
+    selection and allows the user to do some preprocessing, for example to
+    strip extra information or to extract line and column information. The
+    returned dictionary can have the following keys:
 
     - `filename`: the name of the file to open. Mandatory.
     - `line`: the line to go to in the file. Optional.
@@ -187,7 +187,7 @@ https://github.com/srstevenson/vim-picker/issues
 ==============================================================================
 LICENCE                                                         *picker-licence*
 
-Copyright © 2016-2020 Scott Stevenson.
+Copyright © 2016-2021 Scott Stevenson.
 
 vim-picker is distributed under the terms of the ISC licence.
 

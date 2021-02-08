@@ -184,8 +184,8 @@ These take the following arguments:
 1. A shell command that generates a newline-separated list of candidates to pass
    to the fuzzy selector. The shell command can utilise pipes to chain commands
    together.
-2. A Vim command, such as `edit` or `tjump`. The item selected by the user is
-   passed to this Vim command as a single argument.
+2. A Vim command, such as `edit` or `tjump`. The item selected in the fuzzy
+   selector is passed to this Vim command as a single argument.
 
 The two functions are equivalent, except that `picker#File()` escapes the user's
 selection for use as a filename (for passing to Vim commands such as `:edit`)
@@ -205,15 +205,14 @@ It may contain the following keys:
 - `cwd` controls where `shell_command` is run.
 - `line_handler` must be the name of a function taking a single argument, and
   must return a dictionary. This function will be called for every user
-  selection and allows a user to do some preprocessing, for example to strip
+  selection and allows the user to do some preprocessing, for example to strip
   extra information or to extract line and column information. The returned
   dictionary can have the following keys:
   - `filename`: the name of the file to open (mandatory).
   - `line`: the line to go to in the file (optional).
   - `column`: the column to go to in the line (optional).
 
-For example, to search or a pattern using `ripgrep` to search a pattern in
-files:
+For example, to use `ripgrep` to search for a pattern in files:
 
 ```vim
 function! PickerRgLineHandler(selection) abort
@@ -230,7 +229,7 @@ match is selected the file will be opened at the line and column of the match.
 
 ## Copyright
 
-Copyright © 2016-2020 [Scott Stevenson].
+Copyright © 2016-2021 [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC licence].
 

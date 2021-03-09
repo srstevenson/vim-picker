@@ -1,5 +1,8 @@
 # vim-picker
 
+[![Licence](https://img.shields.io/github/license/srstevenson/vim-picker?label=Licence&color=blue)](https://github.com/srstevenson/vim-picker/blob/main/LICENCE)
+[![CI status](https://github.com/srstevenson/vim-picker/workflows/CI/badge.svg)](https://github.com/srstevenson/vim-picker/actions)
+
 [vim-picker] is a fuzzy picker for [Neovim] and [Vim].
 
 <p align="center">

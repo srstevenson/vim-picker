@@ -438,6 +438,16 @@ function! picker#Buffer() abort
     call s:PickFile(s:ListBuffersCommand(), 'buffer')
 endfunction
 
+function! picker#BufferSplit() abort
+    " Run fuzzy selector to choose a buffer and call split on it.
+    call s:PickFile(s:ListBuffersCommand(), 'split')
+endfunction
+
+function! picker#BufferVsplit() abort
+    " Run fuzzy selector to choose a buffer and call vsplit on it.
+    call s:PickFile(s:ListBuffersCommand(), 'vsplit')
+endfunction
+
 function! picker#Tag() abort
     " Run fuzzy selector to choose a tag and call tjump on it.
     call s:PickString(s:ListTagsCommand(), 'tjump')

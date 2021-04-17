@@ -74,6 +74,8 @@ vim-picker provides the following commands:
 - `:PickerVsplit`: Pick a file to edit in a new vertical split. This takes an
   optional directory argument in the same manner as `:PickerEdit`.
 - `:PickerBuffer`: Pick a buffer to edit in the current window.
+- `:PickerBufferSplit`: Pick a buffer to edit in a new horizontal split.
+- `:PickerBufferVsplit`: Pick a buffer to edit in a new vertical split.
 - `:PickerTag`: Pick a tag to jump to in the current window.
 - `:PickerStag`: Pick a tag to jump to in a new horizontal split.
 - `:PickerBufferTag`: Pick a tag from the current buffer to jump to.
@@ -88,6 +90,8 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 - `<Plug>(PickerTabedit)`: Execute `:PickerTabedit`.
 - `<Plug>(PickerVsplit)`: Execute `:PickerVsplit`.
 - `<Plug>(PickerBuffer)`: Execute `:PickerBuffer`.
+- `<Plug>(PickerBufferSplit)`: Execute `:PickerBufferSplit`.
+- `<Plug>(PickerBufferVsplit)`: Execute `:PickerBufferVsplit`.
 - `<Plug>(PickerTag)`: Execute `:PickerTag`.
 - `<Plug>(PickerStag)`: Execute `:PickerStag`.
 - `<Plug>(PickerBufferTag)`: Execute `:PickerBufferTag`.

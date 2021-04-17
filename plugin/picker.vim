@@ -88,6 +88,8 @@ command -bar -nargs=? -complete=dir PickerEdit call picker#Edit(<q-args>)
 command -bar -nargs=? -complete=dir PickerSplit call picker#Split(<q-args>)
 command -bar -nargs=? -complete=dir PickerTabedit call picker#Tabedit(<q-args>)
 command -bar -nargs=? -complete=dir PickerVsplit call picker#Vsplit(<q-args>)
+command -bar PickerBufferSplit call picker#BufferSplit()
+command -bar PickerBufferVsplit call picker#BufferVsplit()
 command -bar PickerBuffer call picker#Buffer()
 command -bar PickerTag call picker#Tag()
 command -bar PickerStag call picker#Stag()
@@ -100,6 +102,8 @@ nnoremap <silent> <Plug>(PickerSplit) :PickerSplit<CR>
 nnoremap <silent> <Plug>(PickerTabedit) :PickerTabedit<CR>
 nnoremap <silent> <Plug>(PickerVsplit) :PickerVsplit<CR>
 nnoremap <silent> <Plug>(PickerBuffer) :PickerBuffer<CR>
+nnoremap <silent> <Plug>(PickerBufferSplit) :PickerBufferSplit<CR>
+nnoremap <silent> <Plug>(PickerBufferVsplit) :PickerBufferVsplit<CR>
 nnoremap <silent> <Plug>(PickerTag) :PickerTag<CR>
 nnoremap <silent> <Plug>(PickerStag) :PickerStag<CR>
 nnoremap <silent> <Plug>(PickerBufferTag) :PickerBufferTag<CR>

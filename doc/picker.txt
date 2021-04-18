@@ -43,7 +43,7 @@ vim-picker provides the following commands:
                            manner as |:PickerEdit|.
 
                                                           *picker-:PickerBuffer*
-:PickerBuffer              Pick a buffer to edit in the curent window.
+:PickerBuffer              Pick a buffer to edit in the current window.
 
                                                      *picker-:PickerBufferSplit*
 :PickerBufferSplit         Pick a buffer to edit in a new horizontal split.

@@ -1,4 +1,4 @@
-# vim-picker
+<p align="center"><img src="images/vim-picker.png" width=300></p>
 
 [![Licence](https://img.shields.io/github/license/srstevenson/vim-picker?label=Licence&color=blue)](https://github.com/srstevenson/vim-picker/blob/main/LICENCE)
 [![CI status](https://github.com/srstevenson/vim-picker/workflows/CI/badge.svg)](https://github.com/srstevenson/vim-picker/actions)

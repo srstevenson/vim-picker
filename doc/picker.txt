@@ -37,6 +37,12 @@ vim-picker provides the following commands:
                            optional directory argument in the same manner as
                            |:PickerEdit|.
 
+                                                         *picker-:PickerTabdrop*
+:PickerTabdrop [directory] Pick a file to edit in a new tab if no tab already
+                           contains it or jump to the tab containing it. This
+                           takes an optional directory argument in the same
+                           manner as |:PickerEdit|.
+
                                                           *picker-:PickerVsplit*
 :PickerVsplit [directory]  Pick a file to edit in a new vertical split. This
                            takes an optional directory argument in the same

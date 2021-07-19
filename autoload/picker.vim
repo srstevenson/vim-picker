@@ -427,6 +427,12 @@ function! picker#Tabedit(...) abort
     call s:PickFile(s:ListFilesCommand(l:dir), 'tabedit', {'cwd': l:dir})
 endfunction
 
+function! picker#Tabdrop(...) abort
+    " Run fuzzy selector to choose a file and call tab drop on it.
+    let l:dir = s:GetDirectoryFromArgs(a:000)
+    call s:PickFile(s:ListFilesCommand(l:dir), 'tab drop', {'cwd': l:dir})
+endfunction
+
 function! picker#Vsplit(...) abort
     " Run fuzzy selector to choose a file and call vsplit on it.
     let l:dir = s:GetDirectoryFromArgs(a:000)

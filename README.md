@@ -71,6 +71,9 @@ vim-picker provides the following commands:
   optional directory argument in the same manner as `:PickerEdit`.
 - `:PickerTabedit`: Pick a file to edit in a new tab. This takes an optional
   directory argument in the same manner as `:PickerEdit`.
+- `:PickerTabdrop`: Pick a file to edit in a new tab if no tab already contains
+  it or jump to the tab containing it. This takes an optional directory argument
+  in the same manner as `:PickerEdit`.
 - `:PickerVsplit`: Pick a file to edit in a new vertical split. This takes an
   optional directory argument in the same manner as `:PickerEdit`.
 - `:PickerBuffer`: Pick a buffer to edit in the current window.
@@ -88,6 +91,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 - `<Plug>(PickerEdit)`: Execute `:PickerEdit`.
 - `<Plug>(PickerSplit)`: Execute `:PickerSplit`.
 - `<Plug>(PickerTabedit)`: Execute `:PickerTabedit`.
+- `<Plug>(PickerTabdrop)`: Execute `:PickerTabdrop`.
 - `<Plug>(PickerVsplit)`: Execute `:PickerVsplit`.
 - `<Plug>(PickerBuffer)`: Execute `:PickerBuffer`.
 - `<Plug>(PickerBufferSplit)`: Execute `:PickerBufferSplit`.
@@ -106,6 +110,7 @@ sequences:
 nmap <unique> <leader>pe <Plug>(PickerEdit)
 nmap <unique> <leader>ps <Plug>(PickerSplit)
 nmap <unique> <leader>pt <Plug>(PickerTabedit)
+nmap <unique> <leader>pd <Plug>(PickerTabdrop)
 nmap <unique> <leader>pv <Plug>(PickerVsplit)
 nmap <unique> <leader>pb <Plug>(PickerBuffer)
 nmap <unique> <leader>p] <Plug>(PickerTag)

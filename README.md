@@ -267,6 +267,6 @@ vim-picker is distributed under the terms of the [ISC licence].
 [tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug
-[vim-terminal]: https://vimhelp.appspot.com/terminal.txt.html
+[vim-terminal]: https://vimhelp.org/terminal.txt.html
 [vim]: http://www.vim.org/
 [vundle]: https://github.com/VundleVim/Vundle.vim

@@ -202,7 +202,7 @@ function! s:PickerTermStart(list_command, vim_command, callback) abort
     endif
 
     function! l:callback.exit_cb(...) abort
-        close!
+        call s:CloseWindowAndDeleteBuffer()
         call win_gotoid(l:self.window_id)
         if filereadable(l:self.filename)
             try

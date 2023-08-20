@@ -1,8 +1,12 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
 jobs:
   vint:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     name: Lint with Vint
     runs-on: ubuntu-latest
     steps:
@@ -13,10 +17,10 @@ jobs:
           python-version: 3.x
       - name: Lint with Vint
         run: |
-          python -m pip install vim-vint
+          python3 -m pip install vim-vint
           vint .
+
   vimlint:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     name: Lint with vimlint
     runs-on: ubuntu-latest
     steps:

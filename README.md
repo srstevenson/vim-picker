@@ -1,7 +1,10 @@
 <p align="center"><img src="images/vim-picker.png" width=300></p>
 
-[![Licence](https://img.shields.io/github/license/srstevenson/vim-picker?label=Licence&color=blue)](https://github.com/srstevenson/vim-picker/blob/main/LICENCE)
-[![CI status](https://github.com/srstevenson/vim-picker/workflows/CI/badge.svg)](https://github.com/srstevenson/vim-picker/actions)
+:warning: _vim-picker is no longer actively maintained. It is implemented and
+configured in Vimscript as it was developed before the addition of the Lua API
+to Neovim, and predates Neovim features such as floating windows. If you're
+looking for a modern fuzzy picker for Neovim, [Telescope][telescope] is a
+popular choice_.
 
 [vim-picker] is a fuzzy picker for [Neovim] and [Vim].
 
@@ -241,7 +244,7 @@ match is selected the file will be opened at the line and column of the match.
 
 ## Copyright
 
-Copyright © 2016-2021 [Scott Stevenson].
+Copyright © 2016-2023 [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC licence].
 
@@ -264,6 +267,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [scott stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
+[telescope]: https://github.com/nvim-telescope/telescope.nvim
 [tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
 [vim-plug]: https://github.com/junegunn/vim-plug

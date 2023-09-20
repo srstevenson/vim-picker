@@ -9,7 +9,7 @@ CONTENTS                                                       *picker-contents*
     4. Configuration .............................|picker-configuration|
     5. Functions .................................|picker-functions|
     6. Issues ....................................|picker-issues|
-    7. Licence ...................................|picker-licence|
+    7. License ...................................|picker-license|
 
 ==============================================================================
 ABOUT                                                             *picker-about*
@@ -199,11 +199,11 @@ Bug reports and patches are welcome on the issue tracker at
 https://github.com/srstevenson/vim-picker/issues
 
 ==============================================================================
-LICENCE                                                         *picker-licence*
+LICENSE                                                         *picker-license*
 
 Copyright © 2016-2023 Scott Stevenson.
 
-vim-picker is distributed under the terms of the ISC licence.
+vim-picker is distributed under the terms of the ISC license.
 
 ==============================================================================
 vim:et:ft=help:sts=4:tw=78:

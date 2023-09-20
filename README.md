@@ -246,7 +246,7 @@ match is selected the file will be opened at the line and column of the match.
 
 Copyright © 2016-2023 [Scott Stevenson].
 
-vim-picker is distributed under the terms of the [ISC licence].
+vim-picker is distributed under the terms of the [ISC license].
 
 [botright]: https://neovim.io/doc/user/windows.html#:botright
 [command-t]: https://github.com/wincent/command-t
@@ -255,7 +255,7 @@ vim-picker is distributed under the terms of the [ISC licence].
 [fd]: https://github.com/sharkdp/fd
 [fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
-[isc licence]: https://opensource.org/licenses/ISC
+[isc license]: https://opensource.org/licenses/ISC
 [minpac]: https://github.com/k-takata/minpac
 [neovim]: https://neovim.io/
 [nvim-terminal]: https://neovim.io/doc/user/nvim_terminal_emulator.html

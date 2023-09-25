@@ -1,6 +1,6 @@
 <p align="center"><img src="images/vim-picker.png" width=300></p>
 
-> [!WARNING]
+> [!NOTE]
 >
 > vim-picker is no longer actively maintained. It is implemented and configured
 > in Vimscript as it was developed before the addition of the Lua API to Neovim,

@@ -245,7 +245,7 @@ match is selected the file will be opened at the line and column of the match.
 
 ## Copyright
 
-Copyright © 2016-2023 [Scott Stevenson].
+Copyright © [Scott Stevenson].
 
 vim-picker is distributed under the terms of the [ISC license].
 

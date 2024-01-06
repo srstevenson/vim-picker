@@ -201,7 +201,7 @@ https://github.com/srstevenson/vim-picker/issues
 ==============================================================================
 LICENSE                                                         *picker-license*
 
-Copyright © 2016-2023 Scott Stevenson.
+Copyright © Scott Stevenson.
 
 vim-picker is distributed under the terms of the ISC license.
 

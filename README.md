@@ -26,8 +26,8 @@ has advantages over plugins with a similar purpose such as [ctrlp.vim] and
 - It adheres to the Unix philosophy, and does not reimplement existing tools.
   File listing is achieved using the best tool for the job: `git` in Git
   repositories and [`fd`][fd] elsewhere, falling back to `find` if `fd` is not
-  available. Fuzzy text selection is done with `fzy` by default: a fast, well
-  behaved interactive filter.
+  available. Fuzzy text selection is done with `fzy` by default: a fast,
+  well-behaved interactive filter.
 - It doesn't define default key mappings, allowing you to define your own
   mappings that best fit your workflow and don't conflict with your other
   plugins.
@@ -38,11 +38,11 @@ To use vim-picker you will first need a fuzzy selector such as [`fzy`][fzy]
 (recommended), [`pick`][pick], or [`selecta`][selecta] installed. See their
 respective homepages for installation instructions.
 
-If you already use a plugin manager such as [vim-plug], [Dein.vim], or [Vundle],
-install vim-picker in the normal manner. Otherwise, the recommended plugin
-manager is [minpac]. Add the following to your vimrc (`$HOME/.vim/vimrc` for Vim
-and `${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim,
-and run `:call minpac#update()`:
+If you already use a plugin manager, install vim-picker in the normal manner.
+Otherwise, the recommended plugin manager is [minpac]. Add the following to your
+vimrc (`$HOME/.vim/vimrc` for Vim and
+`${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.vim` for Neovim), restart Vim, and
+run `:call minpac#update()`:
 
 ```vim
 call minpac#add('srstevenson/vim-picker')
@@ -106,7 +106,7 @@ vim-picker defines the following [`<Plug>`][plug-mappings] mappings:
 - `<Plug>(PickerHelp)`: Execute `:PickerHelp`.
 
 These are not mapped to key sequences, to allow you to choose those that best
-fit your workflow and don't conflict with other plugins you use. However if you
+fit your workflow and don't conflict with other plugins you use. However, if you
 have no preference, the following snippet maps the main mappings to mnemonic key
 sequences:
 
@@ -142,7 +142,7 @@ let g:picker_custom_find_flags = '--color never --files'
 ```
 
 If `g:picker_custom_find_executable` is set, and the executable it references is
-found, it will always be used in place of Git, `fd`, or `find`. Therefore you
+found, it will always be used in place of Git, `fd`, or `find`. Therefore, you
 may want to make `g:picker_custom_find_executable` a wrapper script that
 implements your own checks and fallbacks: for example using `hg` in Mercurial
 repositories, `ripgrep` elsewhere, and falling back to `find` if `ripgrep` is
@@ -157,9 +157,9 @@ let g:picker_selector_executable = 'pick'
 let g:picker_selector_flags = ''
 ```
 
-vim-picker has been tested with `fzy`, `pick`, and `selecta`, but any well
-behaved command line filter should work. If your version of Vim does not contain
-an embedded terminal emulator, but you run Vim within [tmux], setting
+vim-picker has been tested with `fzy`, `pick`, and `selecta`, but any
+well-behaved command line filter should work. If your version of Vim does not
+contain an embedded terminal emulator, but you run Vim within [tmux], setting
 `g:picker_selector_executable` to the [`fzy-tmux`][fzy-tmux] script distributed
 with `fzy` will open the fuzzy selector in a new tmux pane below Vim, providing
 an interface similar to using the embedded terminal emulator of Neovim or Vim
@@ -185,7 +185,7 @@ let g:picker_height = 10
 
 ## Custom commands
 
-For use cases not covered by the builtin functions, vim-picker also exposes
+For use cases not covered by the built-in functions, vim-picker also exposes
 lower level functions that allow you to specify any shell command to generate
 selection candidates with, combined with any Vim command to run on the output.
 These are `picker#String()` and `picker#File()`:
@@ -245,14 +245,13 @@ match is selected the file will be opened at the line and column of the match.
 
 ## Copyright
 
-Copyright © [Scott Stevenson].
+Copyright © Scott Stevenson.
 
 vim-picker is distributed under the terms of the [ISC license].
 
 [botright]: https://neovim.io/doc/user/windows.html#:botright
 [command-t]: https://github.com/wincent/command-t
 [ctrlp.vim]: https://github.com/ctrlpvim/ctrlp.vim
-[dein.vim]: https://github.com/Shougo/dein.vim
 [fd]: https://github.com/sharkdp/fd
 [fzy-tmux]: https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux
 [fzy]: https://github.com/jhawthorn/fzy
@@ -266,12 +265,9 @@ vim-picker is distributed under the terms of the [ISC license].
 [pick]: https://github.com/mptre/pick
 [plug-mappings]: https://neovim.io/doc/user/map.html#%3CPlug%3E
 [ripgrep]: https://github.com/BurntSushi/ripgrep
-[scott stevenson]: https://scott.stevenson.io
 [selecta]: https://github.com/garybernhardt/selecta
 [telescope]: https://github.com/nvim-telescope/telescope.nvim
 [tmux]: https://tmux.github.io/
 [vim-picker]: https://github.com/srstevenson/vim-picker
-[vim-plug]: https://github.com/junegunn/vim-plug
 [vim-terminal]: https://vimhelp.org/terminal.txt.html
 [vim]: http://www.vim.org/
-[vundle]: https://github.com/VundleVim/Vundle.vim
